@@ -1,5 +1,13 @@
 package Unit;
 
+import java.awt.Image;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import Level.Level;
+
 public class Player extends Unit {
 	private static final int maxLife = 100;
 	
@@ -20,12 +28,15 @@ public class Player extends Unit {
 		life = maxLife;
 		shield = 0;
 		score = 0;
+		r = 5;
+		
+		//initializePlayer();
 		
 		coordX = cX;
 		coordY = cY;
 		dx = dy = 0;
 		speed = 5;
-		left = right = up = down = false;		
+		left = right = up = down = false;
 	}
 	
 	
@@ -126,7 +137,42 @@ public class Player extends Unit {
 	 * Actualiza al jugador de acuerdo a los atributos.
 	 */
 	public void update() {
+		if(left) {
+			dx = -speed;
+		}
+		if(right) {
+			dx = speed;
+		}
+		if(up) {
+			dy = -speed;
+		}
+		if(down) {
+			dy = speed;
+		}
 		
+		coordX += dx;
+		coordY += dy;
+		
+		if(coordX < r) coordX = r;
+		if(coordY < r) coordY = r;
+		
+		if(coordX > Level.WIDTH - r ) {
+			coordX = Level.WIDTH - r;
+		}
+		if(coordY > Level.HEIGHT - r ) {
+			coordY = Level.HEIGHT - r;
+		}
+		
+		
+		dx = 0;
+		dy = 0;
+	}
+	
+	public Player initializePlayer() {
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
+		Icon icon = new ImageIcon(img.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+		this.setIcon(icon);
+		return this;
 	}
 	
 }
