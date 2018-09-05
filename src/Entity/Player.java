@@ -20,7 +20,7 @@ public class Player extends Entity {
 	
 	//Constructor
 	public Player(int cX, int cY) {
-		super(cX,cY,10);
+		super(cX,cY,8);
 		shield = new Shield();
 		shot = new Shot();
 		score = 0;
