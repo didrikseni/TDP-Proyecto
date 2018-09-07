@@ -14,7 +14,7 @@ public class Timer extends Thread {
 		long startTime = 0;
 		long elapsedTime = 0;
 		long waitTime = 0;
-		long targetTime = 1000 / 30;
+		long targetTime = 1000 / 30 ;
 		
 		
 		while(true) {
@@ -28,7 +28,6 @@ public class Timer extends Thread {
 			try { 
 				Thread.sleep(waitTime);
 			} catch (Exception e) {}
-			
 		}
 	}
 

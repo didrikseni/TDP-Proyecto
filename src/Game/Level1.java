@@ -7,7 +7,7 @@ public class Level1 extends Game {
 	private static Level1 INSTANCE = null;
 	
 	//Constructor
-	public Level1(GUI gui) {
+	private Level1(GUI gui) {
 		super(gui);
 	}
 	

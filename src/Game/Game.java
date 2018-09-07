@@ -5,12 +5,13 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import Entity.Enemy;
+import Entity.EnemyWeapon;
 import Entity.Player;
 import Main.GUI;
+import Obstacles.Destroyable;
 import Obstacles.Obstacles;
 import PowerUp.PowerUp;
 import Shot.Shot;
@@ -19,7 +20,7 @@ public abstract class Game{
 	
 	//Attributes
 	protected Player player;
-	protected Collection<Enemy> enemys;
+	protected Collection<Enemy> enemies;
 	protected Collection<Obstacles> obstacles;
 	protected Collection<Shot> shots;
 	protected Collection<PowerUp> powerUps;
@@ -29,14 +30,32 @@ public abstract class Game{
 
 	//Constructor
 	protected Game(GUI gui) {
-		player = new Player(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5);
-		gui.add(player.getGraphics());
-		gui.addLayerAux(player.getGraphics(), 5);
-		
-		enemys = new ArrayList<Enemy>();
+		enemies = new ArrayList<Enemy>();
 		obstacles = new ArrayList<Obstacles>();
 		shots = new ArrayList<Shot>();
 		powerUps = new ArrayList<PowerUp>();
+		
+		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5);
+		gui.add(player.getGraphics());
+		gui.addLayerAux(player.getGraphics(), 5);
+		
+		
+		//ENEMIGOS Y OBSTACULOS TEMPORALES
+		java.util.Random rnd = new java.util.Random();
+		for(int i = 0; i < 5; i++) {
+			Obstacles o = new Destroyable(rnd.nextInt(600), rnd.nextInt(700));
+			gui.add(o.getGraphics());
+			gui.addLayerAux(o.getGraphics(), 5);
+		}
+		
+		int x = 100;
+		for(int i = 0; i < 3; i++) {
+			Enemy e = new EnemyWeapon(x, 100, 5);
+			enemies.add(e);
+			gui.add(e.getGraphics());
+			gui.addLayerAux(e.getGraphics(), 4);
+			x += 150;
+		}		
 	}
 
 
@@ -78,6 +97,23 @@ public abstract class Game{
 
 	public void update() {
 		player.update();
+		
+		//MOVIMIENTO TEMPORAL DE LOS ENEMIGOS.
+		java.util.Random rnd = new java.util.Random();
+		if (rnd.nextBoolean()) {
+			for(Enemy e: enemies) {
+				e.move(rnd.nextInt(3));
+				e.update();
+			} 
+		} else {
+			for(Enemy e: enemies) {
+				e.stop(0);
+				e.stop(1);
+				e.stop(2);
+				e.stop(3);
+				e.update();
+			} 
+		}
 		
 	}
 	

@@ -17,7 +17,6 @@ import Game.Game;
 import Game.Level1;
 
 public class GUI extends JFrame {
-	private static GUI INSTANCE = null;
 
 	private JLayeredPane contentPane;
 	
@@ -57,22 +56,24 @@ public class GUI extends JFrame {
 		//this.getContentPane().setLayout(null);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(0, 0, 600, 700);
+		//this.setBounds(0, 0, 600, 700);
+		this.setSize(600, 700);
 		this.contentPane = new JLayeredPane();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setContentPane(contentPane);;
+		this.setContentPane(contentPane);
 		this.contentPane.setLayout(null);
 		
-		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/dv.gif"));
+		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/f1.png"));
 		JLabel background = new JLabel();
 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
 		background.setIcon(icon);
+		
 		background.setBounds(0, 0, 600, 700);
 		contentPane.add(background);
 		contentPane.setLayer(background, 1);
 		background.setVisible(true);
 		
-		g = new Level1(this);
+		g = Level1.getInstance(this);
 		timer = new Timer(g);
 		timer.start();
 	}
@@ -92,18 +93,3 @@ public class GUI extends JFrame {
 	}
 	
 }
-
-
-/*
-
-private void initializeMap() {
-	ImageIcon img = new ImageIcon(getClass().getResource("/Resources/f1.png"));
-	JLabel background = new JLabel();
-	Icon icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
-	background.setIcon(icon);
-	background.setBounds(0, 0, 600, 700);
-	contentPane.add(background);
-	contentPane.setLayer(background, 1);
-	background.setVisible(true);		
-}
-*/

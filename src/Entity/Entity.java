@@ -8,8 +8,6 @@ import javax.swing.JLabel;
 import Main.GUI;
 
 
-
-
 public abstract class Entity {
 	//Attributes
 	protected JLabel graphic;
@@ -17,8 +15,8 @@ public abstract class Entity {
 	protected int life;
 	protected Point pos;
 	protected int speed;
-	protected int width = 50;
-	protected int height = 50;
+	protected int width;
+	protected int height;
 	protected boolean up;
 	protected boolean down;
 	protected boolean left;
@@ -34,7 +32,11 @@ public abstract class Entity {
 	 */
 	protected Entity(int x, int y, int speed) {
 		this.pos = new Point(x,y);
-		this.speed = speed;		
+		this.speed = speed;
+		this.life = 100;
+		this.width = 50;
+		this.height = 50;		
+		up = down = left = right = false;	
 	}
 	
 	
@@ -64,7 +66,7 @@ public abstract class Entity {
 		return life;		
 	}
 	
-	// Command
+	
 	
 	/**
 	 * Quita una cantidad de vida pasada como un parametro entero a la unidad
@@ -81,6 +83,10 @@ public abstract class Entity {
 	}
 	
 	
+	/**
+	 * Inicia el movimiento del jugador en la direccion indicada por el parametro entero.
+	 * @param Entero indicando la direccion en la que hay que iniciar el movimiento.
+	 */
 	public void move(int dir) {
 		switch (dir) {
 			case 0 : //Arriba
@@ -99,6 +105,10 @@ public abstract class Entity {
 	}
 	
 	
+	/**
+	 * Para el movimiento del jugador en la direccion indicada por el parametro entero.
+	 * @param Entero indicando la direccion en la que hay que parar el movimiento.
+	 */
 	public void stop(int dir) {
 		switch (dir) {
 			case 0 : //Arriba
@@ -117,7 +127,9 @@ public abstract class Entity {
 	}
 	
 	
-	
+	/**
+	 * Actualiza la posicion del jugador.
+	 */
 	public void update() {
 		if(left) {
 			pos.x -= speed;
@@ -132,16 +144,18 @@ public abstract class Entity {
 			pos.y += speed;
 		}
 		
-		//Preguntar la chanchada esta.
-		if(pos.x < width / 2 - 25) 
+		if(pos.x < width / 2 - 25) {
 			pos.x = width / 2 - 25;
-		if(pos.y < height / 2- 25) 
+		}
+		if(pos.y < height / 2- 25) {
 			pos.y = height / 2- 25;
-		if(pos.x > 600 - width - 17) 
-			pos.x = 600 - width - 17;
-		if(pos.y > (700 - height - 40)) 
-			pos.y = (700 - height - 40);
-		
+		}
+		if(pos.x > 600 - width) {
+			pos.x = 600 - width;
+		}
+		if(pos.y > (700 - height)) {
+			pos.y = (700 - height);
+		}
 		
 		this.updateGraphics();
 	}
