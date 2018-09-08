@@ -29,8 +29,4 @@ public class Level1 extends Game {
 		return INSTANCE;
 	}
 	
-	
-	
-	
-	
 }

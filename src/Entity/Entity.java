@@ -53,7 +53,7 @@ public abstract class Entity {
 	 * Retorna la velocidad de la entidad.
 	 * @return Entero con la velocidad de la entidad.
 	 */
-	public int getVelocity() {
+	public int getSpeed() {
 		return speed;		
 	}
 	

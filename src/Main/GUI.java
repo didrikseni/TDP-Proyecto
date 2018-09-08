@@ -88,7 +88,7 @@ public class GUI extends JFrame {
 		this.repaint();		
 	}
 	
-	public void addLayerAux(Component e, int layer) {
+	public void addLayerGUI(Component e, int layer) {
 		this.contentPane.setLayer(e, layer);
 	}
 	

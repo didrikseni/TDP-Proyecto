@@ -35,9 +35,15 @@ public abstract class Game{
 		shots = new ArrayList<Shot>();
 		powerUps = new ArrayList<PowerUp>();
 		
+		initializeMap(gui);		
+		
+	}
+
+
+	private void initializeMap(GUI gui) {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5);
 		gui.add(player.getGraphics());
-		gui.addLayerAux(player.getGraphics(), 5);
+		gui.addLayerGUI(player.getGraphics(), 5);
 		
 		
 		//ENEMIGOS Y OBSTACULOS TEMPORALES
@@ -45,7 +51,7 @@ public abstract class Game{
 		for(int i = 0; i < 5; i++) {
 			Obstacles o = new Destroyable(rnd.nextInt(600), rnd.nextInt(700));
 			gui.add(o.getGraphics());
-			gui.addLayerAux(o.getGraphics(), 5);
+			gui.addLayerGUI(o.getGraphics(), 5);
 		}
 		
 		int x = 100;
@@ -53,7 +59,7 @@ public abstract class Game{
 			Enemy e = new EnemyWeapon(x, 100, 5);
 			enemies.add(e);
 			gui.add(e.getGraphics());
-			gui.addLayerAux(e.getGraphics(), 4);
+			gui.addLayerGUI(e.getGraphics(), 4);
 			x += 150;
 		}		
 	}
