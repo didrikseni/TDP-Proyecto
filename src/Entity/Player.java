@@ -20,14 +20,12 @@ public class Player extends Entity {
 	//Attributes
 	private Shield shield;
 	private int score;
-	private Shot shot;
 	 
 	
 	//Constructor
 	private Player(int cX, int cY) {
 		super(cX,cY,8);
 		shield = new Shield();
-		shot = new Shot(pos.x, pos.y, 20);
 		score = 0;
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
@@ -39,6 +37,7 @@ public class Player extends Entity {
 			INSTANCE = new Player(x,y);
 		}	
 	}
+	
 	/**
 	 * Metodo que retorna una instancia de Player
 	 * @return Retorna una instancia de Player
