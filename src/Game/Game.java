@@ -108,7 +108,7 @@ public abstract class Game{
 		java.util.Random rnd = new java.util.Random();
 		if (rnd.nextBoolean()) {
 			for(Enemy e: enemies) {
-				e.move(rnd.nextInt(3));
+				e.move(rnd.nextInt(4));
 				e.update();
 			} 
 		} else {

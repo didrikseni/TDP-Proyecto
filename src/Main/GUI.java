@@ -57,7 +57,7 @@ public class GUI extends JFrame {
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(0, 0, 600, 700);
-		this.setSize(600, 700);
+		this.setSize(620, 750);
 		this.contentPane = new JLayeredPane();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(contentPane);

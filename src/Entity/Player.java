@@ -2,15 +2,10 @@ package Entity;
 
 import java.awt.Image;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
-import Game.Game;
-import Game.Level1;
-import Main.GUI;
 import Shield.Shield;
-import Shot.Shot;
+import Visitor.Visitor;
+import Visitor.VisitorPlayer;
 
 public class Player extends Entity {
 	//Static attributes
@@ -20,6 +15,7 @@ public class Player extends Entity {
 	//Attributes
 	private Shield shield;
 	private int score;
+	private Visitor v;
 	 
 	
 	//Constructor
@@ -27,6 +23,8 @@ public class Player extends Entity {
 		super(cX,cY,8);
 		shield = new Shield();
 		score = 0;
+		
+		v = new VisitorPlayer();
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
