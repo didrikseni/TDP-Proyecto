@@ -4,10 +4,12 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import Game.Game;
+
 public class Destroyable extends Obstacles {	
 	
-	public Destroyable(int x, int y) {
-		super(x, y);
+	public Destroyable(int x, int y, Game g) {
+		super(x, y, g);
 		width = 30;
 		height = 30;
 		

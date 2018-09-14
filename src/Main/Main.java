@@ -2,9 +2,7 @@ package Main;
 
 import javax.swing.JFrame;
 
-import Game.Game;
-import Game.Level1;
-
+@SuppressWarnings("serial")
 public class Main extends JFrame {
 	//Attributes
 	private static GUI gui;

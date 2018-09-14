@@ -8,7 +8,7 @@ import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
-public class VisitorObstacleBarricade extends Visitor {
+public class VisitorObstacleBarricade implements Visitor {
 	
 	public void visitPlayer(Player p) {
 		

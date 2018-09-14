@@ -1,11 +1,12 @@
 package Obstacles;
 
 import Entity.Entity;
+import Game.Game;
 
 public abstract class Obstacles extends Entity {
 
-	protected Obstacles(int x, int y) {
-		super(x, y, 0);
+	protected Obstacles(int x, int y, Game g) {
+		super(x, y, 0, g);
 	}
 	
 	

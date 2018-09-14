@@ -3,8 +3,11 @@ package Entity;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+
+import Game.Game;
 import Shield.Shield;
-import Visitor.Visitor;
+import Shot.PlayerShot;
+import Shot.Shot;
 import Visitor.VisitorPlayer;
 
 public class Player extends Entity {
@@ -13,26 +16,35 @@ public class Player extends Entity {
 	private static final int maxLife = 100;
 	
 	//Attributes
+	private Game g;
 	private Shield shield;
 	private int score;
-	private Visitor v;
+	private boolean firing;
+	private long firingTimer;
+	private long firingDelay;
 	 
 	
 	//Constructor
-	private Player(int cX, int cY) {
-		super(cX,cY,8);
+	private Player(int cX, int cY, Game g) {
+		super(cX,cY,8, g);
 		shield = new Shield();
 		score = 0;
 		
+		this.g = g;
+		
 		v = new VisitorPlayer();
+		
+		firing = false;
+		firingTimer = System.nanoTime();
+		firingDelay = 150;
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 	
-	private synchronized static void createInstance(int x, int y) {
+	private synchronized static void createInstance(int x, int y, Game g) {
 		if (INSTANCE == null) {
-			INSTANCE = new Player(x,y);
+			INSTANCE = new Player(x,y,g);
 		}	
 	}
 	
@@ -40,9 +52,9 @@ public class Player extends Entity {
 	 * Metodo que retorna una instancia de Player
 	 * @return Retorna una instancia de Player
 	 */
-	public static Player getInstance(int x, int y) {
+	public static Player getInstance(int x, int y, Game g) {
 		if(INSTANCE == null) {
-			createInstance(x,y);
+			createInstance(x,y,g);
 		}
 		return INSTANCE;
 	}
@@ -80,5 +92,30 @@ public class Player extends Entity {
 	public void addScore(int s) {
 		score += s;
 	}
+
+	public void shoot(boolean b) {
+		firing = b;
+	}
+	
+	public void stop(int dir) {
+		if (dir < 4) {
+			super.stop(dir);
+		} else {
+			firing = false;
+		}
+	}
+	
+	public void update() { 		
+		if (firing) {
+			long elapsed = (System.nanoTime() - firingTimer) /1000000;
+			if(elapsed > firingDelay) {
+				Shot s = new PlayerShot(pos.x, pos.y, g);
+				g.addEntity(s);
+				firingTimer = System.nanoTime();
+			}
+		}
+		super.update();
+	}
+	
 	
 }

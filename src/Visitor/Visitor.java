@@ -8,7 +8,7 @@ import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
-public abstract class Visitor {
+public interface Visitor {
 	
 	//Commands
 	public abstract void visitPlayer(Player p);

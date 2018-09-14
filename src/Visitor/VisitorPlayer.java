@@ -8,11 +8,9 @@ import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
-public class VisitorPlayer extends Visitor{
+public class VisitorPlayer implements Visitor{
 
-	public void visitPlayer(Player p) {
-		
-	}
+	public void visitPlayer(Player p) {}
 
 	public void visitEnemy(Enemy e) {
 		
@@ -30,11 +28,9 @@ public class VisitorPlayer extends Visitor{
 		
 	}
 
-	public void visitPlayerShot(PlayerShot p) {
-		
-	}
+	public void visitPlayerShot(PlayerShot p) {}
 
-	public void visitEnemyShot(EnemyShot e) {
+	public void visitEnemyShot(EnemyShot e) {		
 		
 	}
 

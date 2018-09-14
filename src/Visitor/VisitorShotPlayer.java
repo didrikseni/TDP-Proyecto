@@ -9,7 +9,7 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 import Shot.Shot;
 
-public class VisitorShotPlayer extends Visitor {
+public class VisitorShotPlayer implements Visitor {
 	
 	public void visitPlayer(Player p) {
 		

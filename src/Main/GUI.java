@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import Game.Game;
 import Game.Level1;
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame {
 
 	private JLayeredPane contentPane;
@@ -46,24 +47,25 @@ public class GUI extends JFrame {
 	public GUI() {
 		addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
+					shoot();
+				}
 				move(arg0);
 			}
-			@Override
+
 			public void keyReleased(KeyEvent arg0) {
 				stop(arg0);
 			}
 		});
-		//this.getContentPane().setLayout(null);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setBounds(0, 0, 600, 700);
-		this.setSize(620, 750);
+		this.setSize(615, 750);
 		this.contentPane = new JLayeredPane();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(contentPane);
 		this.contentPane.setLayout(null);
 		
-		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/f1.png"));
+		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/6.png"));
 		JLabel background = new JLabel();
 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
 		background.setIcon(icon);
@@ -90,6 +92,10 @@ public class GUI extends JFrame {
 	
 	public void addLayerGUI(Component e, int layer) {
 		this.contentPane.setLayer(e, layer);
+	}
+	
+	private void shoot() {
+		g.shoot();
 	}
 	
 }

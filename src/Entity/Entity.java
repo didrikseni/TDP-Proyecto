@@ -5,10 +5,12 @@ import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import Main.GUI;
+import Game.Game;
+import Visitor.Visitor;
 
 
 public abstract class Entity {
+	
 	//Attributes
 	protected JLabel graphic;
 	protected Icon icon;
@@ -21,22 +23,26 @@ public abstract class Entity {
 	protected boolean down;
 	protected boolean left;
 	protected boolean right;
+	protected Visitor v;
+	protected Game g;
 	
 	
 	//Constructor
 	/**
 	 * Constructor de entidad
+	 * @param g 
 	 * @param Entero coordenada x
 	 * @param Entero coordenada y
 	 * @param Entero velocidad
 	 */
-	protected Entity(int x, int y, int speed) {
+	protected Entity(int x, int y, int speed, Game g) {
 		this.pos = new Point(x,y);
 		this.speed = speed;
 		this.life = 100;
 		this.width = 50;
 		this.height = 50;		
 		up = down = left = right = false;	
+		this.g = g;
 	}
 	
 	
@@ -156,7 +162,6 @@ public abstract class Entity {
 		if(pos.y > (700 - height)) {
 			pos.y = (700 - height);
 		}
-		
 		this.updateGraphics();
 	}
 
