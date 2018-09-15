@@ -5,6 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import Game.Game;
+import Visitor.Visitor;
 
 public class Destroyable extends Obstacles {	
 	
@@ -15,6 +16,11 @@ public class Destroyable extends Obstacles {
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/aestroid_brown.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visitObstacleDestroyable(this);
 	}
 
 	

@@ -1,6 +1,7 @@
 package Visitor;
 
 import Entity.Enemy;
+import Entity.Entity;
 import Entity.Player;
 import Obstacles.Barricade;
 import Obstacles.Destroyable;
@@ -8,7 +9,14 @@ import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
-public interface Visitor {
+public abstract class Visitor {
+	//Attributes
+	protected Entity e;
+	
+	public Visitor(Entity e) {
+		this.e = e;
+	}
+	
 	
 	//Commands
 	public abstract void visitPlayer(Player p);

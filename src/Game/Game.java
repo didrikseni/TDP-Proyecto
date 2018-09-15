@@ -3,7 +3,7 @@ package Game;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import javax.swing.JLayeredPane;
 
@@ -14,16 +14,13 @@ import Entity.Player;
 import Main.GUI;
 import Obstacles.Destroyable;
 import Obstacles.Obstacles;
-import PowerUp.PowerUp;
-import Shot.PlayerShot;
-import Shot.Shot;
 
 public abstract class Game{
 	
 	//Attributes
 	protected GUI gui;
 	protected Player player;
-	protected Collection<Entity> entities;
+	protected List<Entity> entities;
 	protected JLayeredPane contentPane;
 	
 	
@@ -120,28 +117,44 @@ public abstract class Game{
 
 	public void update() {
 		player.update();
-		/*
-		//MOVIMIENTO TEMPORAL DE LOS ENEMIGOS.
-		java.util.Random rnd = new java.util.Random();
-		if (rnd.nextBoolean()) {
-			for(Entity e: entities) {
-				e.move(rnd.nextInt(4));
-				e.update();
-			} 
-		} else {
-			for(Entity e: entities) {
-				e.stop(0);
-				e.stop(1);
-				e.stop(2);
-				e.stop(3);
-				e.update();
-			} 
-		}
-		*/
+		Entity e1, e2;
+		
 		for(Entity e: entities) {
 			e.update();
 		}
 		
+		for(int i = 0; i < entities.size(); i++) {
+			e1 = entities.get(i);
+			for(int j = i + 1; j < entities.size(); j++) {
+				e2 = entities.get(j);
+				if(hasCollide(e1,e2)) {
+					e1.collide(e2);
+					e2.collide(e1);
+				}
+				
+				if(e2.getLife() <= 0) {
+					gui.remove(e2.getGraphics());
+					entities.remove(j);
+				}
+			}
+			if(e1.getLife() <= 0) {
+				gui.remove(e1.getGraphics());
+				entities.remove(i);
+			}
+		}	
+	}
+
+
+	private boolean hasCollide(Entity e1, Entity e2) {
+		double dx = e1.getPos().x - e2.getPos().x;
+		double dy = e1.getPos().y - e2.getPos().y;
+		double dist = Math.sqrt(dx*dx + dy*dy);
+		
+		if (dist < (e1.getWidth() / 2 + e2.getWidth() / 2) || dist < (e1.getHeight() / 2 + e2.getHeight() / 2)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 

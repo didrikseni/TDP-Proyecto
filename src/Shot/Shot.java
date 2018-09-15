@@ -2,8 +2,9 @@ package Shot;
 
 import Entity.Entity;
 import Game.Game;
+import Visitor.Visitor;
 
-public class Shot extends Entity {
+public abstract class Shot extends Entity {
 	//Attributes
 	protected int damage;
 	

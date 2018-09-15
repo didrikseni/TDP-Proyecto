@@ -1,6 +1,7 @@
 package Visitor;
 
 import Entity.Enemy;
+import Entity.Entity;
 import Entity.Player;
 import Obstacles.Barricade;
 import Obstacles.Destroyable;
@@ -8,8 +9,12 @@ import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
-public class VisitorShotEnemy implements Visitor {
+public class VisitorShotEnemy extends Visitor {
 	
+	public VisitorShotEnemy(Entity e) {
+		super(e);
+	}
+
 	public void visitPlayer(Player p) {
 		
 	}

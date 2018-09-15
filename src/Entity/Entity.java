@@ -30,7 +30,7 @@ public abstract class Entity {
 	//Constructor
 	/**
 	 * Constructor de entidad
-	 * @param g 
+	 * @param Game g
 	 * @param Entero coordenada x
 	 * @param Entero coordenada y
 	 * @param Entero velocidad
@@ -190,7 +190,40 @@ public abstract class Entity {
 	
 	
 	//CONSULTAR
+	/**
+	 * Retorna el juego.
+	 * @return Game.
+	 */
 	public Game getGame() {
 		return g;
+	}
+	
+	/**
+	 * Retorna un entero con el ancho de la entidad.
+	 * @return Entero indicando el ancho de la entidad.
+	 */
+	public int getWidth() {
+		return width;
+	}
+	
+	/**
+	 * Retorna un entero con el alto de la entidad.
+	 * @return Entero indicando el alto de la entidad.
+	 */
+	public int getHeight() {
+		return height;
+	}
+
+
+	public void collide(Entity e) {
+		e.accept(v);
+	}
+
+
+	abstract public void accept(Visitor v);
+
+
+	public void remove() {
+		
 	}
 }

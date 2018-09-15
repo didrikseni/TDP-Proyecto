@@ -8,6 +8,7 @@ import Game.Game;
 import Shield.Shield;
 import Shot.PlayerShot;
 import Shot.Shot;
+import Visitor.Visitor;
 import Visitor.VisitorPlayer;
 
 public class Player extends Entity {
@@ -32,7 +33,7 @@ public class Player extends Entity {
 		
 		this.g = g;
 		
-		v = new VisitorPlayer();
+		v = new VisitorPlayer(this);
 		
 		firing = false;
 		firingTimer = System.nanoTime();
@@ -115,6 +116,11 @@ public class Player extends Entity {
 			}
 		}
 		super.update();
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visitPlayer(this);
 	}
 	
 	

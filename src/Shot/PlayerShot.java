@@ -5,6 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import Game.Game;
+import Visitor.Visitor;
 import Visitor.VisitorShotPlayer;
 
 public class PlayerShot extends Shot {
@@ -14,7 +15,7 @@ public class PlayerShot extends Shot {
 		
 		damage = 20;
 		
-		v = new VisitorShotPlayer();
+		v = new VisitorShotPlayer(this);
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/disparo.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
@@ -26,6 +27,12 @@ public class PlayerShot extends Shot {
 		if(pos.y < -15) {
 			g.remove(this);
 		}
+		
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visitPlayerShot(this);
 		
 	}
 	

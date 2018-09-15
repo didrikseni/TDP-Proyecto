@@ -1,6 +1,7 @@
 package Visitor;
 
 import Entity.Enemy;
+import Entity.Entity;
 import Entity.Player;
 import Obstacles.Barricade;
 import Obstacles.Destroyable;
@@ -8,7 +9,11 @@ import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
-public class VisitorEnemyWeapon implements Visitor {
+public class VisitorEnemyWeapon extends Visitor {
+
+	public VisitorEnemyWeapon(Entity e) {
+		super(e);
+	}
 
 	public void visitPlayer(Player p) {
 		
@@ -31,7 +36,7 @@ public class VisitorEnemyWeapon implements Visitor {
 	}
 
 	public void visitPlayerShot(PlayerShot p) {
-		
+		System.out.print("Colisiono con disparo enemigo");
 	}
 
 	public void visitEnemyShot(EnemyShot e) {
