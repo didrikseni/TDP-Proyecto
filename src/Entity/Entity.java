@@ -91,7 +91,8 @@ public abstract class Entity {
 	
 	/**
 	 * Inicia el movimiento del jugador en la direccion indicada por el parametro entero.
-	 * @param Entero indicando la direccion en la que hay que iniciar el movimiento.
+	 * @param Entero indicando la direccion en la que hay que iniciar el movimiento
+	 * "0": arriba, "1": abajo, "2": izquierda, "3": derecha.
 	 */
 	public void move(int dir) {
 		switch (dir) {
@@ -185,5 +186,11 @@ public abstract class Entity {
 			this.graphic.setBounds(this.pos.x, this.pos.y, width, height);			
 		}
 		return this.graphic;
+	}
+	
+	
+	//CONSULTAR
+	public Game getGame() {
+		return g;
 	}
 }

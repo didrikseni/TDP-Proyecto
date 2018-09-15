@@ -50,14 +50,32 @@ public abstract class Game{
 			gui.addLayerGUI(o.getGraphics(), 3);
 		}
 		
-		int x = 100;
-		for(int i = 0; i < 3; i++) {
-			Enemy e = new EnemyWeapon(x, 100, 5, this);
+		int x = 55;
+		for(int i = 0; i < 5; i++) {
+			Enemy e = new EnemyWeapon(x, 100, 4, this);
 			entities.add(e);
 			gui.add(e.getGraphics());
 			gui.addLayerGUI(e.getGraphics(), 4);
-			x += 150;
-		}		
+			x += 100;
+		}
+		
+		x=0;
+		for(int i = 0; i < 5; i++) {
+			Enemy e = new EnemyWeapon(x, 50, 4, this);
+			entities.add(e);
+			gui.add(e.getGraphics());
+			gui.addLayerGUI(e.getGraphics(), 4);
+			x += 100;
+		}
+		
+		x = 0;
+		for(int i = 0; i < 5; i++) {
+			Enemy e = new EnemyWeapon(x, 150, 4, this);
+			entities.add(e);
+			gui.add(e.getGraphics());
+			gui.addLayerGUI(e.getGraphics(), 4);
+			x += 100;
+		}
 	}
 
 
@@ -141,5 +159,10 @@ public abstract class Game{
 
 	public void remove(Entity e) {
 		gui.remove(e.getGraphics());
+	}
+
+	//CONSULTAR
+	public GUI getGUI() {
+		return gui;
 	}	
 }

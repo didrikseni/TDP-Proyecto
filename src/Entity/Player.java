@@ -107,7 +107,7 @@ public class Player extends Entity {
 	
 	public void update() { 		
 		if (firing) {
-			long elapsed = (System.nanoTime() - firingTimer) /1000000;
+			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 			if(elapsed > firingDelay) {
 				Shot s = new PlayerShot(pos.x, pos.y, g);
 				g.addEntity(s);
