@@ -214,16 +214,20 @@ public abstract class Entity {
 		return height;
 	}
 
-
+	
+	/**
+	 * Colision con la entidad e.
+	 * @param Entidad e.
+	 */
 	public void collide(Entity e) {
 		e.accept(v);
 	}
 
-
+	/**
+	 * Acepta un visitor.
+	 * @param Visitor v.
+	 */
 	abstract public void accept(Visitor v);
 
-
-	public void remove() {
-		
-	}
+	
 }

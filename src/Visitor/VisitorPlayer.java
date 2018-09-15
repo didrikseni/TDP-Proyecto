@@ -18,15 +18,17 @@ public class VisitorPlayer extends Visitor{
 	public void visitPlayer(Player p) {}
 
 	public void visitEnemy(Enemy e) {
-		
+		e.setDamage(100);
+		this.e.setDamage(50);
+		//System.out.println("COLISION CON ENEMIGO");
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
-		
+		System.out.println("COLISION CON OBSTACULO DESTRUIBLE");
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
-		
+		System.out.println("COLISION CON OBSTACULO BARRICADA");
 	}
 
 	public void visitPowerUp(PowerUp p) {

@@ -37,14 +37,16 @@ public abstract class Game{
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
 		gui.add(player.getGraphics());
 		gui.addLayerGUI(player.getGraphics(), 5);
+		//entities.add(player);
 		
 		
 		//ENEMIGOS Y OBSTACULOS TEMPORALES
 		java.util.Random rnd = new java.util.Random();
-		for(int i = 0; i < 10; i++) {
-			Obstacles o = new Destroyable(rnd.nextInt(575), rnd.nextInt(675), this);
+		for(int i = 0; i < 5; i++) {
+			Obstacles o = new Destroyable(rnd.nextInt(575), rnd.nextInt(550), this);
 			gui.add(o.getGraphics());
 			gui.addLayerGUI(o.getGraphics(), 3);
+			entities.add(o);
 		}
 		
 		int x = 55;
@@ -56,7 +58,7 @@ public abstract class Game{
 			x += 100;
 		}
 		
-		x=0;
+		x=5;
 		for(int i = 0; i < 5; i++) {
 			Enemy e = new EnemyWeapon(x, 50, 4, this);
 			entities.add(e);
@@ -65,7 +67,7 @@ public abstract class Game{
 			x += 100;
 		}
 		
-		x = 0;
+		x = 5;
 		for(int i = 0; i < 5; i++) {
 			Enemy e = new EnemyWeapon(x, 150, 4, this);
 			entities.add(e);
@@ -121,8 +123,13 @@ public abstract class Game{
 		
 		for(Entity e: entities) {
 			e.update();
+			if(hasCollide(player,e)) {
+				player.collide(e);
+				e.collide(player);
+			}
 		}
 		
+		//Colisiones entre entidades.
 		for(int i = 0; i < entities.size(); i++) {
 			e1 = entities.get(i);
 			for(int j = i + 1; j < entities.size(); j++) {
@@ -144,7 +151,12 @@ public abstract class Game{
 		}	
 	}
 
-
+	/**
+	 * Funcion que retorna verdadero si dos entidades colisionaron.
+	 * @param Entidad 1.
+	 * @param Entidad 2.
+	 * @return Verdadero si colisionaron, falso caso contrario.
+	 */
 	private boolean hasCollide(Entity e1, Entity e2) {
 		double dx = e1.getPos().x - e2.getPos().x;
 		double dy = e1.getPos().y - e2.getPos().y;
@@ -157,19 +169,29 @@ public abstract class Game{
 		}
 	}
 
-
+	/**
+	 * Disparo del player.
+	 */
 	public void shoot() {
 		player.shoot(true);
 	}
 
 
+	/**
+	 * Agrega una entidad al juego y al mapa.
+	 * @param Entidad a agregar.
+	 */
 	public void addEntity(Entity s) {
 		entities.add(s);
 		gui.add(s.getGraphics());
 		gui.addLayerGUI(s.getGraphics(), 3);
 	}
 
-
+	
+	/**
+	 * Remueve una entidad del mapa.
+	 * @param Entidad a remover.
+	 */
 	public void remove(Entity e) {
 		gui.remove(e.getGraphics());
 	}

@@ -20,21 +20,18 @@ public class VisitorShotPlayer extends Visitor {
 	}
 
 	public void visitEnemy(Enemy e) {
-		e.setDamage(100);
+		e.setDamage(20);
 		this.e.setDamage(100);
-		System.out.print("Colisiono con enemigo");
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
-		d.setDamage(100);
+		d.setDamage(25);
 		this.e.setDamage(100);
-		System.out.print("Colisiono con destruible");
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
 		b.setDamage(100);
 		this.e.setDamage(100);
-		System.out.print("Colisiono con barricada");
 	}
 
 	public void visitPowerUp(PowerUp p) {
@@ -48,7 +45,6 @@ public class VisitorShotPlayer extends Visitor {
 	public void visitEnemyShot(EnemyShot e) {
 		e.setDamage(100);
 		this.e.setDamage(100);
-		System.out.print("Colisiono con disparo enemigo");
 	}
 	
 }

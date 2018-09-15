@@ -24,7 +24,7 @@ public class VisitorEnemyWeapon extends Visitor {
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
-		
+		d.setDamage(100);
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
@@ -36,7 +36,7 @@ public class VisitorEnemyWeapon extends Visitor {
 	}
 
 	public void visitPlayerShot(PlayerShot p) {
-		System.out.print("Colisiono con disparo enemigo");
+	
 	}
 
 	public void visitEnemyShot(EnemyShot e) {
