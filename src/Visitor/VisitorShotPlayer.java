@@ -20,7 +20,7 @@ public class VisitorShotPlayer extends Visitor {
 	}
 
 	public void visitEnemy(Enemy e) {
-		e.setDamage(20);
+		e.setDamage(25);
 		this.e.setDamage(100);
 	}
 

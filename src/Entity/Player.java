@@ -37,12 +37,13 @@ public class Player extends Entity {
 		
 		firing = false;
 		firingTimer = System.nanoTime();
-		firingDelay = 150;
+		firingDelay = 200;
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 	
+	//Se asegura que no exista una instancia antes de crearla.
 	private synchronized static void createInstance(int x, int y, Game g) {
 		if (INSTANCE == null) {
 			INSTANCE = new Player(x,y,g);
@@ -63,6 +64,10 @@ public class Player extends Entity {
 	
 	
 	//Commands
+	/**
+	 * Setea un escudo al jugador.
+	 * @param Shield s.
+	 */
 	public void setSield(Shield s) {
 		shield = s;
 	}
@@ -94,18 +99,20 @@ public class Player extends Entity {
 		score += s;
 	}
 
+	/**
+	 * El jugador comienza a disparar de acuerdo con el boolean pasado 
+	 * como parametro.
+	 * @param Boolean b indicando si el jugador dispara.
+	 */
 	public void shoot(boolean b) {
 		firing = b;
 	}
 	
-	public void stop(int dir) {
-		if (dir < 4) {
-			super.stop(dir);
-		} else {
-			firing = false;
-		}
-	}
 	
+	/**
+	 * Actualiza el jugador.
+	 * @Override
+	 */
 	public void update() { 		
 		if (firing) {
 			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
@@ -115,9 +122,41 @@ public class Player extends Entity {
 				firingTimer = System.nanoTime();
 			}
 		}
-		super.update();
+		
+		
+		if(left) {
+			pos.x -= speed;
+		}
+		if(right) {
+			pos.x += speed;
+		}
+		if(up) {
+			pos.y -= speed;
+		}
+		if(down) {
+			pos.y += speed;
+		}
+		
+		int gx = g.getGUI().getWidth();
+		int gy = g.getGUI().getHeight();
+		
+		if(pos.x < width / 2 - 25) {
+			pos.x = width / 2 - 25;
+		}
+		if(pos.y < 3 * gy / 5) {
+			pos.y = 3 * gy / 5 ;
+		}
+		if(pos.x >  gx - width - 15) {
+			pos.x = gx - width - 15;
+		}
+		if(pos.y > (gy - height - 35)) {
+			pos.y = (gy - height - 35);
+		}
+		
+		this.updateGraphics();
 	}
 
+	
 	@Override
 	public void accept(Visitor v) {
 		v.visitPlayer(this);

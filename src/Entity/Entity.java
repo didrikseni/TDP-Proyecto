@@ -151,18 +151,22 @@ public abstract class Entity {
 			pos.y += speed;
 		}
 		
+		int gx = g.getGUI().getWidth();
+		int gy = g.getGUI().getHeight();
+		
 		if(pos.x < width / 2 - 25) {
 			pos.x = width / 2 - 25;
 		}
 		if(pos.y < height / 2- 25) {
 			pos.y = height / 2- 25;
 		}
-		if(pos.x > 600 - width) {
-			pos.x = 600 - width;
+		if(pos.x >  gx - width - 15) {
+			pos.x = gx - width - 15;
 		}
-		if(pos.y > (700 - height)) {
-			pos.y = (700 - height);
+		if(pos.y > (gy - height - 35)) {
+			pos.y = (gy - height - 35);
 		}
+		
 		this.updateGraphics();
 	}
 

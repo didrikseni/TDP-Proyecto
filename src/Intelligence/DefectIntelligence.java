@@ -1,18 +1,17 @@
 package Intelligence;
 
 import java.awt.Point;
-
 import Entity.Enemy;
 import Main.GUI;
 
 public class DefectIntelligence extends Intelligence{
 	//Attributes
 	private static DefectIntelligence INSTANCE = null;
-	
-	private static boolean moveRight;	
+
+	private static boolean right;
 	
 	private DefectIntelligence() {
-		moveRight = true;
+		right = true;
 	}
 	
 	public static DefectIntelligence getInstance() {
@@ -27,21 +26,21 @@ public class DefectIntelligence extends Intelligence{
 		Point p = e.getPos();
 		GUI g = e.getGame().getGUI();
 		
-		if (moveRight) {
+		if (right) {
 			e.stop(2);
 			e.move(3);
 			if (p.x >= g.getWidth() - e.getGraphics().getWidth() - 15) {
-				moveRight = false;
+				right = false;
 				e.stop(3);
 			}
 		} else {
 			e.stop(3);
 			e.move(2);
 			if (p.x <= 0) {
-				moveRight = true;
+				right = true;
 				e.stop(2);
 			}
 		}
-	}	
+	}
 	
 }

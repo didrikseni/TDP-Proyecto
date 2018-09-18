@@ -13,7 +13,7 @@ public class PlayerShot extends Shot {
 	public PlayerShot(int x, int y, Game g) {
 		super(x, y, g);
 		
-		damage = 20;
+		damage = 25;
 		
 		v = new VisitorShotPlayer(this);
 		
@@ -24,10 +24,9 @@ public class PlayerShot extends Shot {
 	public void update() {
 		pos.y -= speed;
 		this.updateGraphics();
-		if(pos.y < -15) {
+		if(pos.y < -20) {
 			g.remove(this);
 		}
-		
 	}
 
 	@Override

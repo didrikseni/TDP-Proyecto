@@ -29,11 +29,13 @@ public abstract class Game{
 	protected Game(GUI gui) {
 		entities = new ArrayList<Entity>();
 		this.gui = gui;
-		initializeMap(gui);		
+		initializeMap();		
 	}
 
-
-	private void initializeMap(GUI gui) {
+	/*
+	 * Inicializa el nivel
+	 */
+	private void initializeMap() {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
 		gui.add(player.getGraphics());
 		gui.addLayerGUI(player.getGraphics(), 5);
@@ -172,8 +174,8 @@ public abstract class Game{
 	/**
 	 * Disparo del player.
 	 */
-	public void shoot() {
-		player.shoot(true);
+	public void shoot(boolean b) {
+		player.shoot(b);
 	}
 
 
