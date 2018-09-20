@@ -10,24 +10,26 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorPlayer extends Visitor{
-
-	public VisitorPlayer(Entity e) {
-		super(e);
+	private Player player;
+	
+	public VisitorPlayer(Player e) {
+		player = e;
 	}
 
 	public void visitPlayer(Player p) {}
 
 	public void visitEnemy(Enemy e) {
-		e.setDamage(100);
-		this.e.setDamage(50);
-		//System.out.println("COLISION CON ENEMIGO");
+		e.takeDamage(player.getLife());
+		player.takeDamage(player.getLife());
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
+		player.takeDamage(player.getLife());
 		System.out.println("COLISION CON OBSTACULO DESTRUIBLE");
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
+		player.takeDamage(player.getLife());
 		System.out.println("COLISION CON OBSTACULO BARRICADA");
 	}
 
@@ -38,7 +40,7 @@ public class VisitorPlayer extends Visitor{
 	public void visitPlayerShot(PlayerShot p) {}
 
 	public void visitEnemyShot(EnemyShot e) {		
-		
+		player.takeDamage(e.getDamage());
 	}
 
 }

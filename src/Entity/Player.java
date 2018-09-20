@@ -22,8 +22,7 @@ public class Player extends Entity {
 	private int score;
 	private boolean firing;
 	private long firingTimer;
-	private long firingDelay;
-	 
+	private long firingDelay;	 
 	
 	//Constructor
 	private Player(int cX, int cY, Game g) {
@@ -155,12 +154,10 @@ public class Player extends Entity {
 		
 		this.updateGraphics();
 	}
-
 	
 	@Override
 	public void accept(Visitor v) {
 		v.visitPlayer(this);
-	}
-	
+	}	
 	
 }

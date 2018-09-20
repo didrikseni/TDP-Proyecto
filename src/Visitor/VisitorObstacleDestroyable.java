@@ -10,9 +10,10 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorObstacleDestroyable extends Visitor {
-
-	public VisitorObstacleDestroyable(Entity e) {
-		super(e);
+	private Destroyable obstacle;
+	
+	public VisitorObstacleDestroyable(Destroyable obstacle) {
+		this.obstacle = obstacle;
 	}
 
 	public void visitPlayer(Player p) {
@@ -20,7 +21,7 @@ public class VisitorObstacleDestroyable extends Visitor {
 	}
 
 	public void visitEnemy(Enemy e) {
-		e.setDamage(100);
+		e.takeDamage(0);
 		System.out.println("COLISION DE OBSTACULO DESTRUIBLE CON ENEMIGO");
 	}
 

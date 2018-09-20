@@ -10,9 +10,10 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorObstacleBarricade extends Visitor {
+	private Barricade obstacle;
 	
-	public VisitorObstacleBarricade(Entity e) {
-		super(e);
+	public VisitorObstacleBarricade(Barricade obstacle) {
+		this.obstacle = obstacle;
 	}
 
 	public void visitPlayer(Player p) {

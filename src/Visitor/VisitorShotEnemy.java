@@ -10,9 +10,10 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorShotEnemy extends Visitor {
+	private EnemyShot enemyShot;	
 	
-	public VisitorShotEnemy(Entity e) {
-		super(e);
+	public VisitorShotEnemy(EnemyShot enemyShot) {
+		this.enemyShot = enemyShot;
 	}
 
 	public void visitPlayer(Player p) {

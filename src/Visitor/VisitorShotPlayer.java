@@ -10,9 +10,10 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorShotPlayer extends Visitor {
+	private PlayerShot playerShot;	
 	
-	public VisitorShotPlayer(Entity e) {
-		super(e);
+	public VisitorShotPlayer(PlayerShot playerShot) {
+		this.playerShot = playerShot;
 	}
 
 	public void visitPlayer(Player p) {
@@ -20,18 +21,18 @@ public class VisitorShotPlayer extends Visitor {
 	}
 
 	public void visitEnemy(Enemy e) {
-		e.setDamage(25);
-		this.e.setDamage(100);
+		e.takeDamage(playerShot.getDamage());
+		playerShot.takeDamage(playerShot.getLife());
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
-		d.setDamage(25);
-		this.e.setDamage(100);
+		d.takeDamage(playerShot.getDamage());
+		playerShot.takeDamage(playerShot.getLife());
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
-		b.setDamage(100);
-		this.e.setDamage(100);
+		b.takeDamage(playerShot.getDamage());
+		playerShot.takeDamage(playerShot.getLife());
 	}
 
 	public void visitPowerUp(PowerUp p) {
@@ -43,8 +44,8 @@ public class VisitorShotPlayer extends Visitor {
 	}
 
 	public void visitEnemyShot(EnemyShot e) {
-		e.setDamage(100);
-		this.e.setDamage(100);
+		e.takeDamage(playerShot.getDamage());
+		playerShot.takeDamage(playerShot.getLife());
 	}
 	
 }

@@ -8,9 +8,7 @@ import javax.swing.JLabel;
 import Game.Game;
 import Visitor.Visitor;
 
-
 public abstract class Entity {
-	
 	//Attributes
 	protected JLabel graphic;
 	protected Icon icon;
@@ -25,7 +23,6 @@ public abstract class Entity {
 	protected boolean right;
 	protected Visitor v;
 	protected Game g;
-	
 	
 	//Constructor
 	/**
@@ -63,7 +60,6 @@ public abstract class Entity {
 		return speed;		
 	}
 	
-	
 	/**
 	 * Consulta que retorna un entero con la vida restante de la unidad.
 	 * @return Entero con la vida restante de la unidad.
@@ -72,8 +68,6 @@ public abstract class Entity {
 		return life;		
 	}
 	
-	
-	
 	/**
 	 * Quita una cantidad de vida pasada como un parametro entero a la unidad
 	 * Y retorna verdadero si la vida de la unidad es menor o igual a '0' luego de recibir daño,
@@ -81,7 +75,7 @@ public abstract class Entity {
 	 * @param Entero 'damage' indicando la cantidad de vida que pierde la unidad.
 	 * @return Boolean indicando si la unidad esta muerta o no.
 	 */
-	public boolean setDamage(int damage) {
+	public boolean takeDamage(int damage) {
 		if (damage >= 0) {
 			life -= damage; 
 		}

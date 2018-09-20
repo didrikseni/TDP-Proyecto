@@ -150,7 +150,7 @@ public abstract class Game{
 				gui.remove(e1.getGraphics());
 				entities.remove(i);
 			}
-		}	
+		}
 	}
 
 	/**

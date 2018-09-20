@@ -1,7 +1,7 @@
 package Visitor;
 
 import Entity.Enemy;
-import Entity.Entity;
+import Entity.EnemyWeapon;
 import Entity.Player;
 import Obstacles.Barricade;
 import Obstacles.Destroyable;
@@ -10,9 +10,10 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorEnemyWeapon extends Visitor {
-
-	public VisitorEnemyWeapon(Entity e) {
-		super(e);
+	private EnemyWeapon enemy;
+	
+	public VisitorEnemyWeapon(EnemyWeapon e) {
+		enemy = e;
 	}
 
 	public void visitPlayer(Player p) {
@@ -24,7 +25,7 @@ public class VisitorEnemyWeapon extends Visitor {
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
-		d.setDamage(100);
+		d.takeDamage(enemy.getLife());
 	}
 
 	public void visitObstacleBarricade(Barricade b) {

@@ -1,6 +1,7 @@
 package Visitor;
 
 import Entity.Enemy;
+import Entity.EnemyDizzy;
 import Entity.Entity;
 import Entity.Player;
 import Obstacles.Barricade;
@@ -10,9 +11,9 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorEnemyDizzy extends Visitor {
-	
-	public VisitorEnemyDizzy(Entity e) {
-		super(e);
+	private EnemyDizzy enemy;
+	public VisitorEnemyDizzy(EnemyDizzy enemy) {
+		this.enemy = enemy;
 	}
 
 	public void visitPlayer(Player p) {

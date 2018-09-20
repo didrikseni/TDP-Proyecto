@@ -10,14 +10,6 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public abstract class Visitor {
-	//Attributes
-	protected Entity e;
-	
-	public Visitor(Entity e) {
-		this.e = e;
-	}
-	
-	
 	//Commands
 	public abstract void visitPlayer(Player p);
 	public abstract void visitEnemy(Enemy e);

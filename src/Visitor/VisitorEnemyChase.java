@@ -1,7 +1,7 @@
 package Visitor;
 
 import Entity.Enemy;
-import Entity.Entity;
+import Entity.EnemyChase;
 import Entity.Player;
 import Obstacles.Barricade;
 import Obstacles.Destroyable;
@@ -10,9 +10,10 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorEnemyChase extends Visitor {
+	private EnemyChase enemy;
 	
-	public VisitorEnemyChase(Entity e) {
-		super(e);
+	public VisitorEnemyChase(EnemyChase enemy) {
+		this.enemy = enemy;
 	}
 
 	public void visitPlayer(Player p) {
