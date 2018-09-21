@@ -20,7 +20,8 @@ import Game.Level1;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
-
+	private static GUI INSTANCE = null;
+	
 	private JLayeredPane contentPane;
 	
 	private Game g;
@@ -30,6 +31,7 @@ public class GUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,13 +43,23 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 	
 
 	/**
 	 * Create the frame.
 	 */
-	public GUI() {
+	private GUI() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI frame = getInstance();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});		
 		addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -94,6 +106,25 @@ public class GUI extends JFrame {
 		timer = new Timer(g);
 		timer.start();
 	}
+	
+	//Se asegura que no exista una instancia antes de crearla.
+		private synchronized static void createInstance() {
+			if (INSTANCE == null) {
+				INSTANCE = new GUI();
+			}	
+		}
+		
+		/**
+		 * Si existe una instancia de GUI la retorna, sino la crea y luego
+		 * la retorna.
+		 * @return Retorna una instancia de GUI
+		 */
+		public static GUI getInstance() {
+			if(INSTANCE == null) {
+				createInstance();
+			}
+			return INSTANCE;
+		}
 	
 	/**
 	 * Mueve el jugador en la dirección indicada.

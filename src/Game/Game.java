@@ -3,6 +3,7 @@ package Game;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JLayeredPane;
@@ -22,6 +23,7 @@ public abstract class Game{
 	protected Player player;
 	protected List<Entity> entities;
 	protected JLayeredPane contentPane;
+	protected HashMap<Entity, Boolean> muertes;
 	
 	
 
@@ -92,7 +94,7 @@ public abstract class Game{
 				player.move(2);
 				break;
 			case KeyEvent.VK_RIGHT :
-				player.move(3);;
+				player.move(3);
 				break;
 		}
 	}
@@ -122,7 +124,7 @@ public abstract class Game{
 	public void update() {
 		player.update();
 		Entity e1, e2;
-		
+		muertes = new HashMap<Entity, Boolean>();
 		for(Entity e: entities) {
 			e.update();
 			if(hasCollide(player,e)) {
@@ -130,7 +132,6 @@ public abstract class Game{
 				e.collide(player);
 			}
 		}
-		
 		//Colisiones entre entidades.
 		for(int i = 0; i < entities.size(); i++) {
 			e1 = entities.get(i);
@@ -140,17 +141,12 @@ public abstract class Game{
 					e1.collide(e2);
 					e2.collide(e1);
 				}
-				
-				if(e2.getLife() <= 0) {
-					gui.remove(e2.getGraphics());
-					entities.remove(j);
-				}
-			}
-			if(e1.getLife() <= 0) {
-				gui.remove(e1.getGraphics());
-				entities.remove(i);
 			}
 		}
+		//REMUEVE LAS ENTIDADES MUERTAS
+		for(Entity e: muertes.keySet()) {
+			remove(e);
+		}		
 	}
 
 	/**
@@ -178,7 +174,6 @@ public abstract class Game{
 		player.shoot(b);
 	}
 
-
 	/**
 	 * Agrega una entidad al juego y al mapa.
 	 * @param Entidad a agregar.
@@ -189,17 +184,21 @@ public abstract class Game{
 		gui.addLayerGUI(s.getGraphics(), 3);
 	}
 
+	public void mori(Entity e) {
+		muertes.put(e, true);
+	}
 	
+	public void mori(Enemy e, int score) {
+		player.addScore(score);
+		muertes.put(e, true);
+	}
+
 	/**
 	 * Remueve una entidad del mapa.
 	 * @param Entidad a remover.
 	 */
-	public void remove(Entity e) {
+	private void remove(Entity e) {
 		gui.remove(e.getGraphics());
+		entities.remove(e);
 	}
-
-	//CONSULTAR
-	public GUI getGUI() {
-		return gui;
-	}	
 }

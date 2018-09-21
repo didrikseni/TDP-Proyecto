@@ -1,7 +1,6 @@
 package Visitor;
 
 import Entity.Enemy;
-import Entity.Entity;
 import Entity.Player;
 import Obstacles.Barricade;
 import Obstacles.Destroyable;
@@ -25,12 +24,10 @@ public class VisitorPlayer extends Visitor{
 
 	public void visitObstacleDestroyable(Destroyable d) {
 		player.takeDamage(player.getLife());
-		System.out.println("COLISION CON OBSTACULO DESTRUIBLE");
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
 		player.takeDamage(player.getLife());
-		System.out.println("COLISION CON OBSTACULO BARRICADA");
 	}
 
 	public void visitPowerUp(PowerUp p) {
@@ -39,7 +36,8 @@ public class VisitorPlayer extends Visitor{
 
 	public void visitPlayerShot(PlayerShot p) {}
 
-	public void visitEnemyShot(EnemyShot e) {		
+	public void visitEnemyShot(EnemyShot e) {
+		e.takeDamage(e.getLife());
 		player.takeDamage(e.getDamage());
 	}
 

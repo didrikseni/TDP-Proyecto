@@ -15,6 +15,7 @@ public class EnemyWeapon extends Enemy {
 		super(x, y, speed, g);
 		
 		v = new VisitorEnemyWeapon(this);
+		score = 100;
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingAbajo.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));

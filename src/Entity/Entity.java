@@ -6,6 +6,7 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 
 import Game.Game;
+import Main.GUI;
 import Visitor.Visitor;
 
 public abstract class Entity {
@@ -14,13 +15,8 @@ public abstract class Entity {
 	protected Icon icon;
 	protected int life;
 	protected Point pos;
-	protected int speed;
-	protected int width;
-	protected int height;
-	protected boolean up;
-	protected boolean down;
-	protected boolean left;
-	protected boolean right;
+	protected int speed, width, height;
+	protected boolean up, down, left, right;
 	protected Visitor v;
 	protected Game g;
 	
@@ -41,7 +37,6 @@ public abstract class Entity {
 		up = down = left = right = false;	
 		this.g = g;
 	}
-	
 	
 	//Commands	
 	/**
@@ -75,13 +70,14 @@ public abstract class Entity {
 	 * @param Entero 'damage' indicando la cantidad de vida que pierde la unidad.
 	 * @return Boolean indicando si la unidad esta muerta o no.
 	 */
-	public boolean takeDamage(int damage) {
+	public void takeDamage(int damage) {
 		if (damage >= 0) {
 			life -= damage; 
 		}
-		return (life <= 0) ? true : false;
+		if(life <= 0) {
+			g.mori(this);
+		}
 	}
-	
 	
 	/**
 	 * Inicia el movimiento del jugador en la direccion indicada por el parametro entero.
@@ -104,8 +100,7 @@ public abstract class Entity {
 				break;
 		}
 	}
-	
-	
+		
 	/**
 	 * Para el movimiento del jugador en la direccion indicada por el parametro entero.
 	 * @param Entero indicando la direccion en la que hay que parar el movimiento.
@@ -127,51 +122,21 @@ public abstract class Entity {
 		}
 	}
 	
-	
 	/**
 	 * Actualiza la posicion del jugador.
 	 */
 	public void update() {
-		if(left) {
-			pos.x -= speed;
-		}
-		if(right) {
-			pos.x += speed;
-		}
-		if(up) {
-			pos.y -= speed;
-		}
-		if(down) {
-			pos.y += speed;
-		}
-		
-		int gx = g.getGUI().getWidth();
-		int gy = g.getGUI().getHeight();
-		
-		if(pos.x < width / 2 - 25) {
-			pos.x = width / 2 - 25;
-		}
-		if(pos.y < height / 2- 25) {
-			pos.y = height / 2- 25;
-		}
-		if(pos.x >  gx - width - 15) {
-			pos.x = gx - width - 15;
-		}
-		if(pos.y > (gy - height - 35)) {
-			pos.y = (gy - height - 35);
-		}
-		
+		if(left) { pos.x -= speed; }
+		if(right) { pos.x += speed; }
+		if(up) { pos.y -= speed; }
+		if(down) { pos.y += speed; }
+		int gx = GUI.getInstance().getWidth();
+		int gy = GUI.getInstance().getHeight();
+		if(pos.x < width / 2 - 25) { pos.x = width / 2 - 25; }
+		if(pos.y < height / 2- 25) { pos.y = height / 2- 25; }
+		if(pos.x >  gx - width - 15) { pos.x = gx - width - 15; }
+		if(pos.y > (gy - height - 35)) { pos.y = (gy - height - 35); }		
 		this.updateGraphics();
-	}
-
-
-	/**
-	 * Actualiza la posicion de la entidad.
-	 */
-	protected void updateGraphics() {
-		if (this.graphic != null) {
-			this.graphic.setBounds(this.pos.x, this.pos.y, width, height);	
-		}
 	}
 	
 	/**
@@ -186,8 +151,6 @@ public abstract class Entity {
 		return this.graphic;
 	}
 	
-	
-	//CONSULTAR
 	/**
 	 * Retorna el juego.
 	 * @return Game.
@@ -220,12 +183,19 @@ public abstract class Entity {
 	public void collide(Entity e) {
 		e.accept(v);
 	}
-
+	
 	/**
 	 * Acepta un visitor.
 	 * @param Visitor v.
 	 */
-	abstract public void accept(Visitor v);
-
+	abstract public void accept(Visitor v);	
 	
+	/**
+	 * Actualiza la posicion de la entidad.
+	 */
+	protected void updateGraphics() {
+		if (this.graphic != null) {
+			this.graphic.setBounds(this.pos.x, this.pos.y, width, height);	
+		}
+	}
 }

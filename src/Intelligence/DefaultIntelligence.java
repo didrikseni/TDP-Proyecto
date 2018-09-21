@@ -4,19 +4,19 @@ import java.awt.Point;
 import Entity.Enemy;
 import Main.GUI;
 
-public class DefectIntelligence extends Intelligence{
+public class DefaultIntelligence extends Intelligence{
 	//Attributes
-	private static DefectIntelligence INSTANCE = null;
+	private static DefaultIntelligence INSTANCE = null;
 
 	private static boolean right;
 	
-	private DefectIntelligence() {
+	private DefaultIntelligence() {
 		right = true;
 	}
 	
-	public static DefectIntelligence getInstance() {
+	public static DefaultIntelligence getInstance() {
 		if(INSTANCE == null) {
-			INSTANCE = new DefectIntelligence();
+			INSTANCE = new DefaultIntelligence();
 		}
 		return INSTANCE;
 	}
@@ -24,8 +24,7 @@ public class DefectIntelligence extends Intelligence{
 	public void update(Enemy e) {
 		super.update(e);
 		Point p = e.getPos();
-		GUI g = e.getGame().getGUI();
-		
+		GUI g = GUI.getInstance();
 		if (right) {
 			e.stop(2);
 			e.move(3);

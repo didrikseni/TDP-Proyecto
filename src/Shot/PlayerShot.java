@@ -13,7 +13,7 @@ public class PlayerShot extends Shot {
 	public PlayerShot(int x, int y, Game g) {
 		super(x, y, g);
 		
-		damage = 25;
+		damage = 100;
 		
 		v = new VisitorShotPlayer(this);
 		
@@ -25,7 +25,7 @@ public class PlayerShot extends Shot {
 		pos.y -= speed;
 		this.updateGraphics();
 		if(pos.y < -20) {
-			g.remove(this);
+			g.mori(this);
 		}
 	}
 

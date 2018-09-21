@@ -9,8 +9,7 @@ public abstract class Intelligence {
 
 	public void update(Enemy e) {
 		Point p = e.getPos();
-		GUI g = e.getGame().getGUI();
-		
+		GUI g = GUI.getInstance();		
 		if (p.y > g.getHeight()) {
 			p.setLocation(p.x, 0);
 		}

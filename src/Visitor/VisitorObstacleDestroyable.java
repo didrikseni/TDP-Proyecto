@@ -17,12 +17,12 @@ public class VisitorObstacleDestroyable extends Visitor {
 	}
 
 	public void visitPlayer(Player p) {
-		System.out.println("COLISION DE OBSTACULO DESTRUIBLE CON PLAYER");
+		//System.out.println("COLISION DE OBSTACULO DESTRUIBLE CON PLAYER");
 	}
 
 	public void visitEnemy(Enemy e) {
 		e.takeDamage(0);
-		System.out.println("COLISION DE OBSTACULO DESTRUIBLE CON ENEMIGO");
+		//System.out.println("COLISION DE OBSTACULO DESTRUIBLE CON ENEMIGO");
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {

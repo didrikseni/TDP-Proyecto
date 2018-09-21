@@ -5,6 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import Game.Game;
+import Main.GUI;
 import Shield.Shield;
 import Shot.PlayerShot;
 import Shot.Shot;
@@ -60,8 +61,6 @@ public class Player extends Entity {
 		return INSTANCE;
 	}
 	
-	
-	
 	//Commands
 	/**
 	 * Setea un escudo al jugador.
@@ -69,8 +68,7 @@ public class Player extends Entity {
 	 */
 	public void setSield(Shield s) {
 		shield = s;
-	}
-	
+	}	
 	
 	
 	/**
@@ -78,8 +76,7 @@ public class Player extends Entity {
 	 */
 	public void setPotion() {
 		life = maxLife;
-	}
-	
+	}	
 	
 	/**
 	 * Retorna un entero conteniendo el score del jugador.
@@ -87,8 +84,7 @@ public class Player extends Entity {
 	 */
 	public int getScore() {
 		return score;		
-	}
-	
+	}	
 	
 	/**
 	 * Añade la cantidad de puntos pasada como parametro al score del jugador.
@@ -96,6 +92,7 @@ public class Player extends Entity {
 	 */
 	public void addScore(int s) {
 		score += s;
+		System.out.println("Score: " + score);
 	}
 
 	/**
@@ -105,8 +102,7 @@ public class Player extends Entity {
 	 */
 	public void shoot(boolean b) {
 		firing = b;
-	}
-	
+	}	
 	
 	/**
 	 * Actualiza el jugador.
@@ -121,38 +117,8 @@ public class Player extends Entity {
 				firingTimer = System.nanoTime();
 			}
 		}
-		
-		
-		if(left) {
-			pos.x -= speed;
-		}
-		if(right) {
-			pos.x += speed;
-		}
-		if(up) {
-			pos.y -= speed;
-		}
-		if(down) {
-			pos.y += speed;
-		}
-		
-		int gx = g.getGUI().getWidth();
-		int gy = g.getGUI().getHeight();
-		
-		if(pos.x < width / 2 - 25) {
-			pos.x = width / 2 - 25;
-		}
-		if(pos.y < 3 * gy / 5) {
-			pos.y = 3 * gy / 5 ;
-		}
-		if(pos.x >  gx - width - 15) {
-			pos.x = gx - width - 15;
-		}
-		if(pos.y > (gy - height - 35)) {
-			pos.y = (gy - height - 35);
-		}
-		
-		this.updateGraphics();
+		super.update();
+		if(pos.y <= GUI.getInstance().getHeight() / 5 * 3) { pos.y = GUI.getInstance().getHeight() / 5 * 3; }
 	}
 	
 	@Override
