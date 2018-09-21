@@ -23,9 +23,7 @@ public abstract class Game{
 	protected Player player;
 	protected List<Entity> entities;
 	protected JLayeredPane contentPane;
-	protected HashMap<Entity, Boolean> muertes;
-	
-	
+	protected HashMap<Entity, Boolean> deadEntities;
 
 	//Constructor
 	protected Game(GUI gui) {
@@ -123,44 +121,42 @@ public abstract class Game{
 
 	public void update() {
 		player.update();
-		Entity e1, e2;
-		muertes = new HashMap<Entity, Boolean>();
-		for(Entity e: entities) {
-			e.update();
-			if(hasCollide(player,e)) {
-				player.collide(e);
-				e.collide(player);
-			}
-		}
-		//Colisiones entre entidades.
+		deadEntities = new HashMap<Entity, Boolean>();
+		detectCollisions();
+		removeDeadEntities();
+	}
+
+	private void detectCollisions() {
+		Entity entity1, entity2;
 		for(int i = 0; i < entities.size(); i++) {
-			e1 = entities.get(i);
+			entity1 = entities.get(i);
+			entity1.update();
+			if(hasCollide(player, entity1)) {
+				player.collide(entity1);
+				entity1.collide(player);
+			}
 			for(int j = i + 1; j < entities.size(); j++) {
-				e2 = entities.get(j);
-				if(hasCollide(e1,e2)) {
-					e1.collide(e2);
-					e2.collide(e1);
+				entity2 = entities.get(j);
+				if(hasCollide(entity1,entity2)) {
+					entity1.collide(entity2);
+					entity2.collide(entity1);
 				}
 			}
 		}
-		//REMUEVE LAS ENTIDADES MUERTAS
-		for(Entity e: muertes.keySet()) {
-			remove(e);
-		}		
 	}
 
-	/**
-	 * Funcion que retorna verdadero si dos entidades colisionaron.
-	 * @param Entidad 1.
-	 * @param Entidad 2.
-	 * @return Verdadero si colisionaron, falso caso contrario.
-	 */
-	private boolean hasCollide(Entity e1, Entity e2) {
-		double dx = e1.getPos().x - e2.getPos().x;
-		double dy = e1.getPos().y - e2.getPos().y;
+	private void removeDeadEntities() {
+		for(Entity entity: deadEntities.keySet()) {
+			remove(entity);
+		}	
+	}
+
+	private boolean hasCollide(Entity entity1, Entity entity2) {
+		double dx = entity1.getPos().x - entity2.getPos().x;
+		double dy = entity1.getPos().y - entity2.getPos().y;
 		double dist = Math.sqrt(dx*dx + dy*dy);
-		
-		if (dist < (e1.getWidth() / 2 + e2.getWidth() / 2) || dist < (e1.getHeight() / 2 + e2.getHeight() / 2)) {
+		if (dist < (entity1.getWidth() / 2 + entity2.getWidth() / 2) ||
+			dist < (entity1.getHeight() / 2 + entity2.getHeight() / 2)) {
 			return true;
 		} else {
 			return false;
@@ -184,13 +180,13 @@ public abstract class Game{
 		gui.addLayerGUI(s.getGraphics(), 3);
 	}
 
-	public void mori(Entity e) {
-		muertes.put(e, true);
+	public void imDead(Entity e) {
+		deadEntities.put(e, true);
 	}
 	
-	public void mori(Enemy e, int score) {
+	public void imDead(Enemy e, int score) {
 		player.addScore(score);
-		muertes.put(e, true);
+		deadEntities.put(e, true);
 	}
 
 	/**

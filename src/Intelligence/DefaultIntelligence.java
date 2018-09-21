@@ -28,7 +28,7 @@ public class DefaultIntelligence extends Intelligence{
 		if (right) {
 			e.stop(2);
 			e.move(3);
-			if (p.x >= g.getWidth() - e.getGraphics().getWidth() - 15) {
+			if (p.x >= g.getAncho() - e.getGraphics().getWidth() - 15) {
 				right = false;
 				e.stop(3);
 			}

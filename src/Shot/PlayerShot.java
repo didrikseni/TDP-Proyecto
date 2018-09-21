@@ -25,7 +25,7 @@ public class PlayerShot extends Shot {
 		pos.y -= speed;
 		this.updateGraphics();
 		if(pos.y < -20) {
-			g.mori(this);
+			g.imDead(this);
 		}
 	}
 

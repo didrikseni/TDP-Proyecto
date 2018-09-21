@@ -75,7 +75,7 @@ public abstract class Entity {
 			life -= damage; 
 		}
 		if(life <= 0) {
-			g.mori(this);
+			g.imDead(this);
 		}
 	}
 	
@@ -130,12 +130,12 @@ public abstract class Entity {
 		if(right) { pos.x += speed; }
 		if(up) { pos.y -= speed; }
 		if(down) { pos.y += speed; }
-		int gx = GUI.getInstance().getWidth();
-		int gy = GUI.getInstance().getHeight();
-		if(pos.x < width / 2 - 25) { pos.x = width / 2 - 25; }
-		if(pos.y < height / 2- 25) { pos.y = height / 2- 25; }
-		if(pos.x >  gx - width - 15) { pos.x = gx - width - 15; }
-		if(pos.y > (gy - height - 35)) { pos.y = (gy - height - 35); }		
+		int gx = GUI.getInstance().getAncho();
+		int gy = GUI.getInstance().getAlto();
+		if(pos.x < 0) { pos.x = 0; }
+		if(pos.y < 0) { pos.y = 0; }
+		if(pos.x >  gx - width - 10) { pos.x = gx - width - 10; }
+		if(pos.y > (gy - height - 30)) { pos.y = (gy - height - 30); }		
 		this.updateGraphics();
 	}
 	

@@ -23,28 +23,9 @@ public class GUI extends JFrame {
 	private static GUI INSTANCE = null;
 	
 	private JLayeredPane contentPane;
-	
 	private Game g;
 	private Timer timer;
 	private JLabel background;
-
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI frame = new GUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-	
 
 	/**
 	 * Create the frame.
@@ -59,7 +40,7 @@ public class GUI extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		});		
+		});
 		addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -76,28 +57,20 @@ public class GUI extends JFrame {
 			}
 		});
 		
-		this.addComponentListener(new ComponentAdapter() {
-			public void componentResized(ComponentEvent componentEvent) {
-				background.setBounds(0, 0, getWidth(), getHeight());
-				ImageIcon img = new ImageIcon(getClass().getResource("/Resources/6.png"));
-				Icon icon = new ImageIcon(img.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
-				background.setIcon(icon);
-			}			
-		});
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 700);
+		this.setSize(1024, 700);
 		this.contentPane = new JLayeredPane();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(contentPane);
-		this.contentPane.setLayout(null);
+		this.contentPane.setLayout(null);		
+		this.setResizable(false);
 		
 		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/6.png"));
 		background = new JLabel();
 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
 		background.setIcon(icon);
 		
-		background.setBounds(0, 0, 600, 700);
+		background.setBounds(0, 0, 1024, 700);
 		contentPane.add(background);
 		contentPane.setLayer(background, 1);
 		background.setVisible(true);
@@ -159,5 +132,14 @@ public class GUI extends JFrame {
 	private void shoot(boolean b) {
 		g.shoot(b);
 	}
+
+	public int getAncho() {
+		return background.getWidth();
+	}
+	
+	public int getAlto() {
+		return background.getHeight();
+	}
+	
 	
 }

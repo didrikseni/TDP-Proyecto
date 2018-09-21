@@ -27,7 +27,7 @@ public abstract class Enemy extends Entity {
 			life -= damage; 
 		}
 		if(life <= 0) {
-			g.mori(this, score);
+			g.imDead(this, score);
 		}
 	}
 }
