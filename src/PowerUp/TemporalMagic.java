@@ -1,5 +1,11 @@
 package PowerUp;
 
-public abstract class TemporalMagic implements PowerUp {
+import Game.Game;
+
+public abstract class TemporalMagic extends PowerUp {
+
+	protected TemporalMagic(int x, int y, Game g) {
+		super(x, y, g);
+	}
 
 }

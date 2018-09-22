@@ -15,7 +15,7 @@ public class Destroyable extends Obstacles {
 		//width = 30;
 		//height = 30;
 		
-		v = new VisitorObstacleDestroyable(this);
+		visitor = new VisitorObstacleDestroyable(this);
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/aestroid_brown.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));

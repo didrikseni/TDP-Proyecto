@@ -15,7 +15,7 @@ public class PlayerShot extends Shot {
 		
 		damage = 100;
 		
-		v = new VisitorShotPlayer(this);
+		visitor = new VisitorShotPlayer(this);
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/disparo.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
@@ -25,7 +25,7 @@ public class PlayerShot extends Shot {
 		pos.y -= speed;
 		this.updateGraphics();
 		if(pos.y < -20) {
-			g.imDead(this);
+			game.imDead(this);
 		}
 	}
 

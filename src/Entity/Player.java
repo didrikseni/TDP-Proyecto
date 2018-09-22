@@ -2,6 +2,7 @@ package Entity;
 
 import java.awt.Image;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import Game.Game;
@@ -16,9 +17,8 @@ public class Player extends Entity {
 	//Static attributes
 	private static Player INSTANCE = null;
 	private static final int maxLife = 100;
-	
 	//Attributes
-	private Game g;
+	private Icon[] iconos;
 	private Shield shield;
 	private int score;
 	private boolean firing;
@@ -30,17 +30,20 @@ public class Player extends Entity {
 		super(cX,cY,8, g);
 		shield = new Shield();
 		score = 0;
-		
-		this.g = g;
-		
-		v = new VisitorPlayer(this);
-		
+		visitor = new VisitorPlayer(this);		
 		firing = false;
 		firingTimer = System.nanoTime();
 		firingDelay = 200;
+		iconos = new Icon[3];
+
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/nave_izq.png"));
+		iconos[0] = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		img = new ImageIcon(this.getClass().getResource("/Resources/nave.png"));
+		iconos[1] = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		img = new ImageIcon(this.getClass().getResource("/Resources/nave_der.png"));		
+		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 		
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		icon = iconos[1];
 	}
 	
 	//Se asegura que no exista una instancia antes de crearla.
@@ -92,7 +95,6 @@ public class Player extends Entity {
 	 */
 	public void addScore(int s) {
 		score += s;
-		System.out.println("Score: " + score);
 	}
 
 	/**
@@ -108,22 +110,43 @@ public class Player extends Entity {
 	 * Actualiza el jugador.
 	 * @Override
 	 */
-	public void update() { 		
+	public void update() { 
+		GUI gui = GUI.getInstance();
 		if (firing) {
 			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 			if(elapsed > firingDelay) {
-				Shot s = new PlayerShot(pos.x, pos.y, g);
-				g.addEntity(s);
+				Shot s = new PlayerShot(pos.x, pos.y, game);
+				game.addEntity(s);
 				firingTimer = System.nanoTime();
 			}
 		}
+		cambiarGrafico();
 		super.update();
-		if(pos.y <= GUI.getInstance().getHeight() / 5 * 3) { pos.y = GUI.getInstance().getHeight() / 5 * 3; }
+		if(pos.y <= gui.getHeight() / 5 * 3) { pos.y = gui.getHeight() / 5 * 3; }
+		gui.updateScore(score);
+	}
+	
+	public void aumentarArma() {
+		firingDelay = 100;
 	}
 	
 	@Override
 	public void accept(Visitor v) {
 		v.visitPlayer(this);
 	}	
+	
+	protected void cambiarGrafico(){
+		if(this.icon != null){
+			if (right) {
+				graphic.setIcon(iconos[2]);
+			} else if (left) {
+				graphic.setIcon(iconos[0]);
+			} else {
+				graphic.setIcon(iconos[1]);
+			}
+			graphic.setBounds(this.pos.x, this.pos.y, width, height);
+		}
+	}
+	
 	
 }

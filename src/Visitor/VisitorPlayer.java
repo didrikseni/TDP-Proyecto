@@ -23,15 +23,15 @@ public class VisitorPlayer extends Visitor{
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
-		player.takeDamage(player.getLife());
+		//player.takeDamage(player.getLife());
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
-		player.takeDamage(player.getLife());
+		//player.takeDamage(player.getLife());
 	}
 
 	public void visitPowerUp(PowerUp p) {
-		
+		p.addPowerUp(player);
 	}
 
 	public void visitPlayerShot(PlayerShot p) {}

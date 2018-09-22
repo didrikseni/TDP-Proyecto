@@ -16,7 +16,7 @@ import Main.GUI;
 import Obstacles.Destroyable;
 import Obstacles.Obstacles;
 
-public abstract class Game{
+public abstract class Game {
 	
 	//Attributes
 	protected GUI gui;
@@ -148,7 +148,8 @@ public abstract class Game{
 	private void removeDeadEntities() {
 		for(Entity entity: deadEntities.keySet()) {
 			remove(entity);
-		}	
+		}
+		gui.repaint();
 	}
 
 	private boolean hasCollide(Entity entity1, Entity entity2) {

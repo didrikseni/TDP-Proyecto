@@ -17,8 +17,8 @@ public abstract class Entity {
 	protected Point pos;
 	protected int speed, width, height;
 	protected boolean up, down, left, right;
-	protected Visitor v;
-	protected Game g;
+	protected Visitor visitor;
+	protected Game game;
 	
 	//Constructor
 	/**
@@ -35,7 +35,7 @@ public abstract class Entity {
 		this.width = 50;
 		this.height = 50;		
 		up = down = left = right = false;	
-		this.g = g;
+		this.game = g;
 	}
 	
 	//Commands	
@@ -75,7 +75,7 @@ public abstract class Entity {
 			life -= damage; 
 		}
 		if(life <= 0) {
-			g.imDead(this);
+			game.imDead(this);
 		}
 	}
 	
@@ -135,7 +135,7 @@ public abstract class Entity {
 		if(pos.x < 0) { pos.x = 0; }
 		if(pos.y < 0) { pos.y = 0; }
 		if(pos.x >  gx - width - 10) { pos.x = gx - width - 10; }
-		if(pos.y > (gy - height - 30)) { pos.y = (gy - height - 30); }		
+		if(pos.y > (gy - height - 30)) { pos.y = (gy - height - 30); }
 		this.updateGraphics();
 	}
 	
@@ -156,7 +156,7 @@ public abstract class Entity {
 	 * @return Game.
 	 */
 	public Game getGame() {
-		return g;
+		return game;
 	}
 	
 	/**
@@ -181,7 +181,7 @@ public abstract class Entity {
 	 * @param Entidad e.
 	 */
 	public void collide(Entity e) {
-		e.accept(v);
+		e.accept(visitor);
 	}
 	
 	/**

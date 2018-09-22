@@ -15,7 +15,7 @@ public class EnemyShot extends Shot {
 		
 		damage = 25;
 		
-		v = new VisitorShotEnemy(this);
+		visitor = new VisitorShotEnemy(this);
 		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/disparo.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));

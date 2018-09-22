@@ -14,21 +14,19 @@ public class Timer extends Thread {
 		long startTime = 0;
 		long elapsedTime = 0;
 		long waitTime = 0;
-		long targetTime = 1000 / 30;
-		
+		long targetTime = 1000 / 30;		
 		
 		while(true) {
-			startTime = System.nanoTime();
-			
-			g.update();			
-			
+			startTime = System.nanoTime();			
+			g.update();
 			elapsedTime = (System.nanoTime() - startTime) / 1000000;
-			waitTime = targetTime - elapsedTime;
-			
+			waitTime = targetTime - elapsedTime;			
 			try { 
 				Thread.sleep(waitTime);
 			} catch (Exception e) {}
+			
 		}
+		
 	}
 
 }
