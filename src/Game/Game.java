@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JLayeredPane;
 
 import Entity.Enemy;
+import Entity.EnemyChase;
 import Entity.EnemyWeapon;
 import Entity.Entity;
 import Entity.Player;
@@ -17,7 +18,6 @@ import Obstacles.Destroyable;
 import Obstacles.Obstacles;
 
 public abstract class Game {
-	
 	//Attributes
 	protected GUI gui;
 	protected Player player;
@@ -68,7 +68,11 @@ public abstract class Game {
 			gui.addLayerGUI(e.getGraphics(), 4);
 			x += 100;
 		}
-		
+		Enemy e = new EnemyChase(gui.getAncho() / 2, 150, 4, this);
+		entities.add(e);
+		gui.add(e.getGraphics());
+		gui.addLayerGUI(e.getGraphics(), 4);
+		/*
 		x = 5;
 		for(int i = 0; i < 5; i++) {
 			Enemy e = new EnemyWeapon(x, 150, 4, this);
@@ -76,7 +80,7 @@ public abstract class Game {
 			gui.add(e.getGraphics());
 			gui.addLayerGUI(e.getGraphics(), 4);
 			x += 100;
-		}
+		}*/
 	}
 
 

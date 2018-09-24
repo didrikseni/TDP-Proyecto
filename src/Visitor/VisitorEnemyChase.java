@@ -10,14 +10,15 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorEnemyChase extends Visitor {
-	private EnemyChase enemy;
+	private Enemy enemy;
 	
-	public VisitorEnemyChase(EnemyChase enemy) {
+	public VisitorEnemyChase(Enemy enemy) {
 		this.enemy = enemy;
 	}
 
 	public void visitPlayer(Player p) {
-		
+		p.takeDamage(enemy.getDamage());
+		enemy.takeDamage(enemy.getLife());
 	}
 
 	public void visitEnemy(Enemy e) {
@@ -37,7 +38,8 @@ public class VisitorEnemyChase extends Visitor {
 	}
 
 	public void visitPlayerShot(PlayerShot p) {
-		
+		enemy.takeDamage(p.getDamage());
+		p.takeDamage(p.getLife());
 	}
 
 	public void visitEnemyShot(EnemyShot e) {

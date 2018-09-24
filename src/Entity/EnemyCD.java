@@ -15,4 +15,10 @@ public class EnemyCD extends Enemy {
 		
 	}
 
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

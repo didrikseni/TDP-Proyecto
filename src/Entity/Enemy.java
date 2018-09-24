@@ -9,7 +9,7 @@ import PowerUp.WeaponUpgrade1;
 public abstract class Enemy extends Entity {
 	//Attributes
 	protected Intelligence intel;
-	protected int score;	
+	protected int score;
 	
 	protected Enemy(int x, int y, int speed, Game g) {
 		super(x, y, speed, g);
@@ -35,5 +35,16 @@ public abstract class Enemy extends Entity {
 			}
 			game.imDead(this, score);
 		}
+	}
+
+	public abstract void shoot();
+
+	public void setPos(int x, int i) {
+		this.pos.x = x;
+		this.pos.y = i;
+	}
+
+	public int getDamage() {
+		return 0;
 	}
 }

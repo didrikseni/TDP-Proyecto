@@ -50,7 +50,7 @@ public class Player extends Entity {
 	private synchronized static void createInstance(int x, int y, Game g) {
 		if (INSTANCE == null) {
 			INSTANCE = new Player(x,y,g);
-		}	
+		}
 	}
 	
 	/**
@@ -62,6 +62,10 @@ public class Player extends Entity {
 			createInstance(x,y,g);
 		}
 		return INSTANCE;
+	}
+	
+	public Shield getShield() {
+		return shield;
 	}
 	
 	//Commands

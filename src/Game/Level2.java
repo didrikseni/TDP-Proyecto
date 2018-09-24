@@ -3,7 +3,6 @@ package Game;
 import Main.GUI;
 
 public class Level2 extends Game {
-	
 	//Attributes
 	private static Level2 INSTANCE = null;
 	
@@ -12,14 +11,12 @@ public class Level2 extends Game {
 		super(gui);
 	}
 		
-		
 	//Commands	
 	private synchronized static void createInstance(GUI gui) {
 		if (INSTANCE == null) {
 			INSTANCE = new Level2(gui);
 		}	
 	}
-
 	
 	/**
 	 * Metodo que retorna una instancia de Level1
@@ -31,5 +28,4 @@ public class Level2 extends Game {
 		}
 		return INSTANCE;
 	}
-
 }

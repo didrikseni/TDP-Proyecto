@@ -1,19 +1,35 @@
 package Entity;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import Game.Game;
+import Intelligence.KamikazeIntelligence;
 import Visitor.Visitor;
+import Visitor.VisitorEnemyChase;
 
 public class EnemyChase extends Enemy {
-
-	protected EnemyChase(int x, int y, int speed,  Game g) {
+	private int damage;
+	
+	public EnemyChase(int x, int y, int speed,  Game g) {
 		super(x, y, speed, g);
-		
+		visitor = new VisitorEnemyChase(this);
+		intel = KamikazeIntelligence.getInstance();
+		score = 150;
+		damage = 80;
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
+		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
-		
+		v.visitEnemy(this);
+	}
+
+	@Override
+	public void shoot() {}
+
+	public int getDamage() {
+		return damage;
 	}
 
 }

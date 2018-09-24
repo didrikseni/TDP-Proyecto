@@ -12,11 +12,8 @@ public class EnemyShot extends Shot {
 
 	public EnemyShot(int x, int y, Game g) {
 		super(x, y, g);
-		
 		damage = 25;
-		
 		visitor = new VisitorShotEnemy(this);
-		
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/disparo.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
@@ -24,6 +21,14 @@ public class EnemyShot extends Shot {
 	@Override
 	public void accept(Visitor v) {
 		v.visitEnemyShot(this);
+	}
+	
+	public void update() {
+		pos.y += speed;
+		this.updateGraphics();
+		if(pos.y < -20) {
+			game.imDead(this);
+		}
 	}
 
 }
