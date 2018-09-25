@@ -5,14 +5,14 @@ import javax.swing.ImageIcon;
 import Game.Game;
 import Intelligence.KamikazeIntelligence;
 import Visitor.Visitor;
-import Visitor.VisitorEnemyChase;
+import Visitor.VisitorEnemy;
 
 public class EnemyChase extends Enemy {
 	private int damage;
 	
 	public EnemyChase(int x, int y, int speed,  Game g) {
 		super(x, y, speed, g);
-		visitor = new VisitorEnemyChase(this);
+		visitor = new VisitorEnemy(this);
 		intel = KamikazeIntelligence.getInstance();
 		score = 150;
 		damage = 80;
