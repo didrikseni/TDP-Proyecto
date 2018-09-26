@@ -37,11 +37,11 @@ public class Player extends Entity {
 		iconos = new Icon[3];
 
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/nave_izq.png"));
-		iconos[0] = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		iconos[0] = new ImageIcon(img.getImage().getScaledInstance(width + 20 , height, Image.SCALE_DEFAULT));
 		img = new ImageIcon(this.getClass().getResource("/Resources/nave.png"));
-		iconos[1] = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		iconos[1] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
 		img = new ImageIcon(this.getClass().getResource("/Resources/nave_der.png"));		
-		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
 		
 		icon = iconos[1];
 	}

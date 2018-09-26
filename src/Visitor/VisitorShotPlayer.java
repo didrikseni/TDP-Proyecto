@@ -43,9 +43,6 @@ public class VisitorShotPlayer extends Visitor {
 		
 	}
 
-	public void visitEnemyShot(EnemyShot e) {
-		e.takeDamage(playerShot.getDamage());
-		playerShot.takeDamage(playerShot.getLife());
-	}
+	public void visitEnemyShot(EnemyShot e) {}
 	
 }
