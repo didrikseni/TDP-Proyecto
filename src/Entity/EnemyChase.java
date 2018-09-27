@@ -16,7 +16,7 @@ public class EnemyChase extends Enemy {
 		intel = KamikazeIntelligence.getInstance();
 		score = 150;
 		damage = 80;
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingArriba.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingAbajo.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 
