@@ -1,11 +1,11 @@
-package Intelligence;
+package Behaviour;
 
 import java.awt.Point;
 
 import Entity.Enemy;
 import Main.GUI;
 
-public abstract class Intelligence {
+public abstract class Behaviour {
 
 	public void update(Enemy e) {
 		Point p = e.getPos();

@@ -1,6 +1,6 @@
 package Entity;
 
-import Game.Game;
+import Main.Game;
 import Visitor.Visitor;
 
 public class EnemyDizzy extends Enemy {

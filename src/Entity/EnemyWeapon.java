@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import Game.Game;
+import Main.Game;
 import Shot.EnemyShot;
 import Shot.Shot;
 import Visitor.Visitor;

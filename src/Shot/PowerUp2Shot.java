@@ -1,6 +1,6 @@
 package Shot;
 
-import Game.Game;
+import Main.Game;
 import Visitor.Visitor;
 
 public class PowerUp2Shot extends Shot {

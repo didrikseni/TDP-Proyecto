@@ -4,11 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Image;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,8 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
 
-import Game.Game;
-import Game.Level1;
+import Levels.Level1;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -25,12 +20,9 @@ public class GUI extends JFrame {
 	
 	private JLayeredPane contentPane;
 	private Game g;
-	private Timer timer;
+	private MainThread timer;
 	private JLabel background, score;
 
-	/**
-	 * Create the frame.
-	 */
 	private GUI() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,24 +34,26 @@ public class GUI extends JFrame {
 				}
 			}
 		});
+		addKeyListener(new PlayerInteractionThread(this));
+		/*
 		addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
 					shoot(true);
 				}
-				move(arg0);
+				playerStartMove(arg0);
 			}
 
 			public void keyReleased(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
 					shoot(false);
 				}
-				stop(arg0);
+				playerStopMove(arg0);
 			}
-		});
+		});*/
 		inicializar();		
 		g = Level1.getInstance(this);
-		timer = new Timer(g);
+		timer = new MainThread(g);
 		timer.start();
 	}
 	
@@ -90,18 +84,12 @@ public class GUI extends JFrame {
 		score.setVisible(true);	
 	}
 
-	//Se asegura que no exista una instancia antes de crearla.
 	private synchronized static void createInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new GUI();
 		}	
 	}
-		
-	/**
-	* Si existe una instancia de GUI la retorna, sino la crea y luego
-	* la retorna.
-	* @return Retorna una instancia de GUI
-	*/
+
 	public static GUI getInstance() {
 		if(INSTANCE == null) {
 			createInstance();
@@ -109,37 +97,22 @@ public class GUI extends JFrame {
 		return INSTANCE;
 	}
 	
-	/**
-	 * Mueve el jugador en la dirección indicada.
-	 * @param KeyEvent indicando la dirección en la que se
-	 * moverá el jugador.
-	 */
-	protected void move(KeyEvent key){
-		g.move(key.getKeyCode());
+	protected void playerStartMove(KeyEvent key){
+		g.playerStartMove(key.getKeyCode());
 		this.repaint();
 	}
 	
-	/**
-	 * Detiene el movimiento del jugador en la direccíon indicada.
-	 * @param KeyEvent indicando la dirección en la que dejará de moverse
-	 * el jugador.
-	 */
-	protected void stop(KeyEvent key) {
-		g.stop(key.getKeyCode());
+	protected void playerStopMove(KeyEvent key) {
+		g.playerStopMove(key.getKeyCode());
 		this.repaint();		
 	}
 	
-	/**
-	 * Añade un componente grafico en una capa especificada por el usuario.
-	 * @param Componente e.
-	 * @param Entero indicando la capa donde se agrega.
-	 */
-	public void addLayerGUI(Component e, int layer) {
+	public void addComponentInLayer(Component e, int layer) {
 		this.contentPane.setLayer(e, layer);
 	}
 	
-	private void shoot(boolean b) {
-		g.shoot(b);
+	protected void shoot(boolean b) {
+		g.playerShoot(b);
 	}
 
 	public int getAncho() {

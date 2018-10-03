@@ -1,7 +1,6 @@
 package Visitor;
 
 import Entity.Enemy;
-import Entity.Entity;
 import Entity.Player;
 import Obstacles.Barricade;
 import Obstacles.Destroyable;

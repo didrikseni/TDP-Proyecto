@@ -1,7 +1,7 @@
 package Obstacles;
 
 import Entity.Entity;
-import Game.Game;
+import Main.Game;
 
 public abstract class Obstacles extends Entity {
 

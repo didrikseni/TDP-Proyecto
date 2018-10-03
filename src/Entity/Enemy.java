@@ -1,19 +1,19 @@
 package Entity;
 
-import Game.Game;
-import Intelligence.DefaultIntelligence;
-import Intelligence.Intelligence;
+import Behaviour.Behaviour;
+import Behaviour.DefaultBehaviour;
+import Main.Game;
 import PowerUp.PowerUp;
 import PowerUp.WeaponUpgrade1;
 
 public abstract class Enemy extends Entity {
 	//Attributes
-	protected Intelligence intel;
+	protected Behaviour intel;
 	protected int score;
 	
 	protected Enemy(int x, int y, int speed, Game g) {
 		super(x, y, speed, g);
-		intel = DefaultIntelligence.getInstance();
+		intel = DefaultBehaviour.getInstance();
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public abstract class Enemy extends Entity {
 				PowerUp powerUp = new WeaponUpgrade1(pos.x, pos.y, game);
 				game.addEntity(powerUp);
 			}
-			game.imDead(this, score);
+			game.deadEntity(this, score);
 		}
 	}
 

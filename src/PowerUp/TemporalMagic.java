@@ -1,6 +1,6 @@
 package PowerUp;
 
-import Game.Game;
+import Main.Game;
 
 public abstract class TemporalMagic extends PowerUp {
 

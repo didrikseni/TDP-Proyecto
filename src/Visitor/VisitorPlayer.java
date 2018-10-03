@@ -23,11 +23,13 @@ public class VisitorPlayer extends Visitor{
 	}
 
 	public void visitObstacleDestroyable(Destroyable d) {
-		//player.takeDamage(player.getLife());
+		d.takeDamage(player.getLife());
+		player.takeDamage(player.getLife());
 	}
 
 	public void visitObstacleBarricade(Barricade b) {
-		//player.takeDamage(player.getLife());
+		b.takeDamage(player.getLife());
+		player.takeDamage(player.getLife());
 	}
 
 	public void visitPowerUp(PowerUp p) {

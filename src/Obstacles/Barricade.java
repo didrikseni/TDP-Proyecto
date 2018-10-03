@@ -1,6 +1,6 @@
 package Obstacles;
 
-import Game.Game;
+import Main.Game;
 import Visitor.Visitor;
 
 public class Barricade extends Obstacles {

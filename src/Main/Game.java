@@ -1,4 +1,4 @@
-package Game;
+package Main;
 
 
 import java.awt.event.KeyEvent;
@@ -13,121 +13,109 @@ import Entity.EnemyChase;
 import Entity.EnemyWeapon;
 import Entity.Entity;
 import Entity.Player;
-import Main.GUI;
 import Obstacles.Destroyable;
 import Obstacles.Obstacles;
 
 public abstract class Game {
-	//Attributes
 	protected GUI gui;
 	protected Player player;
 	protected List<Entity> entities;
 	protected JLayeredPane contentPane;
 	protected HashMap<Entity, Boolean> deadEntities;
 
-	//Constructor
 	protected Game(GUI gui) {
 		entities = new ArrayList<Entity>();
 		this.gui = gui;
 		initializeMap();		
 	}
 
-	/*
-	 * Inicializa el nivel
-	 */
 	private void initializeMap() {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
 		gui.add(player.getGraphics());
-		gui.addLayerGUI(player.getGraphics(), 5);
-		//entities.add(player);
-		
-		
+		gui.addComponentInLayer(player.getGraphics(), 5);
 		//ENEMIGOS Y OBSTACULOS TEMPORALES
 		java.util.Random rnd = new java.util.Random();
 		for(int i = 0; i < 5; i++) {
 			Obstacles o = new Destroyable(rnd.nextInt(575), rnd.nextInt(550), this);
 			gui.add(o.getGraphics());
-			gui.addLayerGUI(o.getGraphics(), 3);
+			gui.addComponentInLayer(o.getGraphics(), 3);
 			entities.add(o);
 		}
-		
 		int x = 55;
 		for(int i = 0; i < 5; i++) {
-			Enemy e = new EnemyWeapon(x, 100, 4, this);
+			Enemy e = new EnemyWeapon(x, 150, 1, this);
 			entities.add(e);
 			gui.add(e.getGraphics());
-			gui.addLayerGUI(e.getGraphics(), 4);
+			gui.addComponentInLayer(e.getGraphics(), 4);
 			x += 100;
 		}
 		
 		x=5;
 		for(int i = 0; i < 5; i++) {
-			Enemy e = new EnemyWeapon(x, 50, 4, this);
+			Enemy e = new EnemyWeapon(x, 100, 1, this);
 			entities.add(e);
 			gui.add(e.getGraphics());
-			gui.addLayerGUI(e.getGraphics(), 4);
+			gui.addComponentInLayer(e.getGraphics(), 4);
 			x += 100;
 		}
-		Enemy e = new EnemyChase(gui.getAncho() / 2, 150, 4, this);
+		Enemy e = new EnemyChase(gui.getAncho() / 2, 150, 1, this);
 		entities.add(e);
 		gui.add(e.getGraphics());
-		gui.addLayerGUI(e.getGraphics(), 4);
-		/*
-		x = 5;
-		for(int i = 0; i < 5; i++) {
-			Enemy e = new EnemyWeapon(x, 150, 4, this);
-			entities.add(e);
-			gui.add(e.getGraphics());
-			gui.addLayerGUI(e.getGraphics(), 4);
-			x += 100;
-		}*/
+		gui.addComponentInLayer(e.getGraphics(), 4);
 	}
-
-
-	public void move(int keyCode) {
+	
+	public abstract Game getInstance();
+	
+	public void playerStartMove(int keyCode) {
 		switch (keyCode){
-			case KeyEvent.VK_UP :
-				player.move(0);
-				break;
-			case KeyEvent.VK_DOWN :
-				player.move(1);
-				break;
-			case KeyEvent.VK_LEFT :
-				player.move(2);
-				break;
-			case KeyEvent.VK_RIGHT :
-				player.move(3);
-				break;
+			case KeyEvent.VK_UP:
+				player.startMove(0); break;
+			case KeyEvent.VK_DOWN:
+				player.startMove(1); break;
+			case KeyEvent.VK_LEFT:
+				player.startMove(2); break;
+			case KeyEvent.VK_RIGHT:
+				player.startMove(3); break;
 		}
 	}
 
-
-	public void stop(int keyCode) {
+	public void playerStopMove(int keyCode) {
 		switch (keyCode){
-			case KeyEvent.VK_UP :
-				player.stop(0);
-				break;
-			case KeyEvent.VK_DOWN :
-				player.stop(1);
-				break;
-			case KeyEvent.VK_LEFT :
-				player.stop(2);
-				break;
-			case KeyEvent.VK_RIGHT :
-				player.stop(3);;
-				break;
-			case KeyEvent.VK_SPACE :
-				player.stop(10);
-				break;
+			case KeyEvent.VK_UP:
+				player.stopMove(0);  break;
+			case KeyEvent.VK_DOWN:
+				player.stopMove(1);	 break;
+			case KeyEvent.VK_LEFT:
+				player.stopMove(2);	 break;
+			case KeyEvent.VK_RIGHT:
+				player.stopMove(3);  break;
 		}
 	}
-
 
 	public void update() {
 		player.update();
 		deadEntities = new HashMap<Entity, Boolean>();
 		detectCollisions();
 		removeDeadEntities();
+	}
+	
+	public void playerShoot(boolean b) {
+		player.shoot(b);
+	}
+
+	public void addEntity(Entity s) {
+		entities.add(s);
+		gui.add(s.getGraphics());
+		gui.addComponentInLayer(s.getGraphics(), 3);
+	}
+
+	public void deadEntity(Entity e) {
+		deadEntities.put(e, true);
+	}
+	
+	public void deadEntity(Enemy e, int score) {
+		player.addScore(score);
+		deadEntities.put(e, true);
 	}
 
 	private void detectCollisions() {
@@ -151,7 +139,7 @@ public abstract class Game {
 
 	private void removeDeadEntities() {
 		for(Entity entity: deadEntities.keySet()) {
-			remove(entity);
+			removeEntityFromMap(entity);
 		}
 		gui.repaint();
 	}
@@ -168,37 +156,7 @@ public abstract class Game {
 		}
 	}
 
-	/**
-	 * Disparo del player.
-	 */
-	public void shoot(boolean b) {
-		player.shoot(b);
-	}
-
-	/**
-	 * Agrega una entidad al juego y al mapa.
-	 * @param Entidad a agregar.
-	 */
-	public void addEntity(Entity s) {
-		entities.add(s);
-		gui.add(s.getGraphics());
-		gui.addLayerGUI(s.getGraphics(), 3);
-	}
-
-	public void imDead(Entity e) {
-		deadEntities.put(e, true);
-	}
-	
-	public void imDead(Enemy e, int score) {
-		player.addScore(score);
-		deadEntities.put(e, true);
-	}
-
-	/**
-	 * Remueve una entidad del mapa.
-	 * @param Entidad a remover.
-	 */
-	private void remove(Entity e) {
+	private void removeEntityFromMap(Entity e) {
 		gui.remove(e.getGraphics());
 		entities.remove(e);
 	}

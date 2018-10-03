@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import Game.Game;
+import Main.Game;
 import Visitor.Visitor;
 import Visitor.VisitorObstacleDestroyable;
 

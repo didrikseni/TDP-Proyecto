@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import Game.Game;
+import Main.Game;
 import Visitor.Visitor;
 import Visitor.VisitorShotEnemy;
 
@@ -14,7 +14,7 @@ public class EnemyShot extends Shot {
 		super(x, y, g);
 		this.width = 25;
 		this.height = 25;
-		damage = 25;
+		damage = 10;
 		visitor = new VisitorShotEnemy(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/enemyShot.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
@@ -29,7 +29,7 @@ public class EnemyShot extends Shot {
 		pos.y += speed;
 		this.updateGraphics();
 		if(pos.y < -20) {
-			game.imDead(this);
+			game.deadEntity(this);
 		}
 	}
 

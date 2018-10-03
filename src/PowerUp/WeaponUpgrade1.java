@@ -5,7 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import Entity.Player;
-import Game.Game;
+import Main.Game;
 import Visitor.Visitor;
 
 public class WeaponUpgrade1 extends PowerUp {
@@ -25,7 +25,7 @@ public class WeaponUpgrade1 extends PowerUp {
 	@Override
 	public void addPowerUp(Player player) {
 		player.aumentarArma();
-		game.imDead(this);
+		game.deadEntity(this);
 		
 	}
 

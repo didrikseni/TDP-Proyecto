@@ -1,6 +1,7 @@
-package Game;
+package Levels;
 
 import Main.GUI;
+import Main.Game;
 
 public class Level1 extends Game {
 	//Attributes
@@ -26,6 +27,12 @@ public class Level1 extends Game {
 		if(INSTANCE == null) {
 			createInstance(gui);
 		}
+		return INSTANCE;
+	}
+
+
+	@Override
+	public Game getInstance() {
 		return INSTANCE;
 	}
 	

@@ -1,17 +1,15 @@
 package Entity;
 
 import java.awt.Image;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
-import Game.Game;
 import Main.GUI;
+import Main.Game;
 import Shield.Shield;
-import Shot.PlayerShot;
-import Shot.Shot;
 import Visitor.Visitor;
 import Visitor.VisitorPlayer;
+import Weapon.Weapon;
+import Weapon.WeaponPlayer;
 
 public class Player extends Entity {
 	//Static attributes
@@ -19,6 +17,7 @@ public class Player extends Entity {
 	private static final int maxLife = 100;
 	//Attributes
 	private Icon[] iconos;
+	private Weapon weapon;
 	private Shield shield;
 	private int score;
 	private boolean firing;
@@ -27,36 +26,30 @@ public class Player extends Entity {
 	
 	//Constructor
 	private Player(int cX, int cY, Game g) {
-		super(cX,cY,8, g);
+		super(cX, cY, 3, g);
 		shield = new Shield();
 		score = 0;
-		visitor = new VisitorPlayer(this);		
+		visitor = new VisitorPlayer(this);
+		weapon = new WeaponPlayer(g);
 		firing = false;
 		firingTimer = System.nanoTime();
-		firingDelay = 200;
+		firingDelay = 250;
 		iconos = new Icon[3];
-
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/nave_izq.png"));
 		iconos[0] = new ImageIcon(img.getImage().getScaledInstance(width + 20 , height, Image.SCALE_DEFAULT));
 		img = new ImageIcon(this.getClass().getResource("/Resources/nave.png"));
 		iconos[1] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
 		img = new ImageIcon(this.getClass().getResource("/Resources/nave_der.png"));		
 		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
-		
 		icon = iconos[1];
 	}
 	
-	//Se asegura que no exista una instancia antes de crearla.
 	private synchronized static void createInstance(int x, int y, Game g) {
 		if (INSTANCE == null) {
 			INSTANCE = new Player(x,y,g);
 		}
 	}
 	
-	/**
-	 * Metodo que retorna una instancia de Player
-	 * @return Retorna una instancia de Player
-	 */
 	public static Player getInstance(int x, int y, Game g) {
 		if(INSTANCE == null) {
 			createInstance(x,y,g);
@@ -68,59 +61,33 @@ public class Player extends Entity {
 		return shield;
 	}
 	
-	//Commands
-	/**
-	 * Setea un escudo al jugador.
-	 * @param Shield s.
-	 */
 	public void setSield(Shield s) {
 		shield = s;
 	}	
 	
-	
-	/**
-	 * Cura todos los puntos de vida del personaje.
-	 */
 	public void setPotion() {
 		life = maxLife;
 	}	
 	
-	/**
-	 * Retorna un entero conteniendo el score del jugador.
-	 * @return Entero con el score de jugador.
-	 */
 	public int getScore() {
 		return score;		
 	}	
 	
-	/**
-	 * Añade la cantidad de puntos pasada como parametro al score del jugador.
-	 * @param Entero s con los puntos a añadir.
-	 */
 	public void addScore(int s) {
 		score += s;
 	}
 
-	/**
-	 * El jugador comienza a disparar de acuerdo con el boolean pasado 
-	 * como parametro.
-	 * @param Boolean b indicando si el jugador dispara.
-	 */
 	public void shoot(boolean b) {
 		firing = b;
 	}	
 	
-	/**
-	 * Actualiza el jugador.
-	 * @Override
-	 */
+	@Override
 	public void update() { 
 		GUI gui = GUI.getInstance();
 		if (firing) {
 			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 			if(elapsed > firingDelay) {
-				Shot s = new PlayerShot(pos.x, pos.y, game);
-				game.addEntity(s);
+				weapon.shoot(pos);
 				firingTimer = System.nanoTime();
 			}
 		}
@@ -131,7 +98,7 @@ public class Player extends Entity {
 	}
 	
 	public void aumentarArma() {
-		firingDelay = 100;
+		firingDelay = 150;
 	}
 	
 	@Override
@@ -151,6 +118,4 @@ public class Player extends Entity {
 			graphic.setBounds(this.pos.x, this.pos.y, width, height);
 		}
 	}
-	
-	
 }

@@ -1,7 +1,7 @@
 package PowerUp;
 
 import Entity.Player;
-import Game.Game;
+import Main.Game;
 import Visitor.Visitor;
 
 public class Freeze extends TemporalMagic {

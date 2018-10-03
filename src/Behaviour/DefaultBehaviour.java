@@ -1,4 +1,4 @@
-package Intelligence;
+package Behaviour;
 
 import java.awt.Point;
 import java.util.Random;
@@ -7,47 +7,49 @@ import Entity.Enemy;
 import Entity.Player;
 import Main.GUI;
 
-public class DefaultIntelligence extends Intelligence{
+public class DefaultBehaviour extends Behaviour{
 	//Attributes
-	private static DefaultIntelligence INSTANCE = null;
+	private static DefaultBehaviour INSTANCE = null;
 
 	private static boolean right;
 	private static Random rnd;
 	
-	private DefaultIntelligence() {
+	private DefaultBehaviour() {
 		right = true;
 		rnd = new Random();
 	}
 	
-	public static DefaultIntelligence getInstance() {
+	public static DefaultBehaviour getInstance() {
 		if(INSTANCE == null) {
-			INSTANCE = new DefaultIntelligence();
+			INSTANCE = new DefaultBehaviour();
 		}
 		return INSTANCE;
 	}
 	
 	public void update(Enemy e) {
 		super.update(e);
-		Point p = e.getPos();
+		Point pos = e.getPos();
 		GUI gui = GUI.getInstance();
 		Player player = Player.getInstance(0, 0, null);
-		if(rnd.nextInt(10) < 4 && inRange(player, p)) {
+		if(rnd.nextInt(10) < 4 && inRange(player, pos)) {
 			e.shoot();
 		}
 		if (right) {
-			e.stop(2);
-			e.move(3);
-			if (p.x >= gui.getAncho() - e.getGraphics().getWidth() - 15) {
+			e.stopMove(2);
+			e.startMove(3);
+			if (pos.x >= gui.getAncho() - e.getGraphics().getWidth() - 15) {
 				right = false;
-				e.stop(3);
+				e.stopMove(3);
 			}
+			//e.setPos(pos.x, (int) (pos.y + Math.cos(pos.x / 20)));
 		} else {
-			e.stop(3);
-			e.move(2);
-			if (p.x <= 0) {
+			e.stopMove(3);
+			e.startMove(2);
+			if (pos.x <= 0) {
 				right = true;
-				e.stop(2);
+				e.stopMove(2);
 			}
+			//e.setPos(pos.x, (int) (pos.y + 3 * Math.sin(pos.x / 20)));
 		}
 	}
 
