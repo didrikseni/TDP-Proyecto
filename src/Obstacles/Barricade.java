@@ -3,9 +3,9 @@ package Obstacles;
 import Main.Game;
 import Visitor.Visitor;
 
-public class Barricade extends Obstacles {
+public class Barricade extends Obstacle {
 
-	protected Barricade(int x, int y, Game g) {
+	public Barricade(int x, int y, Game g) {
 		super(x, y, g);
 	}
 

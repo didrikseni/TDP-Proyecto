@@ -42,5 +42,4 @@ public class VisitorPlayer extends Visitor{
 		e.takeDamage(e.getLife());
 		player.takeDamage(e.getDamage());
 	}
-
 }

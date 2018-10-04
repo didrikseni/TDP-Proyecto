@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -34,8 +35,6 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-		addKeyListener(new PlayerInteractionThread(this));
-		/*
 		addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -50,7 +49,7 @@ public class GUI extends JFrame {
 				}
 				playerStopMove(arg0);
 			}
-		});*/
+		});
 		inicializar();		
 		g = Level1.getInstance(this);
 		timer = new MainThread(g);

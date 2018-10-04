@@ -8,18 +8,18 @@ import PowerUp.WeaponUpgrade1;
 
 public abstract class Enemy extends Entity {
 	//Attributes
-	protected Behaviour intel;
+	protected Behaviour comportamiento;
 	protected int score;
 	
 	protected Enemy(int x, int y, int speed, Game g) {
 		super(x, y, speed, g);
-		intel = DefaultBehaviour.getInstance();
+		comportamiento = DefaultBehaviour.getInstance();
 	}
 
 	@Override
 	public void update() {
 		super.update();
-		intel.update(this);
+		comportamiento.update(this);
 	}
 
 	@Override

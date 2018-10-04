@@ -1,20 +1,17 @@
 package Main;
 
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.swing.JLayeredPane;
-
 import Entity.Enemy;
-import Entity.EnemyChase;
+import Entity.EnemyKamikaze;
 import Entity.EnemyWeapon;
 import Entity.Entity;
 import Entity.Player;
 import Obstacles.Destroyable;
-import Obstacles.Obstacles;
+import Obstacles.Obstacle;
 
 public abstract class Game {
 	protected GUI gui;
@@ -34,9 +31,10 @@ public abstract class Game {
 		gui.add(player.getGraphics());
 		gui.addComponentInLayer(player.getGraphics(), 5);
 		//ENEMIGOS Y OBSTACULOS TEMPORALES
-		java.util.Random rnd = new java.util.Random();
+		//Factory factory = new ConcreteFactory(this);
+		java.util.Random rnd = new java.util.Random();		
 		for(int i = 0; i < 5; i++) {
-			Obstacles o = new Destroyable(rnd.nextInt(575), rnd.nextInt(550), this);
+			Obstacle o = new Destroyable(rnd.nextInt(575), rnd.nextInt(550), this);
 			gui.add(o.getGraphics());
 			gui.addComponentInLayer(o.getGraphics(), 3);
 			entities.add(o);
@@ -48,8 +46,7 @@ public abstract class Game {
 			gui.add(e.getGraphics());
 			gui.addComponentInLayer(e.getGraphics(), 4);
 			x += 100;
-		}
-		
+		}		
 		x=5;
 		for(int i = 0; i < 5; i++) {
 			Enemy e = new EnemyWeapon(x, 100, 1, this);
@@ -58,7 +55,7 @@ public abstract class Game {
 			gui.addComponentInLayer(e.getGraphics(), 4);
 			x += 100;
 		}
-		Enemy e = new EnemyChase(gui.getAncho() / 2, 150, 1, this);
+		Enemy e = new EnemyKamikaze(gui.getAncho() / 2, 150, 2, this);
 		entities.add(e);
 		gui.add(e.getGraphics());
 		gui.addComponentInLayer(e.getGraphics(), 4);

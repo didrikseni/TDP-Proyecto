@@ -1,45 +1,36 @@
 package Behaviour;
 
 import java.awt.Point;
+import java.util.Random;
 
 import Entity.Enemy;
-import Entity.Player;
 import Main.GUI;
 
-public class KamikazeBehaviour extends Behaviour {
-	//Attributes
-	private Player player;
+public class DizzyBehaviour extends Behaviour {
 	private long delay;
 	private long elapsedTime;
+	private Random rnd;
 	
-	public KamikazeBehaviour() {
-		player = Player.getInstance(0,0,null);
+	public DizzyBehaviour() {
+		delay = 500000000;
+		rnd = new Random();
 		elapsedTime = System.nanoTime();
-		delay =  500000000;
 	}
 	
 	public void update(Enemy e) {
 		super.update(e);
 		Point p = e.getPos();
 		GUI gui = GUI.getInstance();
-		e.startMove(1);
 		if(System.nanoTime() - elapsedTime > delay) {
-			int playerX = player.getPos().x;
-			if(playerX < p.x) {
-				e.stopMove(3);
-				e.startMove(2);
-			} else if(playerX > p.y){
-				e.stopMove(2);
-				e.startMove(3);
-			} else {
-				e.stopMove(3);
-				e.stopMove(2);
-			}
+			e.stopMove(0);
+			e.stopMove(2);
+			e.stopMove(3);
+			e.startMove(rnd.nextInt(4));
+			e.startMove(rnd.nextInt(4));
 			elapsedTime = System.nanoTime();
 		}
 		if(p.y > (gui.getAlto() - e.getHeight() - 40)) {
 			e.setPos(p.x, 0); 
 		}
 	}
-	
 }
