@@ -30,8 +30,8 @@ public abstract class Entity {
 		this.pos = new Point(x,y);
 		this.speed = speed;
 		this.life = 100;
-		this.width = 50;
-		this.height = 50;		
+		this.width = 40;
+		this.height = 40;		
 		up = down = left = right = false;	
 		this.game = g;
 	}

@@ -12,13 +12,20 @@ public class Freeze extends TemporalMagic {
 
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
-		
+		v.visitPowerUp(this);
 	}
 
 	@Override
 	public void addPowerUp(Player player) {
-				
+		
+	}
+
+	@Override
+	public void update() {}
+	
+	@Override
+	public void run() {
+	
 	}
 
 }

@@ -30,6 +30,7 @@ public abstract class Game {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
 		gui.add(player.getGraphics());
 		gui.addComponentInLayer(player.getGraphics(), 5);
+				
 		//ENEMIGOS Y OBSTACULOS TEMPORALES
 		//Factory factory = new ConcreteFactory(this);
 		java.util.Random rnd = new java.util.Random();		

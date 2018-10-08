@@ -12,8 +12,8 @@ public class EnemyShot extends Shot {
 
 	public EnemyShot(int x, int y, Game g) {
 		super(x, y, g);
-		this.width = 25;
-		this.height = 25;
+		this.width = 20;
+		this.height = 20;
 		damage = 10;
 		visitor = new VisitorShotEnemy(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/enemyShot.png"));

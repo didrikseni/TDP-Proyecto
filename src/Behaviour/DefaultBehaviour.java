@@ -7,7 +7,7 @@ import Entity.Enemy;
 import Entity.Player;
 import Main.GUI;
 
-public class DefaultBehaviour extends Behaviour{
+public class DefaultBehaviour extends Behaviour {
 	//Attributes
 	private static DefaultBehaviour INSTANCE = null;
 

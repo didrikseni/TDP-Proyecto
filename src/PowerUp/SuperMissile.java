@@ -12,14 +12,19 @@ public class SuperMissile extends TemporalMagic {
 
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
-		
+		v.visitPowerUp(this);
 	}
 
 	@Override
 	public void addPowerUp(Player player) {
-		// TODO Auto-generated method stub
+		this.run();
+	}
+	
+	@Override
+	public void update() {}
+	
+	@Override
+	public void run() {
 		
 	}
-
 }

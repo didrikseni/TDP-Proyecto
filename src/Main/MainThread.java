@@ -20,8 +20,7 @@ public class MainThread extends Thread {
 			waitTime = targetTime - elapsedTime;			
 			try { 
 				Thread.sleep(waitTime);
-			} catch (Exception e) {}
-			
+			} catch (Exception e) {}	
 		}
 		
 	}
