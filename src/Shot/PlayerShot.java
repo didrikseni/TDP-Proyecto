@@ -19,9 +19,9 @@ public class PlayerShot extends Shot {
 	}
 	
 	public void update() {
-		pos.y -= speed;
+		rectangle.y -= speed;
 		this.updateGraphics();
-		if(pos.y < -20) {
+		if(rectangle.y < -20) {
 			game.deadEntity(this);
 		}
 	}

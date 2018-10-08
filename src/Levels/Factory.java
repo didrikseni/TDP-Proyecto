@@ -11,12 +11,12 @@ public abstract class Factory {
 		this.game = game;
 	}
 	
-	public abstract Enemy getEnemyWeapon();
-	public abstract Enemy getEnemyChase();
-	public abstract Enemy getEnemyDizzy();
-	public abstract Enemy getEnemyHybrid();
-	public abstract Enemy getEnemyCD();
-	public abstract Obstacle getDestroyable();
-	public abstract Obstacle getBarricade();
+	public abstract Enemy getEnemyWeapon(int x, int y);
+	public abstract Enemy getEnemyChase(int x, int y);
+	public abstract Enemy getEnemyDizzy(int x, int y);
+	public abstract Enemy getEnemyHybrid(int x, int y);
+	public abstract Enemy getEnemyCD(int x, int y);
+	public abstract Obstacle getDestroyable(int x, int y);
+	public abstract Obstacle getBarricade(int x, int y);
 	
 }

@@ -28,7 +28,7 @@ public class EnemyWeapon extends Enemy {
 
 	@Override
 	public void shoot() {
-		Shot shot = new EnemyShot(this.pos.x, this.pos.y, this.game);
+		Shot shot = new EnemyShot(rectangle.x, rectangle.y, this.game);
 		game.addEntity(shot);		
 	}
 

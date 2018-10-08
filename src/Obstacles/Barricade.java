@@ -11,7 +11,7 @@ public class Barricade extends Obstacle {
 
 	@Override
 	public void accept(Visitor v) {
-		v.visitObstacleBarricade(this);
+		v.visitObstacle(this);
 	}
 
 }

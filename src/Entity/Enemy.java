@@ -30,7 +30,7 @@ public abstract class Enemy extends Entity {
 		if(life <= 0) {
 			java.util.Random rnd = new java.util.Random();
 			if (rnd.nextInt(100) < 7) {
-				PowerUp powerUp = new WeaponUpgrade1(pos.x, pos.y, game);
+				PowerUp powerUp = new WeaponUpgrade1(rectangle.x, rectangle.y , game);
 				game.addEntity(powerUp);
 			}
 			game.deadEntity(this, score);
@@ -39,9 +39,8 @@ public abstract class Enemy extends Entity {
 
 	public abstract void shoot();
 
-	public void setPos(int x, int i) {
-		this.pos.x = x;
-		this.pos.y = i;
+	public void setPos(int x, int y) {
+		rectangle.setLocation(x, y);
 	}
 
 	public int getDamage() {

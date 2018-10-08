@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
-
+import javax.swing.border.LineBorder;
 import Levels.Level1;
 
 @SuppressWarnings("serial")
@@ -22,7 +22,7 @@ public class GUI extends JFrame {
 	private JLayeredPane contentPane;
 	private Game g;
 	private MainThread timer;
-	private JLabel background, score;
+	private JLabel background, score, lifeBar, auxBar;
 
 	private GUI() {
 		EventQueue.invokeLater(new Runnable() {
@@ -74,9 +74,24 @@ public class GUI extends JFrame {
 		contentPane.setLayer(background, 1);
 		background.setVisible(true);
 		
+		lifeBar = new JLabel();
+		lifeBar.setBounds(900,630, 100, 22);
+		lifeBar.setBorder(new LineBorder(Color.lightGray.darker(), 2));
+		auxBar = new JLabel();
+		lifeBar.add(auxBar);
+		auxBar.setBounds(902, 632, lifeBar.getWidth() - 4, lifeBar.getHeight() - 4);
+		auxBar.setBackground(Color.green.darker());
+		auxBar.setOpaque(true);
+		contentPane.add(lifeBar);
+		contentPane.setLayer(lifeBar, 40);
+		contentPane.add(auxBar);
+		contentPane.setLayer(auxBar, 45);
+		lifeBar.setVisible(true);
+		auxBar.setVisible(true);
+		
 		score = new JLabel();
 		score.setText("Score: " + 0);
-		score.setForeground(Color.green);
+		score.setForeground(Color.green.darker());
 		score.setBounds(0, 630, 100, 50);
 		contentPane.add(score);
 		contentPane.setLayer(score, 20);
@@ -124,5 +139,9 @@ public class GUI extends JFrame {
 
 	public void updateScore(int s) {
 		score.setText("Score: " + s);
+	}
+	
+	public void updateLifeBar(int l) {
+		auxBar.setSize((lifeBar.getWidth() * l) / 100, lifeBar.getHeight() - 4);
 	}
 }

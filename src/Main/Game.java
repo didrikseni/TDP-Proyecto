@@ -6,15 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import javax.swing.JLayeredPane;
 import Entity.Enemy;
-import Entity.EnemyKamikaze;
-import Entity.EnemyWeapon;
 import Entity.Entity;
 import Entity.Player;
-import Obstacles.Destroyable;
-import Obstacles.Obstacle;
 
 public abstract class Game {
 	protected GUI gui;
+	protected int nivel;
 	protected Player player;
 	protected List<Entity> entities;
 	protected JLayeredPane contentPane;
@@ -31,35 +28,8 @@ public abstract class Game {
 		gui.add(player.getGraphics());
 		gui.addComponentInLayer(player.getGraphics(), 5);
 				
-		//ENEMIGOS Y OBSTACULOS TEMPORALES
-		//Factory factory = new ConcreteFactory(this);
-		java.util.Random rnd = new java.util.Random();		
-		for(int i = 0; i < 5; i++) {
-			Obstacle o = new Destroyable(rnd.nextInt(575), rnd.nextInt(550), this);
-			gui.add(o.getGraphics());
-			gui.addComponentInLayer(o.getGraphics(), 3);
-			entities.add(o);
-		}
-		int x = 55;
-		for(int i = 0; i < 5; i++) {
-			Enemy e = new EnemyWeapon(x, 150, 1, this);
-			entities.add(e);
-			gui.add(e.getGraphics());
-			gui.addComponentInLayer(e.getGraphics(), 4);
-			x += 100;
-		}		
-		x=5;
-		for(int i = 0; i < 5; i++) {
-			Enemy e = new EnemyWeapon(x, 100, 1, this);
-			entities.add(e);
-			gui.add(e.getGraphics());
-			gui.addComponentInLayer(e.getGraphics(), 4);
-			x += 100;
-		}
-		Enemy e = new EnemyKamikaze(gui.getAncho() / 2, 150, 2, this);
-		entities.add(e);
-		gui.add(e.getGraphics());
-		gui.addComponentInLayer(e.getGraphics(), 4);
+		FileOpener fileOpener = new FileOpener(this);
+		fileOpener.readFile();
 	}
 	
 	public abstract Game getInstance();
@@ -143,15 +113,7 @@ public abstract class Game {
 	}
 
 	private boolean hasCollide(Entity entity1, Entity entity2) {
-		double dx = entity1.getPos().x - entity2.getPos().x;
-		double dy = entity1.getPos().y - entity2.getPos().y;
-		double dist = Math.sqrt(dx*dx + dy*dy);
-		if (dist < (entity1.getWidth() / 2 + entity2.getWidth() / 2) ||
-			dist < (entity1.getHeight() / 2 + entity2.getHeight() / 2)) {
-			return true;
-		} else {
-			return false;
-		}
+		return entity1.getRectangle().intersects(entity2.getRectangle());
 	}
 
 	private void removeEntityFromMap(Entity e) {

@@ -2,8 +2,7 @@ package Visitor;
 
 import Entity.Enemy;
 import Entity.Player;
-import Obstacles.Barricade;
-import Obstacles.Destroyable;
+import Obstacles.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
@@ -25,16 +24,6 @@ public class VisitorEnemy extends Visitor {
 	public void visitEnemy(Enemy e) {}
 
 	@Override
-	public void visitObstacleDestroyable(Destroyable d) {
-		//enemy.takeDamage(d.getLife());		
-		//d.takeDamage(enemy.getDamage());
-	}
-
-	@Override
-	public void visitObstacleBarricade(Barricade b) {
-	}
-
-	@Override
 	public void visitPowerUp(PowerUp p) {
 			
 	}
@@ -47,6 +36,12 @@ public class VisitorEnemy extends Visitor {
 
 	@Override
 	public void visitEnemyShot(EnemyShot e) {
+		
+	}
+
+	@Override
+	public void visitObstacle(Obstacle d) {
+		// TODO Auto-generated method stub
 		
 	}
 

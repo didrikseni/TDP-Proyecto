@@ -1,6 +1,8 @@
 package Entity;
 
 import java.awt.Point;
+import java.awt.Rectangle;
+
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import Main.GUI;
@@ -12,7 +14,7 @@ public abstract class Entity {
 	protected JLabel graphic;
 	protected Icon icon;
 	protected int life;
-	protected Point pos;
+	protected Rectangle rectangle;
 	protected int speed, width, height;
 	protected boolean up, down, left, right;
 	protected Visitor visitor;
@@ -27,17 +29,23 @@ public abstract class Entity {
 	 * @param Entero velocidad
 	 */
 	protected Entity(int x, int y, int speed, Game g) {
-		this.pos = new Point(x,y);
 		this.speed = speed;
 		this.life = 100;
 		this.width = 40;
 		this.height = 40;		
 		up = down = left = right = false;	
 		this.game = g;
+		rectangle = new Rectangle();
+		rectangle.setLocation(x, y);
+		rectangle.setSize(width, height);
+	}
+	
+	public Rectangle getRectangle() {
+		return rectangle;
 	}
 	
 	public Point getPos() {
-		return pos;		
+		return rectangle.getLocation();		
 	}
 	
 	public int getSpeed() {
@@ -92,23 +100,24 @@ public abstract class Entity {
 	}
 	
 	public void update() {
-		if(left) { pos.x -= speed; }
-		if(right) { pos.x += speed; }
-		if(up) { pos.y -= speed; }
-		if(down) { pos.y += speed; }
+		if(left) { rectangle.x -= speed; }
+		if(right) { rectangle.x += speed; }
+		if(up) { rectangle.y -= speed; }
+		if(down) { rectangle.y += speed; }
 		int gx = GUI.getInstance().getAncho();
 		int gy = GUI.getInstance().getAlto();
-		if(pos.x < 0) { pos.x = 0; }
-		if(pos.y < 0) { pos.y = 0; }
-		if(pos.x >  gx - width - 10) { pos.x = gx - width - 10; }
-		if(pos.y > (gy - height - 30)) { pos.y = (gy - height - 30); }
+		if(rectangle.x < 0) { rectangle.x = 0; }
+		if(rectangle.y < 0) { rectangle.y = 0; }
+		if(rectangle.x >  gx - width - 10) { rectangle.x = gx - width - 10; }
+		if(rectangle.y > (gy - height - 30)) { rectangle.y = (gy - height - 30); }
+		
 		this.updateGraphics();
 	}
 	
 	public JLabel getGraphics() {
 		if(this.graphic == null) {
 			this.graphic = new JLabel(icon);
-			this.graphic.setBounds(this.pos.x, this.pos.y, width, height);			
+			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);			
 		}
 		return this.graphic;
 	}
@@ -129,7 +138,7 @@ public abstract class Entity {
 	
 	protected void updateGraphics() {
 		if (this.graphic != null) {
-			this.graphic.setBounds(this.pos.x, this.pos.y, width, height);	
+			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);	
 		}
 	}
 }

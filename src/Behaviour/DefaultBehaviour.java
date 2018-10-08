@@ -31,7 +31,7 @@ public class DefaultBehaviour extends Behaviour {
 		Point pos = e.getPos();
 		GUI gui = GUI.getInstance();
 		Player player = Player.getInstance(0, 0, null);
-		if(rnd.nextInt(10) < 4 && inRange(player, pos)) {
+		if(rnd.nextInt(10) < 1 && inRange(player, pos)) {
 			e.shoot();
 		}
 		if (right) {
@@ -41,7 +41,6 @@ public class DefaultBehaviour extends Behaviour {
 				right = false;
 				e.stopMove(3);
 			}
-			//e.setPos(pos.x, (int) (pos.y + Math.cos(pos.x / 20)));
 		} else {
 			e.stopMove(3);
 			e.startMove(2);
@@ -49,7 +48,6 @@ public class DefaultBehaviour extends Behaviour {
 				right = true;
 				e.stopMove(2);
 			}
-			//e.setPos(pos.x, (int) (pos.y + 3 * Math.sin(pos.x / 20)));
 		}
 	}
 

@@ -2,17 +2,15 @@ package Visitor;
 
 import Entity.Enemy;
 import Entity.Player;
-import Obstacles.Barricade;
-import Obstacles.Destroyable;
+import Obstacles.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorPowerUp extends Visitor {
-	private PowerUp powerUp;
 	
 	public VisitorPowerUp(PowerUp pw) {
-		powerUp = pw;
+
 	}
 	
 	@Override
@@ -22,16 +20,6 @@ public class VisitorPowerUp extends Visitor {
 
 	@Override
 	public void visitEnemy(Enemy e) {
-		
-	}
-
-	@Override
-	public void visitObstacleDestroyable(Destroyable d) {
-		
-	}
-
-	@Override
-	public void visitObstacleBarricade(Barricade b) {
 		
 	}
 
@@ -47,6 +35,11 @@ public class VisitorPowerUp extends Visitor {
 
 	@Override
 	public void visitEnemyShot(EnemyShot e) {
+		
+	}
+
+	@Override
+	public void visitObstacle(Obstacle d) {
 		
 	}
 

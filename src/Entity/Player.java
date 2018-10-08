@@ -87,13 +87,13 @@ public class Player extends Entity {
 		if (firing) {
 			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 			if(elapsed > firingDelay) {
-				weapon.shoot(pos);
+				weapon.shoot(rectangle.getLocation());
 				firingTimer = System.nanoTime();
 			}
 		}
 		cambiarGrafico();
 		super.update();
-		if(pos.y <= gui.getHeight() / 5 * 3) { pos.y = gui.getHeight() / 5 * 3; }
+		if(rectangle.y <= gui.getHeight() / 5 * 3) { rectangle.y = gui.getHeight() / 5 * 3; }
 		gui.updateScore(score);
 	}
 	
@@ -115,7 +115,7 @@ public class Player extends Entity {
 			} else {
 				graphic.setIcon(iconos[1]);
 			}
-			graphic.setBounds(this.pos.x, this.pos.y, width, height);
+			graphic.setBounds(rectangle.x, rectangle.y, width, height);
 		}
 	}
 }

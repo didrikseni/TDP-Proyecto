@@ -2,17 +2,15 @@ package Visitor;
 
 import Entity.Enemy;
 import Entity.Player;
-import Obstacles.Barricade;
-import Obstacles.Destroyable;
+import Obstacles.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
 
-public class VisitorObstacleBarricade extends Visitor {
-	private Barricade obstacle;
+public class VisitorObstacle extends Visitor {
 	
-	public VisitorObstacleBarricade(Barricade obstacle) {
-		this.obstacle = obstacle;
+	public VisitorObstacle(Obstacle obstacle) {
+		
 	}
 
 	public void visitPlayer(Player p) {
@@ -23,11 +21,7 @@ public class VisitorObstacleBarricade extends Visitor {
 		
 	}
 
-	public void visitObstacleDestroyable(Destroyable d) {
-		
-	}
-
-	public void visitObstacleBarricade(Barricade b) {
+	public void visitObstacle(Obstacle b) {
 		
 	}
 

@@ -18,36 +18,36 @@ public class ConcreteFactory extends Factory {
 	}
 
 	@Override
-	public Enemy getEnemyWeapon() {
-		return new EnemyWeapon(0,0,1,game);
+	public Enemy getEnemyWeapon(int x, int y) {
+		return new EnemyWeapon(x,y,1,game);
 	}
 
 	@Override
-	public Enemy getEnemyChase() {
-		return new EnemyKamikaze(0,0,1, game);
+	public Enemy getEnemyChase(int x, int y) {
+		return new EnemyKamikaze(x,y,1, game);
 	}
 
 	@Override
-	public Enemy getEnemyDizzy() {
-		return new EnemyKamikazeDizzy(0,0,1, game);
+	public Enemy getEnemyDizzy(int x, int y) {
+		return new EnemyKamikazeDizzy(x,y,1, game);
 	}
 
 	@Override
-	public Enemy getEnemyHybrid() {
-		return new EnemyWeaponKamikaze(0,0,1, game);
+	public Enemy getEnemyHybrid(int x, int y) {
+		return new EnemyWeaponKamikaze(x,y,1, game);
 	}
 
 	@Override
-	public Enemy getEnemyCD() {
-		return new EnemyDizzy(0,0,1, game);
+	public Enemy getEnemyCD(int x, int y) {
+		return new EnemyDizzy(x,y,1, game);
 	}
 	
-	public Obstacle getDestroyable() {
-		return new Destroyable(0,0, game);
+	public Obstacle getDestroyable(int x, int y) {
+		return new Destroyable(x,y, game);
 	}
 	
-	public Obstacle getBarricade() {
-		return new Barricade(0,0, game);
+	public Obstacle getBarricade(int x, int y) {
+		return new Barricade(x,y, game);
 	}
 
 }

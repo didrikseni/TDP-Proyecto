@@ -2,8 +2,8 @@ package Visitor;
 
 import Entity.Enemy;
 import Entity.Player;
-import Obstacles.Barricade;
-import Obstacles.Destroyable;
+import Main.GUI;
+import Obstacles.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
@@ -20,16 +20,7 @@ public class VisitorPlayer extends Visitor{
 	public void visitEnemy(Enemy e) {
 		e.takeDamage(player.getLife());
 		player.takeDamage(player.getLife());
-	}
-
-	public void visitObstacleDestroyable(Destroyable d) {
-		d.takeDamage(player.getLife());
-		player.takeDamage(player.getLife());
-	}
-
-	public void visitObstacleBarricade(Barricade b) {
-		b.takeDamage(player.getLife());
-		player.takeDamage(player.getLife());
+		GUI.getInstance().updateLifeBar(player.getLife());
 	}
 
 	public void visitPowerUp(PowerUp p) {
@@ -41,5 +32,12 @@ public class VisitorPlayer extends Visitor{
 	public void visitEnemyShot(EnemyShot e) {
 		e.takeDamage(e.getLife());
 		player.takeDamage(e.getDamage());
+		GUI.getInstance().updateLifeBar(player.getLife());
+	}
+
+	@Override
+	public void visitObstacle(Obstacle d) {
+		player.takeDamage(player.getLife());
+		GUI.getInstance().updateLifeBar(player.getLife());
 	}
 }
