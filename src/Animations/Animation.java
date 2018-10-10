@@ -5,12 +5,11 @@ import javax.swing.JLabel;
 
 public class Animation extends Thread {
 	private static Icon [] array;
-	private long delay;
+	private static long delay = 10;
 	private JLabel label;
 	
-	public Animation(Icon[] arr, long delay, JLabel label) {
+	public Animation(Icon[] arr, JLabel label) {
 		array = arr;
-		this.delay = delay;
 		this.label = label;
 	}
 
@@ -21,19 +20,19 @@ public class Animation extends Thread {
 		int i = 0;
 		
 		while(i < array.length) {
-			startTime = System.nanoTime();	
+			startTime = System.nanoTime();
 			
 			label.setIcon(array[i]);
 			label.repaint();
 			i++;
 			
 			elapsedTime = (System.nanoTime() - startTime) / 1000000;
-			waitTime = delay - elapsedTime;		
+			waitTime = delay - elapsedTime;
 			try { 
-				Thread.sleep(waitTime);
+				sleep(waitTime);
 			} catch (Exception e) {}	
 		}
 		this.interrupt();
-		//animation.remove();
-	}	
+		AnimationMananger.remove(label);
+	}
 }

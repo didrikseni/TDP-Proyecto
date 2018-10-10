@@ -33,7 +33,7 @@ public class Player extends Entity {
 		weapon = new WeaponPlayer(g);
 		firing = false;
 		firingTimer = System.nanoTime();
-		firingDelay = 250;
+		firingDelay = 300;
 		iconos = new Icon[3];
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/nave_izq.png"));
 		iconos[0] = new ImageIcon(img.getImage().getScaledInstance(width + 20 , height, Image.SCALE_DEFAULT));
@@ -97,10 +97,6 @@ public class Player extends Entity {
 		gui.updateScore(score);
 	}
 	
-	public void aumentarArma() {
-		firingDelay = 150;
-	}
-	
 	@Override
 	public void accept(Visitor v) {
 		v.visitPlayer(this);
@@ -117,5 +113,9 @@ public class Player extends Entity {
 			}
 			graphic.setBounds(rectangle.x, rectangle.y, width, height);
 		}
+	}
+
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
 	}
 }

@@ -27,15 +27,15 @@ public class VisitorPlayer extends Visitor{
 	public void visitPowerUp(PowerUp p) {
 		p.addPowerUp(player);
 	}
-
+	
 	public void visitPlayerShot(PlayerShot p) {}
 
 	public void visitEnemyShot(EnemyShot e) {
 		e.takeDamage(e.getLife());
 		player.takeDamage(e.getDamage());
 		GUI.getInstance().updateLifeBar(player.getLife());
-		Animations animations = Animations.getInstance();
-		animations.startSparkAnimation(player.getPos().x, player.getPos().y);
+		//Animations animations = Animations.getInstance();
+		//animations.startSparkAnimation(player.getPos().x, player.getPos().y);
 	}
 
 	@Override

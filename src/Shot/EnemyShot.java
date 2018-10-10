@@ -16,7 +16,7 @@ public class EnemyShot extends Shot {
 		this.height = 20;
 		damage = 10;
 		visitor = new VisitorShotEnemy(this);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/enemyShot.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/enemyShot.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 

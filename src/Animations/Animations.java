@@ -28,7 +28,7 @@ public class Animations {
 			} else {
 				img = new ImageIcon(this.getClass().getResource("/Resources/Explosiones/expl_11_00" + i  + ".png"));
 			}
-			arr[i] = new ImageIcon(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+			arr[i] = new ImageIcon(img.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 		}
 		animationMananger.addAnimation(arr, x, y);
 	}

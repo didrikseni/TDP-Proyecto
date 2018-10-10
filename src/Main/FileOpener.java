@@ -19,7 +19,7 @@ public class FileOpener {
 	
     public void readFile() {
         BufferedReader br = null;
-        String fileName = "C:\\Users\\iandi\\Documents\\TDP-Proyecto\\src\\Resources\\Level1.txt";
+        String fileName = getClass().getResource("/Resources/Levels/Level1.txt").getPath();
         try {
         	String [] arr;
         	String sCurrentLine;

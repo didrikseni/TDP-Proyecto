@@ -14,10 +14,11 @@ public class PlayerShot extends Shot {
 		super(x, y, g);
 		damage = 20;
 		visitor = new VisitorShotPlayer(this);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/disparo.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/disparo.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 	
+	@Override
 	public void update() {
 		rectangle.y -= speed;
 		this.updateGraphics();
