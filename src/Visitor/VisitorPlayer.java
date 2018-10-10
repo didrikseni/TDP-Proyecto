@@ -1,5 +1,6 @@
 package Visitor;
 
+import Animations.Animations;
 import Entity.Enemy;
 import Entity.Player;
 import Main.GUI;
@@ -12,7 +13,7 @@ public class VisitorPlayer extends Visitor{
 	private Player player;
 	
 	public VisitorPlayer(Player e) {
-		player = e;
+		player = e;	
 	}
 
 	public void visitPlayer(Player p) {}
@@ -33,6 +34,8 @@ public class VisitorPlayer extends Visitor{
 		e.takeDamage(e.getLife());
 		player.takeDamage(e.getDamage());
 		GUI.getInstance().updateLifeBar(player.getLife());
+		Animations animations = Animations.getInstance();
+		animations.startSparkAnimation(player.getPos().x, player.getPos().y);
 	}
 
 	@Override

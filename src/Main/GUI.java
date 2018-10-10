@@ -104,7 +104,7 @@ public class GUI extends JFrame {
 		}	
 	}
 
-	public static GUI getInstance() {
+	public synchronized static GUI getInstance() {
 		if(INSTANCE == null) {
 			createInstance();
 		}

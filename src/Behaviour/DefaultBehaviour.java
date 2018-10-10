@@ -49,6 +49,9 @@ public class DefaultBehaviour extends Behaviour {
 				e.stopMove(2);
 			}
 		}
+		if (rnd.nextInt(100000) < 10) {
+			e.setComportamiento(new KamikazeBehaviour());
+		}
 	}
 
 	private boolean inRange(Player player, Point p) {

@@ -34,7 +34,7 @@ public abstract class Enemy extends Entity {
 				game.addEntity(powerUp);
 			}
 			game.deadEntity(this, score);
-		}
+		}	
 	}
 
 	public abstract void shoot();
@@ -45,5 +45,9 @@ public abstract class Enemy extends Entity {
 
 	public int getDamage() {
 		return 0;
+	}
+
+	public void setComportamiento(Behaviour behaviour) {
+		comportamiento = behaviour;		
 	}
 }
