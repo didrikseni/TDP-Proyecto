@@ -8,10 +8,10 @@ public class Animation extends Thread {
 	private long delay;
 	private JLabel label;
 	
-	
-	public Animation(Icon[] arr, int x, int y, long delay, JLabel label) {
+	public Animation(Icon[] arr, long delay, JLabel label) {
 		array = arr;
 		this.delay = delay;
+		this.label = label;
 	}
 
 	public void start() {
@@ -34,5 +34,6 @@ public class Animation extends Thread {
 			} catch (Exception e) {}	
 		}
 		this.interrupt();
+		//animation.remove();
 	}	
 }

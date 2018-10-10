@@ -24,12 +24,14 @@ public class AnimationMananger {
 		JLabel animacion = new JLabel();
 		
 		gui.add(animacion);
-		animation = new Animation(arr, x, y, 16666, animacion);
-		animacion.setSize(arr[0].getIconWidth(), arr[0].getIconHeight());
+		animation = new Animation(arr, 16666, animacion);
+		animacion.setBounds(x, y, arr[0].getIconWidth(), arr[0].getIconHeight());
 		animacion.setVisible(true);
 		animation.start();
-		while (!Thread.interrupted()) {}
-		gui.remove(animacion);
 	}	
+	
+	public void removeAnimation() {
+		
+	}
 	
 }
