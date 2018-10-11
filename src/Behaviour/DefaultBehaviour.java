@@ -28,17 +28,16 @@ public class DefaultBehaviour extends Behaviour {
 		}
 		if (right) {
 			e.getRectangle().x += e.getSpeed(); 
-			e.getRectangle().y = (int) (20 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY());
 			if (pos.x >= gui.getAncho() - e.getGraphics().getWidth() - 15) {
 				right = false;
 			}
 		} else {
 			e.getRectangle().x -= e.getSpeed(); 
-			e.getRectangle().y = (int) (20 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY()); 
 			if (pos.x <= 0) {
 				right = true;				
 			}
 		}
+		e.getRectangle().y = (int) (15 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY());
 		if(pos.y > (gui.getAlto() - e.getHeight() - 40)) {
 			e.setPos(pos.x, 0); 
 		}

@@ -3,36 +3,41 @@ package Animations;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-public class Animation extends Thread {
-	private static Icon [] array;
-	private static long delay = 10;
-	private JLabel label;
+import Entity.Player;
+
+public abstract class Animation implements Runnable {
+	protected Icon [] array;
+	protected JLabel label;
+	protected AnimationMananger aMananger = AnimationMananger.getInstance();
 	
-	public Animation(Icon[] arr, JLabel label) {
-		array = arr;
-		this.label = label;
+	public Animation(int x, int y) {
+		label = new JLabel();
+		label.setBounds(x, y, 40, 40);
+		loadImages();
 	}
 
-	public void start() {
-		long startTime = 0;
-		long elapsedTime = 0;
-		long waitTime = 0;
+	public abstract void loadImages();
+	
+	public void getStarted() {
+		aMananger.addAnimation(this, label);
+	}
+	
+	public void run() {
 		int i = 0;
-		
-		while(i < array.length) {
-			startTime = System.nanoTime();
+		while(i < array.length) {	
 			
 			label.setIcon(array[i]);
 			label.repaint();
 			i++;
 			
-			elapsedTime = (System.nanoTime() - startTime) / 1000000;
-			waitTime = delay - elapsedTime;
 			try { 
-				sleep(waitTime);
+				Thread.sleep(10);
 			} catch (Exception e) {}	
 		}
-		this.interrupt();
 		AnimationMananger.remove(label);
+	}
+
+	public JLabel getLabel() {
+		return label;
 	}
 }

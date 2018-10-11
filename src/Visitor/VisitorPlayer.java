@@ -1,5 +1,7 @@
 package Visitor;
 
+import Animations.Animation;
+import Animations.AnimationSpark;
 import Entity.Enemy;
 import Entity.Player;
 import GUI.GUI_Game;
@@ -19,7 +21,7 @@ public class VisitorPlayer extends Visitor{
 
 	public void visitEnemy(Enemy e) {
 		e.takeDamage(player.getLife());
-		player.takeDamage(player.getLife());
+		//player.takeDamage(player.getLife());
 		GUI_Game.getInstance().updateLifeBar(player.getLife());
 	}
 
@@ -31,10 +33,10 @@ public class VisitorPlayer extends Visitor{
 
 	public void visitEnemyShot(EnemyShot e) {
 		e.takeDamage(e.getLife());
-		player.takeDamage(e.getDamage());
+		//player.takeDamage(e.getDamage());
 		GUI_Game.getInstance().updateLifeBar(player.getLife());
-		//Animations animations = Animations.getInstance();
-		//animations.startSparkAnimation(player.getPos().x, player.getPos().y);
+		Animation anim = new AnimationSpark(player.getRectangle().x, player.getRectangle().y);
+		anim.getStarted();
 	}
 
 	@Override

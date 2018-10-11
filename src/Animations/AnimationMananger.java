@@ -1,6 +1,5 @@
 package Animations;
 
-import javax.swing.Icon;
 import javax.swing.JLabel;
 
 import GUI.GUI_Game;
@@ -20,16 +19,12 @@ public class AnimationMananger {
 		return INSTANCE;
 	}
 	
-	public void addAnimation(Icon[] arr, int x, int y) {
-		Animation animation;
-		JLabel animacion = new JLabel();
-		
-		gui.add(animacion);
-		gui.addComponentInLayer(animacion, 25);
-		animation = new Animation(arr, animacion);
-		animacion.setBounds(x, y, arr[0].getIconWidth(), arr[0].getIconHeight());
-		animacion.setVisible(true);
-		animation.start();
+	public void addAnimation(Animation animation, JLabel label) {
+		gui.add(label);
+		gui.addComponentInLayer(label, 25);
+		label.setVisible(true);
+		Thread asd = new Thread(animation);
+		asd.start();
 	}	
 
 	public static void remove(JLabel label) {

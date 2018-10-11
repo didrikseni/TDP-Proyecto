@@ -28,9 +28,9 @@ public class PowerUp1Shot extends PlayerShot {
 	public void update() {
 		int y = (int) ( 2 * rectangle.y * Math.PI / GUI_Game.getInstance().getAlto());
 		if (positivo) {
-			rectangle.x += 5 *Math.cos(y) + 1;
+			rectangle.x += 2 * Math.cos(y) + 1;
 		} else {
-			rectangle.x -= 5 * Math.cos(y);
+			rectangle.x -= 2 * Math.cos(y);
 		}
 		
 		/* FUNCION AUXILIAR CON EXPONENCIAL *REVISAR*
