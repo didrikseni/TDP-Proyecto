@@ -1,15 +1,10 @@
 package Main;
 
-import javax.swing.JFrame;
+import GUI.GUI_HomeScreen;
 
-@SuppressWarnings("serial")
-public class Main extends JFrame {
-	//Attributes
-	private static GUI gui;
-	
+public class Main {	
 	public static void main(String [] args) {	
-		gui = GUI.getInstance();
-		gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		gui.setVisible(true);	
+		GUI_HomeScreen frame = GUI_HomeScreen.getInstance();
+		frame.setVisible(true);
 	}
 }

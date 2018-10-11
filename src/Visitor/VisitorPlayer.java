@@ -1,9 +1,8 @@
 package Visitor;
 
-import Animations.Animations;
 import Entity.Enemy;
 import Entity.Player;
-import Main.GUI;
+import GUI.GUI_Game;
 import Obstacles.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
@@ -21,7 +20,7 @@ public class VisitorPlayer extends Visitor{
 	public void visitEnemy(Enemy e) {
 		e.takeDamage(player.getLife());
 		player.takeDamage(player.getLife());
-		GUI.getInstance().updateLifeBar(player.getLife());
+		GUI_Game.getInstance().updateLifeBar(player.getLife());
 	}
 
 	public void visitPowerUp(PowerUp p) {
@@ -33,7 +32,7 @@ public class VisitorPlayer extends Visitor{
 	public void visitEnemyShot(EnemyShot e) {
 		e.takeDamage(e.getLife());
 		player.takeDamage(e.getDamage());
-		GUI.getInstance().updateLifeBar(player.getLife());
+		GUI_Game.getInstance().updateLifeBar(player.getLife());
 		//Animations animations = Animations.getInstance();
 		//animations.startSparkAnimation(player.getPos().x, player.getPos().y);
 	}
@@ -41,6 +40,6 @@ public class VisitorPlayer extends Visitor{
 	@Override
 	public void visitObstacle(Obstacle d) {
 		player.takeDamage(player.getLife());
-		GUI.getInstance().updateLifeBar(player.getLife());
+		GUI_Game.getInstance().updateLifeBar(player.getLife());
 	}
 }

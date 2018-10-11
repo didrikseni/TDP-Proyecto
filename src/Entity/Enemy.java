@@ -10,9 +10,11 @@ public abstract class Enemy extends Entity {
 	//Attributes
 	protected Behaviour comportamiento;
 	protected int score;
+	protected int originalY;
 	
 	protected Enemy(int x, int y, int speed, Game g) {
 		super(x, y, speed, g);
+		originalY = y;
 		comportamiento = DefaultBehaviour.getInstance();
 	}
 
@@ -49,5 +51,9 @@ public abstract class Enemy extends Entity {
 
 	public void setComportamiento(Behaviour behaviour) {
 		comportamiento = behaviour;		
+	}
+
+	public double getPosOriginalY() {
+		return originalY;
 	}
 }

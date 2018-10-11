@@ -1,4 +1,4 @@
-package Main;
+package GUI;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -14,21 +14,23 @@ import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import Levels.Level1;
+import Main.Game;
+import Main.MainThread;
 
 @SuppressWarnings("serial")
-public class GUI extends JFrame {
-	private static GUI INSTANCE = null;
+public class GUI_Game extends JFrame {
+	private static GUI_Game INSTANCE = null;
 	
 	private JLayeredPane contentPane;
 	private Game g;
 	private MainThread timer;
 	private JLabel background, score, lifeBar, auxBar;
 
-	private GUI() {
+	private GUI_Game() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI frame = getInstance();
+					GUI_Game frame = getInstance();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,6 +41,8 @@ public class GUI extends JFrame {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
 					shoot(true);
+				} else if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					MainThread.pauseGame();
 				}
 				playerStartMove(arg0);
 			}
@@ -100,11 +104,11 @@ public class GUI extends JFrame {
 
 	private synchronized static void createInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new GUI();
+			INSTANCE = new GUI_Game();
 		}	
 	}
 
-	public synchronized static GUI getInstance() {
+	public synchronized static GUI_Game getInstance() {
 		if(INSTANCE == null) {
 			createInstance();
 		}

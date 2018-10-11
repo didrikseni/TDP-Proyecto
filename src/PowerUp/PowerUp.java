@@ -2,7 +2,7 @@ package PowerUp;
 
 import Entity.Entity;
 import Entity.Player;
-import Main.GUI;
+import GUI.GUI_Game;
 import Main.Game;
 import Visitor.VisitorPowerUp;
 
@@ -14,7 +14,7 @@ public abstract class PowerUp extends Entity {
 	}
 	
 	public void update() {
-		int gy = GUI.getInstance().getAlto();
+		int gy = GUI_Game.getInstance().getAlto();
 		rectangle.y += speed;
 		if(rectangle.y > (gy - height - 30)) {game.deadEntity(this); }
 		this.updateGraphics();

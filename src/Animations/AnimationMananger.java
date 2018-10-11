@@ -2,14 +2,15 @@ package Animations;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
-import Main.GUI;
+
+import GUI.GUI_Game;
 
 public class AnimationMananger {
 	private static AnimationMananger INSTANCE = null;
-	private static GUI gui;
+	private static GUI_Game gui;
 		
 	private AnimationMananger() {
-		gui = GUI.getInstance();
+		gui = GUI_Game.getInstance();
 	}
 	
 	public synchronized static AnimationMananger getInstance() {

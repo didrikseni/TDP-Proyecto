@@ -3,7 +3,8 @@ package Entity;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import Main.GUI;
+
+import GUI.GUI_Game;
 import Main.Game;
 import Shield.Shield;
 import Visitor.Visitor;
@@ -14,7 +15,6 @@ import Weapon.WeaponPlayer;
 public class Player extends Entity {
 	//Static attributes
 	private static Player INSTANCE = null;
-	private static final int maxLife = 100;
 	//Attributes
 	private Icon[] iconos;
 	private Weapon weapon;
@@ -24,7 +24,6 @@ public class Player extends Entity {
 	private long firingTimer;
 	private long firingDelay;
 	
-	//Constructor
 	private Player(int cX, int cY, Game g) {
 		super(cX, cY, 3, g);
 		shield = new Shield();
@@ -63,10 +62,10 @@ public class Player extends Entity {
 	
 	public void setSield(Shield s) {
 		shield = s;
-	}	
+	}		
 	
 	public void setPotion() {
-		life = maxLife;
+		life = 100;
 	}	
 	
 	public int getScore() {
@@ -83,7 +82,7 @@ public class Player extends Entity {
 	
 	@Override
 	public void update() { 
-		GUI gui = GUI.getInstance();
+		GUI_Game gui = GUI_Game.getInstance();
 		if (firing) {
 			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 			if(elapsed > firingDelay) {
@@ -114,8 +113,22 @@ public class Player extends Entity {
 			graphic.setBounds(rectangle.x, rectangle.y, width, height);
 		}
 	}
-
+	
 	public void setWeapon(Weapon weapon) {
 		this.weapon = weapon;
+	}
+
+	public static Player getInstance() {
+		if (INSTANCE != null) {
+			return INSTANCE;
+		} else {
+			return null;
+		}
+	}
+	
+	@Override
+	public void takeDamage(int damage) {
+		int x = shield.takeDamage(damage);
+		super.takeDamage(x);
 	}
 }

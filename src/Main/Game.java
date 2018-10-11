@@ -8,16 +8,17 @@ import javax.swing.JLayeredPane;
 import Entity.Enemy;
 import Entity.Entity;
 import Entity.Player;
+import GUI.GUI_Game;
 
 public abstract class Game {
-	protected GUI gui;
+	protected GUI_Game gui;
 	protected int nivel;
 	protected Player player;
 	protected List<Entity> entities;
 	protected JLayeredPane contentPane;
 	protected HashMap<Entity, Boolean> deadEntities;
 
-	protected Game(GUI gui) {
+	protected Game(GUI_Game gui) {
 		entities = new ArrayList<Entity>();
 		this.gui = gui;
 		initializeMap();		

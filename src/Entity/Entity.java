@@ -5,7 +5,8 @@ import java.awt.Rectangle;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
-import Main.GUI;
+
+import GUI.GUI_Game;
 import Main.Game;
 import Visitor.Visitor;
 
@@ -104,8 +105,8 @@ public abstract class Entity {
 		if(right) { rectangle.x += speed; }
 		if(up) { rectangle.y -= speed; }
 		if(down) { rectangle.y += speed; }
-		int gx = GUI.getInstance().getAncho();
-		int gy = GUI.getInstance().getAlto();
+		int gx = GUI_Game.getInstance().getAncho();
+		int gy = GUI_Game.getInstance().getAlto();
 		if(rectangle.x < 0) { rectangle.x = 0; }
 		if(rectangle.y < 0) { rectangle.y = 0; }
 		if(rectangle.x >  gx - width - 10) { rectangle.x = gx - width - 10; }

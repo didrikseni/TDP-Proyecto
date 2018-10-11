@@ -7,46 +7,53 @@ import Entity.Enemy;
 import Entity.Player;
 import GUI.GUI_Game;
 
-public class DefaultBehaviour extends Behaviour {
-	private static DefaultBehaviour INSTANCE;
-	
+public class DepDefaultBehaviour extends Behaviour {
+	//Attributes
+	private static DepDefaultBehaviour INSTANCE = null;
+
 	private static boolean right;
 	private static Random rnd;
 	
-	public DefaultBehaviour() {
+	private DepDefaultBehaviour() {
 		right = true;
 		rnd = new Random();
+	}
+	
+	public static DepDefaultBehaviour getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new DepDefaultBehaviour();
+		}
+		return INSTANCE;
 	}
 	
 	public void update(Enemy e) {
 		super.update(e);
 		Point pos = e.getPos();
 		GUI_Game gui = GUI_Game.getInstance();
-		Player player = Player.getInstance();
+		Player player = Player.getInstance(0, 0, null);
 		if(rnd.nextInt(10) < 1 && inRange(player, pos)) {
 			e.shoot();
 		}
 		if (right) {
-			e.getRectangle().x += e.getSpeed(); 
-			e.getRectangle().y = (int) (20 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY());
+			e.stopMove(2);
+			e.startMove(3);
 			if (pos.x >= gui.getAncho() - e.getGraphics().getWidth() - 15) {
 				right = false;
+				e.stopMove(3);
 			}
 		} else {
-			e.getRectangle().x -= e.getSpeed(); 
-			e.getRectangle().y = (int) (20 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY()); 
+			e.stopMove(3);
+			e.startMove(2);
 			if (pos.x <= 0) {
-				right = true;				
+				right = true;
+				e.stopMove(2);
 			}
-		}
-		if(pos.y > (gui.getAlto() - e.getHeight() - 40)) {
-			e.setPos(pos.x, 0); 
 		}
 		if (rnd.nextInt(100000) < 10) {
 			e.setComportamiento(new KamikazeBehaviour());
 		}
 	}
-	
+
 	private boolean inRange(Player player, Point p) {
 		double distancia = Math.sqrt(player.getPos().x * player.getPos().x - p.x * p.x);
 		if (distancia <= player.getWidth() && distancia >= 0) {
@@ -54,12 +61,5 @@ public class DefaultBehaviour extends Behaviour {
 		}
 		return false;
 	}
-
-	public static DefaultBehaviour getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new DefaultBehaviour();
-		}
-		return INSTANCE;
-	}
+	
 }
-

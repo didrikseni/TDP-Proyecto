@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.Random;
 
 import Entity.Enemy;
-import Main.GUI;
+import GUI.GUI_Game;
 
 public class DizzyBehaviour extends Behaviour {
 	private long delay;
@@ -20,7 +20,7 @@ public class DizzyBehaviour extends Behaviour {
 	public void update(Enemy e) {
 		super.update(e);
 		Point p = e.getPos();
-		GUI gui = GUI.getInstance();
+		GUI_Game gui = GUI_Game.getInstance();
 		if(System.nanoTime() - elapsedTime > delay) {
 			e.stopMove(0);
 			e.stopMove(2);

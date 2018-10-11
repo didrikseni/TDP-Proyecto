@@ -1,10 +1,9 @@
 package Behaviour;
 
 import java.awt.Point;
-
 import Entity.Enemy;
 import Entity.Player;
-import Main.GUI;
+import GUI.GUI_Game;
 
 public class KamikazeBehaviour extends Behaviour {
 	//Attributes
@@ -21,7 +20,7 @@ public class KamikazeBehaviour extends Behaviour {
 	public void update(Enemy e) {
 		super.update(e);
 		Point p = e.getPos();
-		GUI gui = GUI.getInstance();
+		GUI_Game gui = GUI_Game.getInstance();
 		e.startMove(1);
 		if(System.nanoTime() - elapsedTime > delay) {
 			int playerX = player.getPos().x;
