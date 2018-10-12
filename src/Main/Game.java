@@ -2,6 +2,7 @@ package Main;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JLayeredPane;
@@ -10,7 +11,7 @@ import Entity.Entity;
 import Entity.Player;
 import GUI.GUI_Game;
 
-public abstract class Game {
+public abstract class Game {	
 	protected GUI_Game gui;
 	protected int nivel;
 	protected Player player;
@@ -120,5 +121,9 @@ public abstract class Game {
 	private void removeEntityFromMap(Entity e) {
 		gui.remove(e.getGraphics());
 		entities.remove(e);
+	}
+	
+	public Collection<Entity> getEntities() {
+		return entities;
 	}
 }

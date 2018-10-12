@@ -3,8 +3,6 @@ package Animations;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import Entity.Player;
-
 public abstract class Animation implements Runnable {
 	protected Icon [] array;
 	protected JLabel label;
@@ -31,7 +29,7 @@ public abstract class Animation implements Runnable {
 			i++;
 			
 			try { 
-				Thread.sleep(10);
+				Thread.sleep(25);
 			} catch (Exception e) {}	
 		}
 		AnimationMananger.remove(label);

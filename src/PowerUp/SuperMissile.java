@@ -17,14 +17,10 @@ public class SuperMissile extends TemporalMagic {
 
 	@Override
 	public void addPowerUp(Player player) {
-		this.run();
+		
 	}
 	
 	@Override
 	public void update() {}
 	
-	@Override
-	public void run() {
-		
-	}
 }
