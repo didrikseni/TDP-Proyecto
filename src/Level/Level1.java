@@ -39,7 +39,7 @@ public class Level1 extends Game {
 
 
 	protected void loadObjects() {
-		FileOpener fileOpener = new FileOpener(this, "/Resources/Levels/Level1.txt");
+		FileOpener fileOpener = new FileOpener(this, "/Resources/Levels/Level1.txt", gui);
 		fileOpener.readFile();
 	}
 	

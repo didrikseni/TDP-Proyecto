@@ -14,7 +14,7 @@ public abstract class PowerUp extends Entity {
 	}
 	
 	public void update() {
-		int gy = GUI_Game.getInstance().getAlto();
+		int gy = GUI_Game.getInstance().getHeight();
 		rectangle.y += speed;
 		if(rectangle.y > (gy - height - 30)) {game.deadEntity(this); }
 		this.updateGraphics();

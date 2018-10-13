@@ -29,7 +29,7 @@ public class DizzyBehaviour extends Behaviour {
 			e.startMove(rnd.nextInt(4));
 			elapsedTime = System.nanoTime();
 		}
-		if(p.y > (gui.getAlto() - e.getHeight() - 40)) {
+		if(p.y > (gui.getHeight() - e.getHeight() - 40)) {
 			e.setPos(p.x, 0); 
 		}
 	}

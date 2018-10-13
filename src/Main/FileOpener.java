@@ -1,9 +1,16 @@
 package Main;
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import Entity.Entity;
+import GUI.GUI_Game;
 import Level.ConcreteFactory;
 import Level.Factory;
 
@@ -11,11 +18,13 @@ public class FileOpener {
 	private Game game;
 	private Factory factory;
 	private String fileName;
+	private GUI_Game gui;
 		
-	public FileOpener(Game game, String fileName) {
+	public FileOpener(Game game, String fileName, GUI_Game gui) {
 		this.game = game;
 		factory = new ConcreteFactory(game);
 		this.fileName = fileName;
+		this.gui = gui;
 	}
 	
     public void readFile() {
@@ -26,6 +35,8 @@ public class FileOpener {
         	String sCurrentLine;
         	Entity entity;
             br = new BufferedReader(new FileReader(fileName));
+            sCurrentLine = br.readLine();
+            cargarBackground(sCurrentLine);
             while ((sCurrentLine = br.readLine()) != null) {
             	arr = sCurrentLine.split(";");            	
             	switch (arr[0]) {
@@ -60,5 +71,16 @@ public class FileOpener {
                 ex.printStackTrace();
             }
         }
+    }
+    
+    private void cargarBackground(String sCurrentLine) {
+    	JLabel background = new JLabel();
+		background.setBounds(0, 0, gui.getWidth(), gui.getHeight());	
+		ImageIcon img = new ImageIcon(this.getClass().getResource(sCurrentLine));
+ 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(gui.getSize().width, gui.getSize().height, Image.SCALE_DEFAULT));
+		background.setIcon(icon);
+		background.setVisible(true);
+		gui.add(background);
+		gui.addComponentInLayer(background, 1);
     }
 }

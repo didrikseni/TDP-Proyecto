@@ -36,7 +36,7 @@ public class KamikazeBehaviour extends Behaviour {
 			}
 			elapsedTime = System.nanoTime();
 		}
-		if(p.y > (gui.getAlto() - e.getHeight() - 40)) {
+		if(p.y > (gui.getHeight() - e.getHeight() - 40)) {
 			e.setPos(p.x, 0); 
 		}
 	}

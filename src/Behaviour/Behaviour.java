@@ -10,7 +10,7 @@ public abstract class Behaviour {
 	public void update(Enemy e) {
 		Point p = e.getPos();
 		GUI_Game g = GUI_Game.getInstance();		
-		if (p.y > g.getAlto()) {
+		if (p.y > g.getHeight()) {
 			p.setLocation(p.x, 0);
 		}
 		

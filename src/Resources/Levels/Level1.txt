@@ -1,3 +1,4 @@
+/Resources/Levels/level1_background.png
 w;50;30
 w;100;30
 w;150;30

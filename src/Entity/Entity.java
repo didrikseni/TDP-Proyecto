@@ -95,8 +95,8 @@ public abstract class Entity {
 		if(right) { rectangle.x += speed; }
 		if(up) { rectangle.y -= speed; }
 		if(down) { rectangle.y += speed; }
-		int gx = GUI_Game.getInstance().getAncho();
-		int gy = GUI_Game.getInstance().getAlto();
+		int gx = GUI_Game.getInstance().getWidth();
+		int gy = GUI_Game.getInstance().getHeight();
 		if(rectangle.x < 0) { rectangle.x = 0; }
 		if(rectangle.y < 0) { rectangle.y = 0; }
 		if(rectangle.x >  gx - width - 10) { rectangle.x = gx - width - 10; }

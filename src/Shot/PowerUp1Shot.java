@@ -26,7 +26,7 @@ public class PowerUp1Shot extends PlayerShot {
 	}
 	
 	public void update() {
-		int y = (int) ( 2 * rectangle.y * Math.PI / GUI_Game.getInstance().getAlto());
+		int y = (int) ( 2 * rectangle.y * Math.PI / GUI_Game.getInstance().getHeight());
 		if (positivo) {
 			rectangle.x += 2 * Math.cos(y) + 1;
 		} else {

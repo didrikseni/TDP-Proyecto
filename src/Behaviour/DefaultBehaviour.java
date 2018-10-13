@@ -28,7 +28,7 @@ public class DefaultBehaviour extends Behaviour {
 		}
 		if (right) {
 			e.getRectangle().x += e.getSpeed(); 
-			if (pos.x >= gui.getAncho() - e.getGraphics().getWidth() - 15) {
+			if (pos.x >= gui.getWidth() - e.getGraphics().getWidth() - 15) {
 				right = false;
 			}
 		} else {
@@ -38,7 +38,7 @@ public class DefaultBehaviour extends Behaviour {
 			}
 		}
 		e.getRectangle().y = (int) (15 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY());
-		if(pos.y > (gui.getAlto() - e.getHeight() - 40)) {
+		if(pos.y > (gui.getHeight() - e.getHeight() - 40)) {
 			e.setPos(pos.x, 0); 
 		}
 		if (rnd.nextInt(100000) < 10) {
