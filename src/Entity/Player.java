@@ -21,7 +21,6 @@ public class Player extends Entity {
 	private int score;
 	private boolean firing;
 	private long firingTimer, firingDelay;
-	//private JLabel graphicShield;
 	
 	private Player(int cX, int cY, Game g) {
 		super(cX, cY, 3, g);
@@ -112,7 +111,12 @@ public class Player extends Entity {
 	@Override
 	public void takeDamage(int damage) {
 		int x = shield.takeDamage(damage);
-		super.takeDamage(x);
+		if (x >= 0) {
+			life -= x; 
+		}
+		if(life <= 0) {
+			game.gameOver();
+		}
 	}
 	
 	protected void cambiarGrafico(){

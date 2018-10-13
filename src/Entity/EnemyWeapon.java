@@ -1,9 +1,7 @@
 package Entity;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
 import Main.Game;
 import PowerUp.PowerUpFreeze;
 import PowerUp.PowerUpPotion;
@@ -11,18 +9,20 @@ import PowerUp.PowerUpShield;
 import PowerUp.PowerUp;
 import PowerUp.PowerUpWeapon_1;
 import PowerUp.ThreadFreeze;
-import Shot.EnemyShot;
-import Shot.Shot;
 import Visitor.Visitor;
 import Visitor.VisitorEnemy;
+import Weapon.Weapon;
+import Weapon.WeaponEnemy;
 
 public class EnemyWeapon extends Enemy {	
+	private Weapon weapon;
 	
 	public EnemyWeapon(int x, int y, int speed, Game g) {
-		super(x, y, speed, g);		
+		super(x, y, speed, g);
+		weapon = new WeaponEnemy(g);
 		visitor = new VisitorEnemy(this);
 		score = 100;
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingAbajo.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/enemy_ship_00.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 
@@ -33,8 +33,7 @@ public class EnemyWeapon extends Enemy {
 
 	@Override
 	public void shoot() {
-		Shot shot = new EnemyShot(rectangle.x, rectangle.y, this.game);
-		game.addEntity(shot);		
+		weapon.shoot(this.getPos());
 	}
 
 	@Override

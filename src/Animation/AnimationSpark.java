@@ -18,9 +18,9 @@ public class AnimationSpark extends Animation {
 		ImageIcon img;
 		for(int i = 0; i < array.length; i++) {
 			if (i < 9) {
-				img  = new ImageIcon(this.getClass().getResource("/Resources/Sparks/sparks_effect_0" + (i + 1) + ".png"));
+				img  = new ImageIcon(this.getClass().getResource("/Resources/Effects/sparks_effect_0" + (i + 1) + ".png"));
 			} else {
-				img = new ImageIcon(this.getClass().getResource("/Resources/Sparks/sparks_effect_" + (i + 1) + ".png"));
+				img = new ImageIcon(this.getClass().getResource("/Resources/Effects/sparks_effect_" + (i + 1) + ".png"));
 			}
 			array[i] = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
 		}

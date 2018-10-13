@@ -125,5 +125,9 @@ public abstract class Game {
 	private void removeEntityFromMap(Entity e) {
 		gui.remove(e.getGraphics());
 		entities.remove(e);
+	}
+
+	public void gameOver() {
+				
 	}	
 }

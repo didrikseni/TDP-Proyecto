@@ -13,9 +13,9 @@ public class PowerUp1Shot extends PlayerShot {
 	
 	public PowerUp1Shot(int x, int y, boolean posit, Game g) {
 		super(x, y, g);
-		damage = 30;
+		damage = 20;
 		visitor = new VisitorShotPlayer(this);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/disparo.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_02.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)); 
 		positivo = posit;
 	}
@@ -32,14 +32,6 @@ public class PowerUp1Shot extends PlayerShot {
 		} else {
 			rectangle.x -= 2 * Math.cos(y);
 		}
-		
-		/* FUNCION AUXILIAR CON EXPONENCIAL *REVISAR*
-		if (positivo) {
-			rectangle.x += Math.log(rectangle.y / 100);
-		} else {
-			rectangle.x -= Math.log(rectangle.y / 100);
-		}
-		*/
 		super.update();
 	}
 

@@ -15,9 +15,9 @@ public class AnimationExplotion_1 extends Animation {
 		ImageIcon img;
 		for(int i = 0; i < array.length; i++) {
 			if (i < 10) {
-				img  = new ImageIcon(this.getClass().getResource("/Resources/Explosiones/expl_11_000" + i + ".png"));
+				img  = new ImageIcon(this.getClass().getResource("/Resources/Effects/expl_11_000" + i + ".png"));
 			} else {
-				img = new ImageIcon(this.getClass().getResource("/Resources/Explosiones/expl_11_00" + i  + ".png"));
+				img = new ImageIcon(this.getClass().getResource("/Resources/Effects/expl_11_00" + i  + ".png"));
 			}
 			array[i] = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
 		}

@@ -13,9 +13,8 @@ public class WeaponEnemy extends Weapon {
 
 	@Override
 	public void shoot(Point pos) {
-		Shot s = new EnemyShot(pos.x, pos.y, game);
-		game.addEntity(s);
-		
+		Shot s = new EnemyShot(pos.x + 15, pos.y, game);
+		game.addEntity(s);	
 	}
 
 }

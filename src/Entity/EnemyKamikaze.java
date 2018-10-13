@@ -17,7 +17,7 @@ public class EnemyKamikaze extends Enemy {
 		comportamiento = new KamikazeBehaviour();
 		score = 150;
 		damage = 80;
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/XWingAbajo.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/enemy_ship_00.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 

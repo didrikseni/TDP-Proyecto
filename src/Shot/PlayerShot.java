@@ -14,7 +14,7 @@ public class PlayerShot extends Shot {
 		super(x, y, g);
 		damage = 20;
 		visitor = new VisitorShotPlayer(this);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/disparo.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_00.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 	
