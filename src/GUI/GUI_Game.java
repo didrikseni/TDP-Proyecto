@@ -13,7 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import Levels.Level1;
+
+import Level.Level1;
 import Main.Game;
 import Main.MainThread;
 
@@ -67,13 +68,14 @@ public class GUI_Game extends JFrame {
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(contentPane);
 		this.contentPane.setLayout(null);		
-		this.setResizable(false);
+		this.setResizable(true);
 		
-		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/6.png"));
 		background = new JLabel();
+		background.setBounds(0, 0, 1024, 700);
+		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/6.png"));		
 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
 		background.setIcon(icon);
-		background.setBounds(0, 0, 1024, 700);
+		
 		contentPane.add(background);
 		contentPane.setLayer(background, 1);
 		background.setVisible(true);
@@ -84,7 +86,7 @@ public class GUI_Game extends JFrame {
 		auxBar = new JLabel();
 		lifeBar.add(auxBar);
 		auxBar.setBounds(902, 632, lifeBar.getWidth() - 4, lifeBar.getHeight() - 4);
-		auxBar.setBackground(Color.green.darker());
+		auxBar.setBackground(Color.red.darker().darker());
 		auxBar.setOpaque(true);
 		contentPane.add(lifeBar);
 		contentPane.setLayer(lifeBar, 40);

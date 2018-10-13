@@ -2,11 +2,12 @@ package Entity;
 
 import java.util.Random;
 
+import Animation.Animation;
+import Animation.AnimationExplotion_1;
+import Animation.AnimationExplotion_2;
 import Behaviour.Behaviour;
 import Behaviour.DefaultBehaviour;
 import Main.Game;
-import PowerUp.PowerUp;
-import PowerUp.WeaponUpgrade1;
 
 public abstract class Enemy extends Entity {
 	//Attributes
@@ -34,14 +35,19 @@ public abstract class Enemy extends Entity {
 			life -= damage; 
 		}
 		if(life <= 0) {
-			int i = rnd.nextInt(100);
-			if (i < 25) {
-				PowerUp powerUp = new WeaponUpgrade1(rectangle.x, rectangle.y , game);
-				game.addEntity(powerUp);
-			}
+			dropPowerUp();
 			game.deadEntity(this, score);
+			Animation anim;
+			if (rnd.nextBoolean()) {
+				anim = new AnimationExplotion_1(rectangle.x, rectangle.y);
+			} else {
+				anim = new AnimationExplotion_2(rectangle.x, rectangle.y);
+			}
+			anim.getStarted();
 		}	
 	}
+
+	protected abstract void dropPowerUp();
 
 	public abstract void shoot();
 

@@ -3,7 +3,7 @@ package Entity;
 import Behaviour.KamikazeBehaviour;
 import Main.Game;
 import PowerUp.PowerUp;
-import PowerUp.WeaponUpgrade1;
+import PowerUp.PowerUpWeapon_1;
 import Visitor.Visitor;
 
 public class EnemyWeaponKamikaze extends Enemy {
@@ -28,12 +28,17 @@ public class EnemyWeaponKamikaze extends Enemy {
 		if(life <= 0) {
 			java.util.Random rnd = new java.util.Random();
 			if (rnd.nextInt(100) < 7) {
-				PowerUp powerUp = new WeaponUpgrade1(rectangle.x, rectangle.y, game);
+				PowerUp powerUp = new PowerUpWeapon_1(rectangle.x, rectangle.y, game);
 				game.addEntity(powerUp);
 			}
 			game.deadEntity(this, score);
 		} else if (life <= 25) {
 			comportamiento = new KamikazeBehaviour();
 		}		
+	}
+
+	@Override
+	protected void dropPowerUp() {
+		
 	}
 }

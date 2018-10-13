@@ -3,30 +3,29 @@ package Entity;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
+import javax.swing.JLabel;
 import GUI.GUI_Game;
 import Main.Game;
 import Shield.Shield;
+import Shield.ShieldDefault;
 import Visitor.Visitor;
 import Visitor.VisitorPlayer;
 import Weapon.Weapon;
 import Weapon.WeaponPlayer;
 
 public class Player extends Entity {
-	//Static attributes
 	private static Player INSTANCE = null;
-	//Attributes
 	private Icon[] iconos;
 	private Weapon weapon;
 	private Shield shield;
 	private int score;
 	private boolean firing;
-	private long firingTimer;
-	private long firingDelay;
+	private long firingTimer, firingDelay;
+	//private JLabel graphicShield;
 	
 	private Player(int cX, int cY, Game g) {
 		super(cX, cY, 3, g);
-		shield = new Shield();
+		shield = new ShieldDefault(this);		
 		score = 0;
 		visitor = new VisitorPlayer(this);
 		weapon = new WeaponPlayer(g);
@@ -43,15 +42,9 @@ public class Player extends Entity {
 		icon = iconos[1];
 	}
 	
-	private synchronized static void createInstance(int x, int y, Game g) {
-		if (INSTANCE == null) {
-			INSTANCE = new Player(x,y,g);
-		}
-	}
-	
 	public static Player getInstance(int x, int y, Game g) {
 		if(INSTANCE == null) {
-			createInstance(x,y,g);
+			INSTANCE = new Player(x,y,g);
 		}
 		return INSTANCE;
 	}
@@ -62,15 +55,16 @@ public class Player extends Entity {
 	
 	public void setSield(Shield s) {
 		shield = s;
-	}		
+		//this.graphicShield.setIcon(s.getIcon());
+	}
 	
 	public void setPotion() {
 		life = 100;
-	}	
+	}
 	
 	public int getScore() {
 		return score;		
-	}	
+	}
 	
 	public void addScore(int s) {
 		score += s;
@@ -78,7 +72,7 @@ public class Player extends Entity {
 
 	public void shoot(boolean b) {
 		firing = b;
-	}	
+	}
 	
 	@Override
 	public void update() { 
@@ -92,14 +86,34 @@ public class Player extends Entity {
 		}
 		cambiarGrafico();
 		super.update();
-		if(rectangle.y <= gui.getHeight() / 5 * 3) { rectangle.y = gui.getHeight() / 5 * 3; }
+		if(rectangle.y <= gui.getHeight() / 5 * 3) {
+			rectangle.y = gui.getHeight() / 5 * 3; 
+			}
 		gui.updateScore(score);
 	}
 	
 	@Override
 	public void accept(Visitor v) {
 		v.visitPlayer(this);
-	}	
+	}
+	
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
+	
+	public JLabel getGraphics() {
+		if(this.graphic == null) {
+			this.graphic = new JLabel(icon);
+			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);
+		}
+		return this.graphic;
+	}
+	
+	@Override
+	public void takeDamage(int damage) {
+		int x = shield.takeDamage(damage);
+		super.takeDamage(x);
+	}
 	
 	protected void cambiarGrafico(){
 		if(this.icon != null){
@@ -114,21 +128,4 @@ public class Player extends Entity {
 		}
 	}
 	
-	public void setWeapon(Weapon weapon) {
-		this.weapon = weapon;
-	}
-
-	public static Player getInstance() {
-		if (INSTANCE != null) {
-			return INSTANCE;
-		} else {
-			return null;
-		}
-	}
-	
-	@Override
-	public void takeDamage(int damage) {
-		int x = shield.takeDamage(damage);
-		super.takeDamage(x);
-	}
 }

@@ -14,26 +14,16 @@ public abstract class Entity {
 	//Attributes
 	protected JLabel graphic;
 	protected Icon icon;
-	protected int life;
+	protected int life, speed, width, height;
 	protected Rectangle rectangle;
-	protected int speed, width, height;
 	protected boolean up, down, left, right;
 	protected Visitor visitor;
 	protected Game game;
 	
-	//Constructor
-	/**
-	 * Constructor de entidad
-	 * @param Game g
-	 * @param Entero coordenada x
-	 * @param Entero coordenada y
-	 * @param Entero velocidad
-	 */
 	protected Entity(int x, int y, int speed, Game g) {
 		this.speed = speed;
 		this.life = 100;
-		this.width = 40;
-		this.height = 40;		
+		this.width  = this.height = 40;
 		up = down = left = right = false;	
 		this.game = g;
 		rectangle = new Rectangle();
@@ -118,7 +108,7 @@ public abstract class Entity {
 	public JLabel getGraphics() {
 		if(this.graphic == null) {
 			this.graphic = new JLabel(icon);
-			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);			
+			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);
 		}
 		return this.graphic;
 	}

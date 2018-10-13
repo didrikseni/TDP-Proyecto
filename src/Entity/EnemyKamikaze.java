@@ -33,4 +33,9 @@ public class EnemyKamikaze extends Enemy {
 		return damage;
 	}
 
+	@Override
+	protected void dropPowerUp() {
+		
+	}
+
 }

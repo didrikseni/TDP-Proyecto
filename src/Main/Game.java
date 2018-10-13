@@ -28,11 +28,11 @@ public abstract class Game {
 	private void initializeMap() {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
 		gui.add(player.getGraphics());
-		gui.addComponentInLayer(player.getGraphics(), 5);
-				
-		FileOpener fileOpener = new FileOpener(this);
-		fileOpener.readFile();
+		gui.addComponentInLayer(player.getGraphics(), 5);				
+		loadObjects();
 	}
+	
+	protected abstract void loadObjects();
 	
 	public abstract Game getInstance();
 	
@@ -87,10 +87,14 @@ public abstract class Game {
 		player.addScore(score);
 		deadEntities.put(e, true);
 	}
-
+	
+	public synchronized Collection<Entity> getEntities() {
+		return entities;
+	}
+	
 	private void detectCollisions() {
 		Entity entity1, entity2;
-		for(int i = 0; i < entities.size(); i++) {
+		for(int i = 0; i < getEntities().size(); i++) {
 			entity1 = entities.get(i);
 			entity1.update();
 			if(hasCollide(player, entity1)) {
@@ -121,9 +125,5 @@ public abstract class Game {
 	private void removeEntityFromMap(Entity e) {
 		gui.remove(e.getGraphics());
 		entities.remove(e);
-	}
-	
-	public Collection<Entity> getEntities() {
-		return entities;
-	}
+	}	
 }

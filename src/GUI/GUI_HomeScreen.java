@@ -20,7 +20,6 @@ public class GUI_HomeScreen extends JFrame {
 	private static GUI_Game gui;
 	private JLayeredPane contentPane;
 	private JLabel background;
-	private JButton btnSettings;
 
 	public GUI_HomeScreen() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +52,7 @@ public class GUI_HomeScreen extends JFrame {
 		btnStart.setBorder(new LineBorder(Color.lightGray.darker(), 2));
 		btnStart.setForeground(Color.white);
 		
-		btnSettings = new JButton("Settings");
+		JButton btnSettings = new JButton("Settings");
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				startSettings();

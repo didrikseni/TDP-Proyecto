@@ -22,7 +22,7 @@ public class DefaultBehaviour extends Behaviour {
 		super.update(e);
 		Point pos = e.getPos();
 		GUI_Game gui = GUI_Game.getInstance();
-		Player player = Player.getInstance();
+		Player player = Player.getInstance(0,0,null);
 		if(rnd.nextInt(10) < 1 && inRange(player, pos)) {
 			e.shoot();
 		}

@@ -3,23 +3,24 @@ package Main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
 import Entity.Entity;
-import Levels.ConcreteFactory;
-import Levels.Factory;
+import Level.ConcreteFactory;
+import Level.Factory;
 
 public class FileOpener {
 	private Game game;
 	private Factory factory;
+	private String fileName;
 		
-	public FileOpener(Game game) {
+	public FileOpener(Game game, String fileName) {
 		this.game = game;
 		factory = new ConcreteFactory(game);
+		this.fileName = fileName;
 	}
 	
     public void readFile() {
         BufferedReader br = null;
-        String fileName = getClass().getResource("/Resources/Levels/Level1.txt").getPath();
+        fileName = getClass().getResource(fileName).getPath();
         try {
         	String [] arr;
         	String sCurrentLine;
@@ -33,7 +34,7 @@ public class FileOpener {
 	            		game.addEntity(entity);
 	            		break;
 	            	case "k":
-	            		entity = factory.getEnemyChase(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
+	            		entity = factory.getEnemyKamikaze(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
 	            		game.addEntity(entity);
 	            		break;
 	            	case "b" :
