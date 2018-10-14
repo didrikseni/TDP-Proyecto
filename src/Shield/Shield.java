@@ -12,10 +12,12 @@ public abstract class Shield {
 		this.player = player;
 		reduction = 0;
 	}
+
+	public Icon getIcon() {
+		return icon;
+	}
 	
 	public int takeDamage(int damage) {
 		return (damage - reduction >= 0) ? damage - reduction : 0;
 	}
-	
-	public abstract Icon getIcon();
 }

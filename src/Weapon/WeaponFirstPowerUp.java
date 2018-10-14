@@ -13,8 +13,8 @@ public class WeaponFirstPowerUp extends Weapon {
 
 	@Override
 	public void shoot(Point pos) {
-		Shot s1 = new PowerUp1Shot(pos.x + 15, pos.y, true, game);
-		Shot s2 = new PowerUp1Shot(pos.x + 15, pos.y, false, game);
+		Shot s1 = new PowerUp1Shot(pos.x, pos.y, game);
+		Shot s2 = new PowerUp1Shot(pos.x + 30, pos.y, game);
 		game.addEntity(s1);
 		game.addEntity(s2);
 	}

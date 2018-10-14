@@ -16,5 +16,4 @@ public class WeaponPlayer extends Weapon {
 		Shot s = new PlayerShot(pos.x + 15, pos.y, game);
 		game.addEntity(s);
 	}
-
 }

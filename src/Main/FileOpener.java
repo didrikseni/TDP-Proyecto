@@ -79,7 +79,6 @@ public class FileOpener {
 		ImageIcon img = new ImageIcon(this.getClass().getResource(sCurrentLine));
  		Icon icon = new ImageIcon(img.getImage().getScaledInstance(gui.getSize().width, gui.getSize().height, Image.SCALE_DEFAULT));
 		background.setIcon(icon);
-		background.setVisible(true);
 		gui.add(background);
 		gui.addComponentInLayer(background, 1);
     }

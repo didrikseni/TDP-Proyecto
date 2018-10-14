@@ -22,7 +22,6 @@ public class AnimationMananger {
 	public void addAnimation(Animation animation, JLabel label) {
 		gui.add(label);
 		gui.addComponentInLayer(label, 25);
-		label.setVisible(true);
 		Thread asd = new Thread(animation);
 		asd.start();
 	}	

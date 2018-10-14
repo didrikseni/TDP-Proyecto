@@ -21,6 +21,7 @@ public class Player extends Entity {
 	private int score;
 	private boolean firing;
 	private long firingTimer, firingDelay;
+	private JLabel graphicShield;
 	
 	private Player(int cX, int cY, Game g) {
 		super(cX, cY, 3, g);
@@ -39,6 +40,7 @@ public class Player extends Entity {
 		img = new ImageIcon(this.getClass().getResource("/Resources/nave_der.png"));		
 		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
 		icon = iconos[1];
+		graphicShield = new JLabel();
 	}
 	
 	public static Player getInstance(int x, int y, Game g) {
@@ -54,7 +56,8 @@ public class Player extends Entity {
 	
 	public void setSield(Shield s) {
 		shield = s;
-		//this.graphicShield.setIcon(s.getIcon());
+		this.graphicShield.setIcon(s.getIcon());
+		GUI_Game.getInstance().addComponentInLayer(graphicShield, 50);
 	}
 	
 	public void setPotion() {
@@ -85,12 +88,17 @@ public class Player extends Entity {
 		}
 		cambiarGrafico();
 		super.update();
-		if(rectangle.y <= gui.getHeight() / 5 * 3) {
-			rectangle.y = gui.getHeight() / 5 * 3; 
-			}
+		updateGraphicShield();
+		if(rectangle.y <= gui.getHeight() / 5 * 3) 
+			rectangle.y = gui.getHeight() / 5 * 3;
 		gui.updateScore(score);
 	}
 	
+	private void updateGraphicShield() {
+		if (graphicShield.getGraphics() != null)
+			this.graphicShield.setBounds(rectangle);
+	}
+
 	@Override
 	public void accept(Visitor v) {
 		v.visitPlayer(this);

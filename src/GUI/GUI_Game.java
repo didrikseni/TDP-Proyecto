@@ -64,9 +64,10 @@ public class GUI_Game extends JFrame {
 	protected void playerStopMove(KeyEvent key) {
 		playerInteraction.playerStopMove(key.getKeyCode());
 	}
-	
+
 	public void addComponentInLayer(Component e, int layer) {
 		this.contentPane.setLayer(e, layer);
+		e.setVisible(true);
 	}
 	
 	protected void shoot(boolean b) {
@@ -88,9 +89,9 @@ public class GUI_Game extends JFrame {
 		score.setFont(new Font("Unispace", Font.PLAIN, 12));
 		score.setHorizontalAlignment(SwingConstants.CENTER);
 		score.setForeground(Color.green.darker());
-		score.setBounds(0, 630, 100, 50);
+		score.setBounds(0, 630, 100, 40);
 		contentPane.add(score);
-		contentPane.setLayer(score, 20);
+		contentPane.setLayer(score, 10);
 		score.setVisible(true);
 	}
 
@@ -107,9 +108,9 @@ public class GUI_Game extends JFrame {
 		icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
 		auxBar.setIcon(icon);
 		contentPane.add(lifeBar);		
-		contentPane.setLayer(lifeBar, 40);
+		contentPane.setLayer(lifeBar, 10);
 		contentPane.add(auxBar);
-		contentPane.setLayer(auxBar, 45);
+		contentPane.setLayer(auxBar, 11);
 		lifeBar.setVisible(true);
 		auxBar.setVisible(true);
 	}

@@ -10,7 +10,7 @@ public class PowerUpPotion extends PowerUp {
 
 	public PowerUpPotion(int x, int y, Game g) {
 		super(x, y, g);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/icon_46.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/pw_potion.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 

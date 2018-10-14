@@ -29,7 +29,7 @@ public abstract class Game {
 	private void initializeMap() {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
 		gui.add(player.getGraphics());
-		gui.addComponentInLayer(player.getGraphics(), 5);				
+		gui.addComponentInLayer(player.getGraphics(), 15);				
 		loadObjects();
 	}
 	

@@ -18,12 +18,12 @@ import javax.swing.JButton;
 public class GUI_GameOver extends JFrame {
 	private static GUI_GameOver INSTANCE = null;
 	
-	private int score;
+	//private int score;
 	private JPanel contentPane;
 	private JLabel background;
 	
 	private GUI_GameOver(int score) {
-		this.score = score;
+		//this.score = score;
 		initialize();
 		loadScores();
 	}

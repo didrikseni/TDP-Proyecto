@@ -41,7 +41,7 @@ public class DefaultBehaviour extends Behaviour {
 		if(pos.y > (gui.getHeight() - e.getHeight() - 40)) {
 			e.setPos(pos.x, 0); 
 		}
-		if (rnd.nextInt(100000) < 10) {
+		if (rnd.nextInt(100000) < 7) {
 			e.setComportamiento(new KamikazeBehaviour());
 		}
 	}
