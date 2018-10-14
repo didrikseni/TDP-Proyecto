@@ -35,7 +35,7 @@ public class TrackerShot extends EnemyShot {
 		rectangle.y += (int) (5 * Math.sin(angle));
 		this.updateGraphics();
 		if(rectangle.y < -20) {
-			game.deadEntity(this);
+			game.addDeadEntity(this);
 		}
 	}
 	

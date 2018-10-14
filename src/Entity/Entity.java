@@ -52,7 +52,7 @@ public abstract class Entity {
 			life -= damage; 
 		}
 		if(life <= 0) {
-			game.deadEntity(this);
+			game.addDeadEntity(this);
 		}
 	}
 	

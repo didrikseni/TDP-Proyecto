@@ -15,8 +15,8 @@ public class PowerUp1Shot extends PlayerShot {
 		super(x, y, g);
 		damage = 20;
 		visitor = new VisitorShotPlayer(this);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_02.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)); 
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/player_shot_00.png"));
+		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height + 10, Image.SCALE_DEFAULT)); 
 		positivo = posit;
 	}
 
@@ -26,7 +26,7 @@ public class PowerUp1Shot extends PlayerShot {
 	}
 	
 	public void update() {
-		int y = (int) ( 2 * rectangle.y * Math.PI / GUI_Game.getInstance().getHeight());
+		int y = (int) (2 * rectangle.y * Math.PI / GUI_Game.getInstance().getHeight());
 		if (positivo) {
 			rectangle.x += 2 * Math.cos(y) + 1;
 		} else {

@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -49,6 +50,7 @@ public class GUI_HomeScreen extends JFrame {
 		btnStart.setBounds(42, 53, 150, 40);
 		contentPane.add(btnStart);
 		btnStart.setBackground(Color.BLACK);
+		btnStart.setFont(new Font("Unispace", Font.PLAIN, 16));
 		btnStart.setBorder(new LineBorder(Color.lightGray.darker(), 2));
 		btnStart.setForeground(Color.white);
 		
@@ -61,6 +63,7 @@ public class GUI_HomeScreen extends JFrame {
 		contentPane.setLayer(btnSettings, 2);
 		btnSettings.setBounds(42, 104, 150, 40);
 		contentPane.add(btnSettings);
+		btnSettings.setFont(new Font("Unispace", Font.PLAIN, 16));
 		btnSettings.setBackground(Color.BLACK);
 		btnSettings.setBorder(new LineBorder(Color.lightGray.darker(), 2));
 		btnSettings.setForeground(Color.white);		
@@ -69,7 +72,7 @@ public class GUI_HomeScreen extends JFrame {
 	private void startGame() {
 		gui = GUI_Game.getInstance();
 		gui.setVisible(true);
-		this.setVisible(false);
+		this.dispose();
 	}
 	
 	private void startSettings() {

@@ -7,13 +7,13 @@ public abstract class Animation implements Runnable {
 	protected Icon [] array;
 	protected JLabel label;
 	protected AnimationMananger aMananger = AnimationMananger.getInstance();
-	
-	public Animation(int x, int y) {
+
+	protected Animation(int x, int y) {
 		label = new JLabel();
 		label.setBounds(x, y, 40, 40);
 		loadImages();
 	}
-
+	
 	public abstract void loadImages();
 	
 	public void getStarted() {

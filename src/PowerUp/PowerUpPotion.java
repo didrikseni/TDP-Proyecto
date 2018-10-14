@@ -1,11 +1,8 @@
 package PowerUp;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
 import Entity.Player;
-import GUI.GUI_Game;
 import Main.Game;
 import Visitor.Visitor;
 
@@ -25,8 +22,7 @@ public class PowerUpPotion extends PowerUp {
 	@Override
 	public void addPowerUp(Player player) {
 		player.setPotion();
-		GUI_Game.getInstance().repaint();
-		game.deadEntity(this);
+		game.addDeadEntity(this);
 	}
 
 }

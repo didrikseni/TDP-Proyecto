@@ -5,7 +5,7 @@ public class MainThread extends Thread {
 	private static boolean isRunning;
 	
 	public MainThread(Game g) {
-		this.g = g;	
+		this.g = g;
 	}
 	
 	public void run() {
@@ -29,13 +29,12 @@ public class MainThread extends Thread {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
-	public static void pauseGame() {
+	public synchronized void pauseGame() {
 		if (isRunning) {
 			isRunning = false;
 		} else {
 			isRunning = true;
-			MainThread.currentThread().resume();
+			this.notify();
 		}
 	}
 	

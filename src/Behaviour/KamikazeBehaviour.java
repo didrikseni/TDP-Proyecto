@@ -27,7 +27,6 @@ public class KamikazeBehaviour extends Behaviour {
         double angle = Math.atan2(vectorY, vectorX);
         
         e.getRectangle().x = (int) (2 * Math.cos(angle) + e.getRectangle().x);
-        
 		if(p.y > (gui.getHeight() - e.getHeight() - 40)) {
 			e.setPos(p.x, 0); 
 		}

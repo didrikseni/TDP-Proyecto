@@ -34,7 +34,7 @@ public class EnemyKamikazeDizzy extends Enemy {
 				PowerUp powerUp = new PowerUpWeapon_1(rectangle.x, rectangle.y, game);
 				game.addEntity(powerUp);
 			}
-			game.deadEntity(this, score);
+			game.addDeadEntity(this, score);
 		} else if (life <= 50) {
 			comportamiento = new DizzyBehaviour();
 		}		

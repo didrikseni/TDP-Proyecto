@@ -23,7 +23,7 @@ public class PlayerShot extends Shot {
 		rectangle.y -= speed;
 		this.updateGraphics();
 		if(rectangle.y < -15) {
-			game.deadEntity(this);
+			game.addDeadEntity(this);
 		}
 	}
 

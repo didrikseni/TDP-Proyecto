@@ -16,8 +16,7 @@ public class VisitorEnemy extends Visitor {
 
 	@Override
 	public void visitPlayer(Player p) {
-		p.takeDamage(enemy.getDamage());
-		enemy.takeDamage(enemy.getLife());		
+		
 	}
 
 	@Override
@@ -41,7 +40,6 @@ public class VisitorEnemy extends Visitor {
 
 	@Override
 	public void visitObstacle(Obstacle d) {
-		// TODO Auto-generated method stub
 		
 	}
 

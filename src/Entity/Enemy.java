@@ -36,7 +36,7 @@ public abstract class Enemy extends Entity {
 		}
 		if(life <= 0) {
 			dropPowerUp();
-			game.deadEntity(this, score);
+			game.addDeadEntity(this, score);
 			Animation anim;
 			if (rnd.nextBoolean()) {
 				anim = new AnimationExplotion_1(rectangle.x, rectangle.y);
@@ -44,6 +44,7 @@ public abstract class Enemy extends Entity {
 				anim = new AnimationExplotion_2(rectangle.x, rectangle.y);
 			}
 			anim.getStarted();
+			game.substractEnemyCount();
 		}	
 	}
 

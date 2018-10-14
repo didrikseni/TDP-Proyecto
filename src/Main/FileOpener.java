@@ -27,7 +27,7 @@ public class FileOpener {
 		this.gui = gui;
 	}
 	
-    public void readFile() {
+    public void loadObjects() {
         BufferedReader br = null;
         fileName = getClass().getResource(fileName).getPath();
         try {
@@ -43,10 +43,12 @@ public class FileOpener {
 	            	case "w" :
 	            		entity = factory.getEnemyWeapon(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
 	            		game.addEntity(entity);
+	            		game.addEnemyCount();
 	            		break;
 	            	case "k":
 	            		entity = factory.getEnemyKamikaze(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
 	            		game.addEntity(entity);
+	            		game.addEnemyCount();
 	            		break;
 	            	case "b" :
 	            		entity = factory.getBarricade(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
@@ -56,17 +58,15 @@ public class FileOpener {
 	            		entity = factory.getDestroyable(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
 	            		game.addEntity(entity);
 	            		break;
-	            	default :
-	            		System.out.print("x");
-            	
+	            	default :            	
             	}
-            	System.out.println("");
             }
         } catch (IOException e) { 
             e.printStackTrace();
         } finally {
             try {
-                if (br != null)br.close();
+                if (br != null)
+                	br.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

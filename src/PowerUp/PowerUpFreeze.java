@@ -21,7 +21,7 @@ public class PowerUpFreeze extends TemporalMagic {
 	@Override
 	public void addPowerUp(Player player) {
 		ThreadFreeze threadFreeze = ThreadFreeze.getInstance(game);
-		game.deadEntity(this);
+		game.addDeadEntity(this);
 		Thread thread = new Thread(threadFreeze);
 		thread.start();
 	}

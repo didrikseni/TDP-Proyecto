@@ -27,7 +27,7 @@ public class EnemyShot extends Shot {
 		rectangle.y += speed;
 		this.updateGraphics();
 		if(rectangle.y < -20) {
-			game.deadEntity(this);
+			game.addDeadEntity(this);
 		}
 	}
 

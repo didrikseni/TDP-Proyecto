@@ -1,26 +1,23 @@
 package GUI;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.*;
+import javax.swing.border.*;
+import Entity.Player;
 import Level.Level1;
 import Main.Game;
 import Main.MainThread;
+import Main.PlayerInteractionMananger;
 
 @SuppressWarnings("serial")
 public class GUI_Game extends JFrame {
 	private static GUI_Game INSTANCE = null;
 	
 	private JLayeredPane contentPane;
-	private Game g;
-	private MainThread timer;
+	private MainThread mainThread;
 	private JLabel score, lifeBar, auxBar;
+	private PlayerInteractionMananger playerInteraction;
 
 	private GUI_Game() {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,9 +32,10 @@ public class GUI_Game extends JFrame {
 		});
 		addKeyListener(new KeyListener(this));
 		inicializar();		
-		g = Level1.getInstance(this);
-		timer = new MainThread(g);
-		timer.start();
+		Game game = Level1.getInstance(this);
+		playerInteraction = new PlayerInteractionMananger(Player.getInstance(0,0,null));
+		mainThread = new MainThread(game);
+		mainThread.start();
 	}
 	
 	private void inicializar() {
@@ -47,7 +45,7 @@ public class GUI_Game extends JFrame {
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(contentPane);
 		this.contentPane.setLayout(null);		
-		this.setResizable(false);	
+		this.setResizable(false);
 		initLifeBar();
 		initScore();			
 	}
@@ -60,13 +58,11 @@ public class GUI_Game extends JFrame {
 	}
 
 	protected void playerStartMove(KeyEvent key){
-		g.playerStartMove(key.getKeyCode());
-		this.repaint();
+		playerInteraction.playerStartMove(key.getKeyCode());
 	}
 	
 	protected void playerStopMove(KeyEvent key) {
-		g.playerStopMove(key.getKeyCode());
-		this.repaint();		
+		playerInteraction.playerStopMove(key.getKeyCode());
 	}
 	
 	public void addComponentInLayer(Component e, int layer) {
@@ -74,7 +70,7 @@ public class GUI_Game extends JFrame {
 	}
 	
 	protected void shoot(boolean b) {
-		g.playerShoot(b);
+		playerInteraction.playerShoot(b);
 	}
 
 	public void updateScore(int s) {
@@ -82,12 +78,15 @@ public class GUI_Game extends JFrame {
 	}
 	
 	public void updateLifeBar(int l) {
-		auxBar.setSize((lifeBar.getWidth() * l) / 100, lifeBar.getHeight() - 4);
+		auxBar.setSize(((lifeBar.getWidth() - 18) * l) / 100, auxBar.getHeight());
 	}
 	
 	private void initScore() {
 		score = new JLabel();
+		score.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
 		score.setText("Score: " + 0);
+		score.setFont(new Font("Unispace", Font.PLAIN, 12));
+		score.setHorizontalAlignment(SwingConstants.CENTER);
 		score.setForeground(Color.green.darker());
 		score.setBounds(0, 630, 100, 50);
 		contentPane.add(score);
@@ -98,17 +97,24 @@ public class GUI_Game extends JFrame {
 	private void initLifeBar() {
 		lifeBar = new JLabel();
 		lifeBar.setBounds(900,630, 100, 22);
-		lifeBar.setBorder(new LineBorder(Color.lightGray.darker(), 2));
+		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/health_bar.png"));
+		Icon icon = new ImageIcon(img.getImage().getScaledInstance(lifeBar.getWidth(), lifeBar.getHeight(), Image.SCALE_DEFAULT));
+		lifeBar.setIcon(icon);
 		auxBar = new JLabel();
 		lifeBar.add(auxBar);
-		auxBar.setBounds(902, 632, lifeBar.getWidth() - 4, lifeBar.getHeight() - 4);
-		auxBar.setBackground(Color.red.darker().darker());
-		auxBar.setOpaque(true);
-		contentPane.add(lifeBar);
+		auxBar.setBounds(909, 635, lifeBar.getWidth() - 18, lifeBar.getHeight() - 10);
+		img = new ImageIcon(getClass().getResource("/Resources/health_bar_color.png"));
+		icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
+		auxBar.setIcon(icon);
+		contentPane.add(lifeBar);		
 		contentPane.setLayer(lifeBar, 40);
 		contentPane.add(auxBar);
 		contentPane.setLayer(auxBar, 45);
 		lifeBar.setVisible(true);
 		auxBar.setVisible(true);
+	}
+
+	public synchronized void pause() {
+		mainThread.pauseGame();
 	}
 }
