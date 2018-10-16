@@ -68,7 +68,7 @@ public class GUI_GameOver extends JFrame {
 		JTextPane scorePane = new JTextPane();
 		scorePane.setText("--------------------------- Best Scores --------------------------");
 		scorePane.setForeground(new Color(34, 139, 34));
-		scorePane.setFont(new Font("Unispace", Font.PLAIN, 14));
+		scorePane.setFont(new Font("Bahnschrift", Font.PLAIN, 16));
 		scorePane.setBackground(Color.DARK_GRAY);
 		scorePane.setBounds(200, 480, 600, 180);
 		contentPane.add(scorePane);

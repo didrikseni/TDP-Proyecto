@@ -1,14 +1,11 @@
 package Main;
 
-import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import Entity.Entity;
 import GUI.GUI_Game;
 import Level.ConcreteFactory;
@@ -77,9 +74,8 @@ public class FileOpener {
     	JLabel background = new JLabel();
 		background.setBounds(0, 0, gui.getWidth(), gui.getHeight());	
 		ImageIcon img = new ImageIcon(this.getClass().getResource(sCurrentLine));
- 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(gui.getSize().width, gui.getSize().height, Image.SCALE_DEFAULT));
+		Icon icon = img;
 		background.setIcon(icon);
-		gui.add(background);
-		gui.addComponentInLayer(background, 1);
+		gui.setNewBackground(background);
     }
 }

@@ -7,10 +7,23 @@ import Main.Game;
 import Visitor.Visitor;
 
 public class PowerUpFreeze extends TemporalMagic {
-	public PowerUpFreeze(int x, int y, Game g) {
+	public static PowerUpFreeze INSTANCE = null;
+	
+	private PowerUpFreeze(int x, int y, Game g) {
 		super(x, y, g);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/pw_freeze.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+	}
+	
+	public static PowerUpFreeze getInstance(int x, int y, Game g) {
+		if (INSTANCE == null) {
+			INSTANCE = new PowerUpFreeze(x,y,g);
+		}
+		return INSTANCE;
+	}
+	
+	public static boolean hasInstance() {
+		return INSTANCE != null;
 	}
 
 	@Override

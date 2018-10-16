@@ -17,17 +17,17 @@ public abstract class Game {
 	protected Player player;
 	protected List<Entity> entities;
 	protected JLayeredPane contentPane;
-	protected HashMap<Entity, Boolean> deadEntities;
+	protected HashMap<Entity, Boolean> deadEntities, toAddEntities;
 
 	protected Game(GUI_Game gui) {
 		entities = new ArrayList<Entity>();
 		this.gui = gui;
-		this.enemyCount = 0;
 		initializeMap();
 	}
 
 	private void initializeMap() {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
+		toAddEntities = new HashMap<Entity,Boolean>();
 		gui.add(player.getGraphics());
 		gui.addComponentInLayer(player.getGraphics(), 15);				
 		loadObjects();
@@ -40,7 +40,12 @@ public abstract class Game {
 	public void substractEnemyCount() {
 		enemyCount--;
 		if (enemyCount == 0) {
-			this.winGame();
+			while (entities.size() > 0) {
+				Entity entity = entities.get(0);
+				gui.remove(entity.getGraphics());
+				entities.remove(entity);
+			}
+			gui.changeLevel();
 		}
 	}
 
@@ -50,14 +55,23 @@ public abstract class Game {
 		player.update();
 		gui.updateLifeBar(player.getLife());
 		deadEntities = new HashMap<Entity, Boolean>();
+		addEntitiesToCollection();
 		detectCollisions();
 		removeDeadEntities();
 	}
 	
 	public void addEntity(Entity s) {
-		entities.add(s);
-		gui.add(s.getGraphics());
-		gui.addComponentInLayer(s.getGraphics(), 3);
+		toAddEntities.put(s, true);
+	}
+	
+	private void addEntitiesToCollection() {
+		HashMap<Entity,Boolean> aux = toAddEntities;
+		toAddEntities = new HashMap<Entity,Boolean>();
+		for(Entity ent: aux.keySet()) {
+			entities.add(ent);
+			gui.add(ent.getGraphics());
+			gui.addComponentInLayer(ent.getGraphics(), 3);
+		}
 	}
 
 	public void addDeadEntity(Entity e) {
@@ -105,9 +119,5 @@ public abstract class Game {
 		GUI_GameOver gameOverGui = GUI_GameOver.getInstance(score);
 		gameOverGui.setVisible(true);
 		gui.dispose();
-	}
-	
-	private void winGame() {
-		
 	}
 }

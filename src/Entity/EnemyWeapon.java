@@ -45,7 +45,8 @@ public class EnemyWeapon extends Enemy {
 		if (i < 10) {
 			powerUp = new PowerUpWeapon_1(rectangle.x, rectangle.y , game);
 		} else if (i < 20 && !ThreadFreeze.isRunning()) {
-			powerUp = new PowerUpFreeze(rectangle.x, rectangle.y , game);
+			if (!PowerUpFreeze.hasInstance())
+				powerUp = PowerUpFreeze.getInstance(rectangle.x, rectangle.y , game);
 		} else if (i < 30) {
 			powerUp = new PowerUpPotion(rectangle.x, rectangle.y , game);
 		} else if (i < 40) {

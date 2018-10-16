@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 import Entity.Player;
 import Level.Level1;
+import Level.Level2;
+import Level.Level3;
 import Main.Game;
 import Main.MainThread;
 import Main.PlayerInteractionMananger;
@@ -16,8 +18,9 @@ public class GUI_Game extends JFrame {
 	
 	private JLayeredPane contentPane;
 	private MainThread mainThread;
-	private JLabel score, lifeBar, auxBar;
+	private JLabel background, score, lifeBar, auxBar;
 	private PlayerInteractionMananger playerInteraction;
+	private Game game;
 
 	private GUI_Game() {
 		EventQueue.invokeLater(new Runnable() {
@@ -32,7 +35,7 @@ public class GUI_Game extends JFrame {
 		});
 		addKeyListener(new KeyListener(this));
 		inicializar();		
-		Game game = Level1.getInstance(this);
+		game = Level1.getInstance(this);
 		playerInteraction = new PlayerInteractionMananger(Player.getInstance(0,0,null));
 		mainThread = new MainThread(game);
 		mainThread.start();
@@ -56,7 +59,7 @@ public class GUI_Game extends JFrame {
 		}
 		return INSTANCE;
 	}
-
+	
 	protected void playerStartMove(KeyEvent key){
 		playerInteraction.playerStartMove(key.getKeyCode());
 	}
@@ -86,7 +89,7 @@ public class GUI_Game extends JFrame {
 		score = new JLabel();
 		score.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
 		score.setText("Score: " + 0);
-		score.setFont(new Font("Unispace", Font.PLAIN, 12));
+		score.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
 		score.setHorizontalAlignment(SwingConstants.CENTER);
 		score.setForeground(Color.green.darker());
 		score.setBounds(0, 630, 100, 40);
@@ -117,5 +120,21 @@ public class GUI_Game extends JFrame {
 
 	public synchronized void pause() {
 		mainThread.pauseGame();
+	}
+
+	public void changeLevel() {
+		if (game == Level1.getInstance(this)) {
+			game = Level2.getInstance(this);
+		} else if (game == Level2.getInstance(this)) {
+			game = Level3.getInstance(this);
+		}
+	}
+
+	public void setNewBackground(JLabel background) {
+		this.remove(background);
+		this.background = background;
+		this.add(this.background);
+		this.addComponentInLayer(this.background, 1);
+		this.repaint();
 	}
 }

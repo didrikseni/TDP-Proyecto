@@ -40,7 +40,6 @@ public class Player extends Entity {
 		img = new ImageIcon(this.getClass().getResource("/Resources/nave_der.png"));		
 		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
 		icon = iconos[1];
-		graphicShield = new JLabel();
 	}
 	
 	public static Player getInstance(int x, int y, Game g) {
@@ -55,9 +54,13 @@ public class Player extends Entity {
 	}
 	
 	public void setSield(Shield s) {
+		GUI_Game gui = GUI_Game.getInstance();
+		if (graphicShield != null)
+			gui.remove(graphicShield);
 		shield = s;
-		this.graphicShield.setIcon(s.getIcon());
-		GUI_Game.getInstance().addComponentInLayer(graphicShield, 50);
+		graphicShield = new JLabel(s.getIcon());
+		gui.add(graphicShield);
+		gui.addComponentInLayer(graphicShield, 50);
 	}
 	
 	public void setPotion() {
@@ -95,7 +98,7 @@ public class Player extends Entity {
 	}
 	
 	private void updateGraphicShield() {
-		if (graphicShield.getGraphics() != null)
+		if (graphicShield != null)
 			this.graphicShield.setBounds(rectangle);
 	}
 

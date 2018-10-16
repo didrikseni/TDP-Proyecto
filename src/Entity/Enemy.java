@@ -1,7 +1,6 @@
 package Entity;
 
 import java.util.Random;
-
 import Animation.Animation;
 import Animation.AnimationExplotion_1;
 import Animation.AnimationExplotion_2;
@@ -10,7 +9,6 @@ import Behaviour.DefaultBehaviour;
 import Main.Game;
 
 public abstract class Enemy extends Entity {
-	//Attributes
 	protected Behaviour comportamiento;
 	protected int score;
 	protected int originalY;
@@ -31,10 +29,13 @@ public abstract class Enemy extends Entity {
 
 	@Override
 	public void takeDamage(int damage) {
-		if (damage >= 0) {
+		if (life > 0) {
 			life -= damage; 
+			if(life < 0) {
+				life = 0;
+			}
 		}
-		if(life <= 0) {
+		if(life == 0) {
 			dropPowerUp();
 			game.addDeadEntity(this, score);
 			Animation anim;
@@ -45,7 +46,8 @@ public abstract class Enemy extends Entity {
 			}
 			anim.getStarted();
 			game.substractEnemyCount();
-		}	
+			life = -1;
+		}
 	}
 
 	protected abstract void dropPowerUp();
