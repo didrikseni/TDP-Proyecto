@@ -1,17 +1,12 @@
 package Entity;
 
 import java.awt.Image;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.*;
 import GUI.GUI_Game;
 import Main.Game;
-import Shield.Shield;
-import Shield.ShieldDefault;
-import Visitor.Visitor;
-import Visitor.VisitorPlayer;
-import Weapon.Weapon;
-import Weapon.WeaponPlayer;
+import Shield.*;
+import Visitor.*;
+import Weapon.*;
 
 public class Player extends Entity {
 	private static Player INSTANCE = null;
@@ -60,7 +55,7 @@ public class Player extends Entity {
 		shield = s;
 		graphicShield = new JLabel(s.getIcon());
 		gui.add(graphicShield);
-		gui.addComponentInLayer(graphicShield, 50);
+		gui.setComponentLayer(graphicShield, 50);
 	}
 	
 	public void setPotion() {
@@ -111,14 +106,6 @@ public class Player extends Entity {
 		this.weapon = weapon;
 	}
 	
-	public JLabel getGraphics() {
-		if(this.graphic == null) {
-			this.graphic = new JLabel(icon);
-			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);
-		}
-		return this.graphic;
-	}
-	
 	@Override
 	public void takeDamage(int damage) {
 		int x = shield.takeDamage(damage);
@@ -142,5 +129,9 @@ public class Player extends Entity {
 			graphic.setBounds(rectangle.x, rectangle.y, width, height);
 		}
 	}
-	
+
+	public void setGame(Game game) {
+		this.game = game;
+		weapon.setGame(game);
+	}
 }

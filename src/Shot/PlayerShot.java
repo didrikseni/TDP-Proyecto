@@ -30,7 +30,6 @@ public class PlayerShot extends Shot {
 	@Override
 	public void accept(Visitor v) {
 		v.visitPlayerShot(this);
-		
 	}
 	
 	

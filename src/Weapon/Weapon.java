@@ -12,4 +12,8 @@ public abstract class Weapon {
 	
 	public abstract void shoot(Point pos);
 
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 }

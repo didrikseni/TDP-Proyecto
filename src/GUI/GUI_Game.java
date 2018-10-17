@@ -1,16 +1,12 @@
 package GUI;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import Entity.Player;
-import Level.Level1;
-import Level.Level2;
-import Level.Level3;
-import Main.Game;
-import Main.MainThread;
-import Main.PlayerInteractionMananger;
+import Level.*;
+import Main.*;
 
 @SuppressWarnings("serial")
 public class GUI_Game extends JFrame {
@@ -68,7 +64,7 @@ public class GUI_Game extends JFrame {
 		playerInteraction.playerStopMove(key.getKeyCode());
 	}
 
-	public void addComponentInLayer(Component e, int layer) {
+	public void setComponentLayer(Component e, int layer) {
 		this.contentPane.setLayer(e, layer);
 		e.setVisible(true);
 	}
@@ -123,18 +119,23 @@ public class GUI_Game extends JFrame {
 	}
 
 	public void changeLevel() {
+		contentPane.removeAll();
+		this.inicializar();
 		if (game == Level1.getInstance(this)) {
 			game = Level2.getInstance(this);
 		} else if (game == Level2.getInstance(this)) {
 			game = Level3.getInstance(this);
 		}
+		mainThread.changeGame(game);
+		Player.getInstance(0, 0, game).setGame(game);
+		
 	}
 
 	public void setNewBackground(JLabel background) {
 		this.remove(background);
 		this.background = background;
-		this.add(this.background);
-		this.addComponentInLayer(this.background, 1);
+		contentPane.add(this.background);
+		setComponentLayer(this.background, 1);
 		this.repaint();
 	}
 }

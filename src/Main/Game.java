@@ -28,23 +28,18 @@ public abstract class Game {
 	private void initializeMap() {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
 		toAddEntities = new HashMap<Entity,Boolean>();
-		gui.add(player.getGraphics());
-		gui.addComponentInLayer(player.getGraphics(), 15);				
+		gui.getContentPane().add(player.getGraphics());
+		gui.setComponentLayer(player.getGraphics(), 15);				
 		loadObjects();
 	}
 	
 	public void addEnemyCount() { 
-		enemyCount++;	
+		enemyCount++;
 	}
 	
 	public void substractEnemyCount() {
 		enemyCount--;
 		if (enemyCount == 0) {
-			while (entities.size() > 0) {
-				Entity entity = entities.get(0);
-				gui.remove(entity.getGraphics());
-				entities.remove(entity);
-			}
 			gui.changeLevel();
 		}
 	}
@@ -63,16 +58,6 @@ public abstract class Game {
 	public void addEntity(Entity s) {
 		toAddEntities.put(s, true);
 	}
-	
-	private void addEntitiesToCollection() {
-		HashMap<Entity,Boolean> aux = toAddEntities;
-		toAddEntities = new HashMap<Entity,Boolean>();
-		for(Entity ent: aux.keySet()) {
-			entities.add(ent);
-			gui.add(ent.getGraphics());
-			gui.addComponentInLayer(ent.getGraphics(), 3);
-		}
-	}
 
 	public void addDeadEntity(Entity e) {
 		deadEntities.put(e, true);
@@ -85,6 +70,16 @@ public abstract class Game {
 	
 	public synchronized Collection<Entity> getEntities() {
 		return entities;
+	}
+	
+	private void addEntitiesToCollection() {
+		HashMap<Entity,Boolean> aux = toAddEntities;
+		toAddEntities = new HashMap<Entity,Boolean>();
+		for(Entity ent: aux.keySet()) {
+			entities.add(ent);
+			gui.getContentPane().add(ent.getGraphics());
+			gui.setComponentLayer(ent.getGraphics(), 5);
+		}
 	}
 	
 	private void detectCollisions() {
@@ -108,7 +103,7 @@ public abstract class Game {
 
 	private void removeDeadEntities() {
 		for(Entity entity: deadEntities.keySet()) {
-			gui.remove(entity.getGraphics());
+			gui.getContentPane().remove(entity.getGraphics());
 			entities.remove(entity);
 		}
 		gui.repaint();

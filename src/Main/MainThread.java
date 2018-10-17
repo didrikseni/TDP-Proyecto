@@ -1,11 +1,11 @@
 package Main;
 
 public class MainThread extends Thread {
-	private Game g;
+	private Game game;
 	private static boolean isRunning;
 	
 	public MainThread(Game g) {
-		this.g = g;
+		this.game = g;
 	}
 	
 	public void run() {
@@ -19,7 +19,7 @@ public class MainThread extends Thread {
 		while(isRunning) {
 			startTime = System.nanoTime();			
 			
-			g.update();
+			game.update();
 			
 			elapsedTime = (System.nanoTime() - startTime) / 1000000;
 			waitTime = targetTime - elapsedTime;			
@@ -36,6 +36,10 @@ public class MainThread extends Thread {
 			isRunning = true;
 			this.notify();
 		}
+	}
+	
+	public void changeGame(Game game) {
+		this.game = game;
 	}
 	
 }
