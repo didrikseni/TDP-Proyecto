@@ -3,8 +3,6 @@ package Level;
 import Entity.Enemy;
 import Entity.EnemyDizzy;
 import Entity.EnemyKamikaze;
-import Entity.EnemyKamikazeDizzy;
-import Entity.EnemyWeaponKamikaze;
 import Entity.EnemyWeapon;
 import Main.Game;
 import Obstacles.Barricade;
@@ -29,16 +27,6 @@ public class ConcreteFactory extends Factory {
 
 	@Override
 	public Enemy getEnemyDizzy(int x, int y) {
-		return new EnemyKamikazeDizzy(x,y,1, game);
-	}
-
-	@Override
-	public Enemy getEnemyWeaponKamikaze(int x, int y) {
-		return new EnemyWeaponKamikaze(x,y,1, game);
-	}
-
-	@Override
-	public Enemy getEnemyKamikazeDizzy(int x, int y) {
 		return new EnemyDizzy(x,y,1, game);
 	}
 	

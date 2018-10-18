@@ -19,7 +19,7 @@ public class PowerUpFreeze extends TemporalMagic {
 		if (INSTANCE == null) {
 			INSTANCE = new PowerUpFreeze(x,y,g);
 		}
-		return INSTANCE;
+		return new PowerUpFreeze(x,y,g);
 	}
 	
 	public static boolean hasInstance() {

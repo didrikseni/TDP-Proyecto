@@ -2,8 +2,6 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import javax.swing.JLayeredPane;
 import Entity.Enemy;
 import Entity.Entity;
@@ -15,19 +13,20 @@ public abstract class Game {
 	protected GUI_Game gui;
 	protected int nivel, enemyCount;
 	protected Player player;
-	protected List<Entity> entities;
+	protected ArrayList<Entity> entities, deadEntities, toAddEntities;
 	protected JLayeredPane contentPane;
-	protected HashMap<Entity, Boolean> deadEntities, toAddEntities;
+	protected String nextLevel, currentLevel;
 
-	protected Game(GUI_Game gui) {
+	protected Game(GUI_Game gui, String path) {
 		entities = new ArrayList<Entity>();
 		this.gui = gui;
+		currentLevel = path;
 		initializeMap();
 	}
 
 	private void initializeMap() {
 		player = Player.getInstance(gui.getWidth() / 2 - 25, gui.getHeight() / 6 * 5, this);
-		toAddEntities = new HashMap<Entity,Boolean>();
+		toAddEntities = new ArrayList<Entity>();
 		gui.getContentPane().add(player.getGraphics());
 		gui.setComponentLayer(player.getGraphics(), 15);				
 		loadObjects();
@@ -49,23 +48,23 @@ public abstract class Game {
 	public void update() {
 		player.update();
 		gui.updateLifeBar(player.getLife());
-		deadEntities = new HashMap<Entity, Boolean>();
+		deadEntities = new ArrayList<Entity>();
 		addEntitiesToCollection();
 		detectCollisions();
 		removeDeadEntities();
 	}
 	
 	public void addEntity(Entity s) {
-		toAddEntities.put(s, true);
+		toAddEntities.add(s);
 	}
 
 	public void addDeadEntity(Entity e) {
-		deadEntities.put(e, true);
+		deadEntities.add(e);
 	}
 	
 	public void addDeadEntity(Enemy e, int score) {
 		player.addScore(score);
-		deadEntities.put(e, true);
+		deadEntities.add(e);
 	}
 	
 	public synchronized Collection<Entity> getEntities() {
@@ -73,9 +72,9 @@ public abstract class Game {
 	}
 	
 	private void addEntitiesToCollection() {
-		HashMap<Entity,Boolean> aux = toAddEntities;
-		toAddEntities = new HashMap<Entity,Boolean>();
-		for(Entity ent: aux.keySet()) {
+		ArrayList<Entity> aux = toAddEntities;
+		toAddEntities = new ArrayList<Entity>();
+		for(Entity ent: aux) {
 			entities.add(ent);
 			gui.getContentPane().add(ent.getGraphics());
 			gui.setComponentLayer(ent.getGraphics(), 5);
@@ -102,7 +101,7 @@ public abstract class Game {
 	}
 
 	private void removeDeadEntities() {
-		for(Entity entity: deadEntities.keySet()) {
+		for(Entity entity: deadEntities) {
 			gui.getContentPane().remove(entity.getGraphics());
 			entities.remove(entity);
 		}
@@ -114,5 +113,9 @@ public abstract class Game {
 		GUI_GameOver gameOverGui = GUI_GameOver.getInstance(score);
 		gameOverGui.setVisible(true);
 		gui.dispose();
+	}
+
+	public String getNextLevel() {
+		return nextLevel;
 	}
 }

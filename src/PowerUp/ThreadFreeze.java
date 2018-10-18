@@ -1,8 +1,5 @@
 package PowerUp;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import Entity.Entity;
 import Main.Game;
 import Visitor.Visitor;
@@ -48,10 +45,8 @@ public class ThreadFreeze implements Runnable {
 	}
 
 	private void changeBehaviour() {
-		Collection<Entity> entidades = game.getEntities();
-		Iterator<Entity> it = entidades.iterator();
-		while (it.hasNext()) {
-			it.next().accept(this.visitor);
+		for(Entity ent: game.getEntities()) {
+			ent.accept(visitor);
 		}
 	}
 }

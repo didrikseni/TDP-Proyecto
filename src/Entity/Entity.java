@@ -11,7 +11,6 @@ import Main.Game;
 import Visitor.Visitor;
 
 public abstract class Entity {
-	//Attributes
 	protected JLabel graphic;
 	protected Icon icon;
 	protected int life, speed, width, height;

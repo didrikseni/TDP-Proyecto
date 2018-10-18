@@ -32,6 +32,7 @@ public class FileOpener {
         	String sCurrentLine;
         	Entity entity;
             br = new BufferedReader(new FileReader(fileName));
+            game.nextLevel = br.readLine();
             sCurrentLine = br.readLine();
             cargarBackground(sCurrentLine);
             while ((sCurrentLine = br.readLine()) != null) {
@@ -70,7 +71,7 @@ public class FileOpener {
         }
     }
     
-    private void cargarBackground(String sCurrentLine) {
+	private void cargarBackground(String sCurrentLine) {
     	JLabel background = new JLabel();
 		background.setBounds(0, 0, gui.getWidth(), gui.getHeight());	
 		ImageIcon img = new ImageIcon(this.getClass().getResource(sCurrentLine));

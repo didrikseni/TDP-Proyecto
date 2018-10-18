@@ -31,7 +31,7 @@ public class GUI_Game extends JFrame {
 		});
 		addKeyListener(new KeyListener(this));
 		inicializar();		
-		game = Level1.getInstance(this);
+		game = new Level(this, "/Resources/Levels/Level1.txt");
 		playerInteraction = new PlayerInteractionMananger(Player.getInstance(0,0,null));
 		mainThread = new MainThread(game);
 		mainThread.start();
@@ -121,14 +121,9 @@ public class GUI_Game extends JFrame {
 	public void changeLevel() {
 		contentPane.removeAll();
 		this.inicializar();
-		if (game == Level1.getInstance(this)) {
-			game = Level2.getInstance(this);
-		} else if (game == Level2.getInstance(this)) {
-			game = Level3.getInstance(this);
-		}
+		game = new Level(this, game.getNextLevel());
 		mainThread.changeGame(game);
 		Player.getInstance(0, 0, game).setGame(game);
-		
 	}
 
 	public void setNewBackground(JLabel background) {

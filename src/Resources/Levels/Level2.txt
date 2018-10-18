@@ -1,3 +1,4 @@
+/Resources/Levels/Level3.txt
 /Resources/Levels/level2_background.png
 w;50;30
 w;100;30
