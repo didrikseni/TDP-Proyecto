@@ -10,8 +10,7 @@ import Main.Game;
 
 public abstract class Enemy extends Entity {
 	protected Behaviour comportamiento;
-	protected int score;
-	protected int originalY;
+	protected int originalY, score;
 	protected Random rnd;
 	
 	protected Enemy(int x, int y, int speed, Game g) {
@@ -21,9 +20,8 @@ public abstract class Enemy extends Entity {
 		rnd = new Random();
 	}
 
-	@Override
 	public void update() {
-		super.update();
+		this.updateGraphics();
 		comportamiento.update(this);
 	}
 

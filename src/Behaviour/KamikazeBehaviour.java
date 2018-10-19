@@ -16,7 +16,7 @@ public class KamikazeBehaviour extends Behaviour {
 		super.update(e);
 		Point p = e.getPos();
 		GUI_Game gui = GUI_Game.getInstance();
-		e.startMove(1);
+		e.getRectangle().y += e.getSpeed();
 		
 	    int playerPosX = player.getPos().x;
         int playerPosY = player.getPos().y;

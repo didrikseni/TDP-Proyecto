@@ -17,12 +17,13 @@ public class Player extends Entity {
 	private boolean firing;
 	private long firingTimer, firingDelay;
 	private JLabel graphicShield;
+	private PlayerMovement playerMovement;
 	
 	private Player(int cX, int cY, Game g) {
 		super(cX, cY, 3, g);
 		shield = new ShieldDefault(this);		
-		score = 0;
 		visitor = new VisitorPlayer(this);
+		playerMovement = new PlayerMovement(this);
 		weapon = new WeaponPlayer(g);
 		firing = false;
 		firingTimer = System.nanoTime();
@@ -74,8 +75,7 @@ public class Player extends Entity {
 		firing = b;
 	}
 	
-	@Override
-	public void update() { 
+	public void update() {		
 		GUI_Game gui = GUI_Game.getInstance();
 		if (firing) {
 			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
@@ -84,17 +84,11 @@ public class Player extends Entity {
 				firingTimer = System.nanoTime();
 			}
 		}
-		cambiarGrafico();
-		super.update();
-		updateGraphicShield();
+		playerMovement.move();	
+		updateGraphics();	
 		if(rectangle.y <= gui.getHeight() / 5 * 3) 
 			rectangle.y = gui.getHeight() / 5 * 3;
 		gui.updateScore(score);
-	}
-	
-	private void updateGraphicShield() {
-		if (graphicShield != null)
-			this.graphicShield.setBounds(rectangle);
 	}
 
 	@Override
@@ -117,21 +111,27 @@ public class Player extends Entity {
 		}
 	}
 	
-	protected void cambiarGrafico(){
+	protected void updateGraphics() {
 		if(this.icon != null){
-			if (right) {
+			if (playerMovement.getRight()) {
 				graphic.setIcon(iconos[2]);
-			} else if (left) {
+			} else if (playerMovement.getLeft()) {
 				graphic.setIcon(iconos[0]);
 			} else {
 				graphic.setIcon(iconos[1]);
 			}
 			graphic.setBounds(rectangle.x, rectangle.y, width, height);
 		}
+		if (graphicShield != null)
+			this.graphicShield.setBounds(rectangle);
 	}
 
 	public void setGame(Game game) {
 		this.game = game;
 		weapon.setGame(game);
 	}
+	
+	public PlayerMovement getPlayerMovement() {
+		return playerMovement;
+	}	
 }

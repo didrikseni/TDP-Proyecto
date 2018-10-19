@@ -14,4 +14,7 @@ public class Barricade extends Obstacle {
 		v.visitObstacle(this);
 	}
 
+	@Override
+	public void update() {}
+
 }

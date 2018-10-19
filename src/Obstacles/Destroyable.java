@@ -40,6 +40,7 @@ public class Destroyable extends Obstacle {
 		v.visitObstacle(this);
 	}
 
-	
+	@Override
+	public void update() {}	
 	
 }

@@ -29,6 +29,7 @@ public class GUI_Game extends JFrame {
 				}
 			}
 		});
+		
 		addKeyListener(new KeyListener(this));
 		inicializar();		
 		game = new Level(this, "/Resources/Levels/Level1.txt");
