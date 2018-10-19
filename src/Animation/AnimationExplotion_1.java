@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class AnimationExplotion_1 extends Animation {
 	
 	public AnimationExplotion_1(int x, int y) {
-		super(x,y);
+		super(x - 10, y - 10, 60, 60);
 	}
 	
 	public void loadImages() {
