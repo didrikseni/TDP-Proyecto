@@ -31,11 +31,11 @@ public abstract class Game {
 		gui.setComponentLayer(player.getGraphics(), 15);				
 		loadObjects();
 	}
-	
+
 	public void addEnemyCount() { 
 		enemyCount++;
 	}
-	
+
 	public void substractEnemyCount() {
 		enemyCount--;
 		if (enemyCount == 0) {
@@ -53,7 +53,7 @@ public abstract class Game {
 		detectCollisions();
 		removeDeadEntities();
 	}
-	
+
 	public void addEntity(Entity s) {
 		toAddEntities.add(s);
 	}
@@ -61,16 +61,16 @@ public abstract class Game {
 	public void addDeadEntity(Entity e) {
 		deadEntities.add(e);
 	}
-	
+
 	public void addDeadEntity(Enemy e, int score) {
 		player.addScore(score);
 		deadEntities.add(e);
 	}
-	
+
 	public synchronized Collection<Entity> getEntities() {
 		return entities;
 	}
-	
+
 	private void addEntitiesToCollection() {
 		ArrayList<Entity> aux = toAddEntities;
 		toAddEntities = new ArrayList<Entity>();
@@ -80,7 +80,7 @@ public abstract class Game {
 			gui.setComponentLayer(ent.getGraphics(), 5);
 		}
 	}
-	
+
 	private void detectCollisions() {
 		Entity entity1, entity2;
 		for(int i = 0; i < getEntities().size(); i++) {

@@ -16,9 +16,8 @@ public class Player extends Entity {
 	private int score;
 	private boolean firing;
 	private long firingTimer, firingDelay;
-	private JLabel graphicShield;
 	private PlayerMovement playerMovement;
-	
+
 	private Player(int cX, int cY, Game g) {
 		super(cX, cY, 3, g);
 		shield = new ShieldDefault(this);		
@@ -37,36 +36,35 @@ public class Player extends Entity {
 		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
 		icon = iconos[1];
 	}
-	
+
 	public static Player getInstance(int x, int y, Game g) {
 		if(INSTANCE == null) {
 			INSTANCE = new Player(x,y,g);
 		}
 		return INSTANCE;
 	}
-	
+
 	public Shield getShield() {
 		return shield;
 	}
-	
+
 	public void setSield(Shield s) {
 		GUI_Game gui = GUI_Game.getInstance();
-		if (graphicShield != null)
-			gui.remove(graphicShield);
+		if (shield.getGraphics() != null)
+			gui.remove(shield.getGraphics());
 		shield = s;
-		graphicShield = new JLabel(s.getIcon());
-		gui.add(graphicShield);
-		gui.setComponentLayer(graphicShield, 50);
+		gui.add(s.getGraphics());
+		gui.setComponentLayer(s.getGraphics(), 50);
 	}
-	
+
 	public void setPotion() {
 		life = 100;
 	}
-	
+
 	public int getScore() {
 		return score;		
 	}
-	
+
 	public void addScore(int s) {
 		score += s;
 	}
@@ -74,7 +72,7 @@ public class Player extends Entity {
 	public void shoot(boolean b) {
 		firing = b;
 	}
-	
+
 	public void update() {		
 		GUI_Game gui = GUI_Game.getInstance();
 		if (firing) {
@@ -84,6 +82,7 @@ public class Player extends Entity {
 				firingTimer = System.nanoTime();
 			}
 		}
+		shield.update();
 		playerMovement.move();	
 		updateGraphics();	
 		if(rectangle.y <= gui.getHeight() / 5 * 3) 
@@ -95,11 +94,11 @@ public class Player extends Entity {
 	public void accept(Visitor v) {
 		v.visitPlayer(this);
 	}
-	
+
 	public void setWeapon(Weapon weapon) {
 		this.weapon = weapon;
 	}
-	
+
 	@Override
 	public void takeDamage(int damage) {
 		int x = shield.takeDamage(damage);
@@ -110,7 +109,7 @@ public class Player extends Entity {
 			game.gameOver();
 		}
 	}
-	
+
 	protected void updateGraphics() {
 		if(this.icon != null){
 			if (playerMovement.getRight()) {
@@ -122,15 +121,13 @@ public class Player extends Entity {
 			}
 			graphic.setBounds(rectangle.x, rectangle.y, width, height);
 		}
-		if (graphicShield != null)
-			this.graphicShield.setBounds(rectangle);
 	}
 
 	public void setGame(Game game) {
 		this.game = game;
 		weapon.setGame(game);
 	}
-	
+
 	public PlayerMovement getPlayerMovement() {
 		return playerMovement;
 	}	

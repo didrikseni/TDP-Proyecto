@@ -7,18 +7,18 @@ import GUI.GUI_Game;
 public class AnimationMananger {
 	private static AnimationMananger INSTANCE = null;
 	private static GUI_Game gui;
-		
+
 	private AnimationMananger() {
 		gui = GUI_Game.getInstance();
 	}
-	
+
 	public synchronized static AnimationMananger getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new AnimationMananger();
 		}
 		return INSTANCE;
 	}
-	
+
 	public void addAnimation(Animation animation, JLabel label) {
 		gui.add(label);
 		gui.setComponentLayer(label, 25);
@@ -29,5 +29,5 @@ public class AnimationMananger {
 	public static void remove(JLabel label) {
 		gui.remove(label);
 	}
-	
+
 }

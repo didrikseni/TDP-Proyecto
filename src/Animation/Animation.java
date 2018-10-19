@@ -13,21 +13,21 @@ public abstract class Animation implements Runnable {
 		label.setBounds(x, y, 40, 40);
 		loadImages();
 	}
-	
+
 	public abstract void loadImages();
-	
+
 	public void getStarted() {
 		aMananger.addAnimation(this, label);
 	}
-	
+
 	public void run() {
 		int i = 0;
 		while(i < array.length) {	
-			
+
 			label.setIcon(array[i]);
 			label.repaint();
 			i++;
-			
+
 			try { 
 				Thread.sleep(25);
 			} catch (Exception e) {}	

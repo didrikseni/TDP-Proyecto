@@ -14,7 +14,7 @@ public abstract class Entity {
 	protected Rectangle rectangle;
 	protected Visitor visitor;
 	protected Game game;
-	
+
 	protected Entity(int x, int y, int speed, Game g) {
 		this.speed = speed;
 		this.life = 100;
@@ -24,23 +24,23 @@ public abstract class Entity {
 		rectangle.setLocation(x, y);
 		rectangle.setSize(width, height);
 	}
-	
+
 	public Rectangle getRectangle() {
 		return rectangle;
 	}
-	
+
 	public Point getPos() {
 		return rectangle.getLocation();		
 	}
-	
+
 	public int getSpeed() {
 		return speed;		
 	}
-	
+
 	public int getLife() {
 		return life;		
 	}
-	
+
 	public void takeDamage(int damage) {
 		if (damage >= 0) {
 			life -= damage; 
@@ -49,9 +49,9 @@ public abstract class Entity {
 			game.addDeadEntity(this);
 		}
 	}
-	
+
 	public abstract void update();
-	
+
 	public JLabel getGraphics() {
 		if(this.graphic == null) {
 			this.graphic = new JLabel(icon);
@@ -59,11 +59,11 @@ public abstract class Entity {
 		}
 		return this.graphic;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
@@ -71,9 +71,9 @@ public abstract class Entity {
 	public void collide(Entity e) {
 		e.accept(visitor);
 	}
-	
+
 	abstract public void accept(Visitor v);	
-	
+
 	protected void updateGraphics() {
 		if (this.graphic != null) {
 			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);	
