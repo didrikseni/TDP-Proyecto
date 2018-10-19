@@ -18,7 +18,7 @@ public class PowerUpShieldInvunerable extends PowerUp {
 
 	@Override
 	public void addPowerUp(Player player) {
-		ThreadShieldInvunerable invunerable = new ThreadShieldInvunerable(player);
+		ThreadInvunerable invunerable = new ThreadInvunerable(player);
 		Thread thread = new Thread(invunerable);
 		thread.start();
 		game.addDeadEntity(this);

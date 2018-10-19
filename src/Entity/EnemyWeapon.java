@@ -3,15 +3,6 @@ package Entity;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import Main.Game;
-import PowerUp.PowerUpFreeze;
-import PowerUp.PowerUpPotion;
-import PowerUp.PowerUpShield;
-import PowerUp.PowerUpShield2;
-import PowerUp.PowerUpShieldInvunerable;
-import PowerUp.PowerUp;
-import PowerUp.PowerUpWeapon_1;
-import PowerUp.PowerUpWeapon_2;
-import PowerUp.ThreadFreeze;
 import Visitor.Visitor;
 import Visitor.VisitorEnemy;
 import Weapon.Weapon;
@@ -38,30 +29,4 @@ public class EnemyWeapon extends Enemy {
 	public void shoot() {
 		weapon.shoot(this.getPos());
 	}
-
-	@Override
-	protected void dropPowerUp() {
-		int i = rnd.nextInt(100);
-		PowerUp powerUp = null;
-		if (i < 10) {
-			powerUp = new PowerUpWeapon_1(rectangle.x, rectangle.y , game);
-		} else if (i < 20 && !ThreadFreeze.isRunning()) {
-			if (!PowerUpFreeze.hasInstance())
-				powerUp = PowerUpFreeze.getInstance(rectangle.x, rectangle.y , game);
-		} else if (i < 30) {
-			powerUp = new PowerUpPotion(rectangle.x, rectangle.y , game);
-		} else if (i < 40) {
-			powerUp = new PowerUpShield(rectangle.x, rectangle.y , game);
-		} else if (i < 50) {
-			powerUp = new PowerUpWeapon_2(rectangle.x, rectangle.y, game);
-		} else if (i < 60) {
-			powerUp = new PowerUpShield2(rectangle.x, rectangle.y, game);
-		} else if (i < 70) {
-			powerUp = new PowerUpShieldInvunerable(rectangle.x, rectangle.y, game);
-		}
-		if (powerUp != null) {
-			game.addEntity(powerUp); 
-		}
-	}
-
 }

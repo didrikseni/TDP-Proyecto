@@ -7,12 +7,22 @@ import Animation.AnimationExplotion_2;
 import Behaviour.Behaviour;
 import Behaviour.DefaultBehaviour;
 import Main.Game;
+import PowerUp.PowerUp;
+import PowerUp.PowerUpFreeze;
+import PowerUp.PowerUpMissile;
+import PowerUp.PowerUpPotion;
+import PowerUp.PowerUpShield;
+import PowerUp.PowerUpShield2;
+import PowerUp.PowerUpShieldInvunerable;
+import PowerUp.PowerUpWeapon_1;
+import PowerUp.PowerUpWeapon_2;
+import PowerUp.ThreadFreeze;
 
 public abstract class Enemy extends Entity {
 	protected Behaviour comportamiento;
 	protected int originalY, score;
 	protected Random rnd;
-	
+
 	protected Enemy(int x, int y, int speed, Game g) {
 		super(x, y, speed, g);
 		originalY = y;
@@ -48,7 +58,32 @@ public abstract class Enemy extends Entity {
 		}
 	}
 
-	protected abstract void dropPowerUp();
+	protected void dropPowerUp() {
+		int i = rnd.nextInt(100);
+		PowerUp powerUp = null;
+		if (i < 6) {
+			powerUp = new PowerUpWeapon_1(rectangle.x, rectangle.y , game);
+		} else if (i < 10 && !ThreadFreeze.isRunning()) {
+			if (!PowerUpFreeze.hasInstance())
+				powerUp = PowerUpFreeze.getInstance(rectangle.x, rectangle.y , game);
+		} else if (i < 20) {
+			powerUp = new PowerUpPotion(rectangle.x, rectangle.y , game);
+		} else if (i < 27) {
+			powerUp = new PowerUpShield(rectangle.x, rectangle.y , game);
+		} else if (i < 32) {
+			powerUp = new PowerUpWeapon_2(rectangle.x, rectangle.y, game);
+		} else if (i < 35) {
+			powerUp = new PowerUpShield2(rectangle.x, rectangle.y, game);
+		} else if (i < 36) {
+			powerUp = new PowerUpShieldInvunerable(rectangle.x, rectangle.y, game);
+		} else if (i < 37) {
+			powerUp = new PowerUpMissile(rectangle.x, rectangle.y, game); 
+		}
+		if (powerUp != null) {
+			game.addEntity(powerUp); 
+		}
+	}
+
 
 	public abstract void shoot();
 

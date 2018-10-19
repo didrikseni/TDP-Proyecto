@@ -3,11 +3,11 @@ package PowerUp;
 import Entity.Player;
 import Shield.ShieldInvunerable;
 
-public class ThreadShieldInvunerable implements Runnable {
+public class ThreadInvunerable implements Runnable {
 	private boolean isRunning;
 	private Player player;
 	
-	public ThreadShieldInvunerable(Player player) {
+	public ThreadInvunerable(Player player) {
 		this.player = player;
 	}
 	
