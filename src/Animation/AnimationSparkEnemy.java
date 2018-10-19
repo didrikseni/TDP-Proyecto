@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class AnimationSparkEnemy extends Animation{
 	
 	public AnimationSparkEnemy(int x, int y) {
-		super(x,y);
+		super(x,y, 40, 40);
 		label.setBounds(x, y + 30, 40, 40);
 	}
 

@@ -8,9 +8,9 @@ public abstract class Animation implements Runnable {
 	protected JLabel label;
 	protected AnimationMananger aMananger = AnimationMananger.getInstance();
 
-	protected Animation(int x, int y) {
+	protected Animation(int x, int y, int width, int height) {
 		label = new JLabel();
-		label.setBounds(x, y, 40, 40);
+		label.setBounds(x, y, width, height);
 		loadImages();
 	}
 
