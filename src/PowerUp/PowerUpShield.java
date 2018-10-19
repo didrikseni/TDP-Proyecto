@@ -24,7 +24,7 @@ public class PowerUpShield extends PowerUp {
 	@Override
 	public void addPowerUp(Player player) {
 		Shield s = new ShieldPowerUp(player);
-		player.setSield(s);
+		player.setShield(s);
 		game.addDeadEntity(this);
 	}
 

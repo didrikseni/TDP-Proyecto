@@ -1,25 +1,26 @@
 package PowerUp;
 
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
+
 import Entity.Player;
 import Main.Game;
-import Shield.Shield;
-import Shield.ShieldPowerUp2;
 import Visitor.Visitor;
 
-public class PowerUpShield2  extends PowerUp {
+public class PowerUpShieldInvunerable extends PowerUp {
 
-	public PowerUpShield2(int x, int y, Game g) {
+	public PowerUpShieldInvunerable(int x, int y, Game g) {
 		super(x, y, g);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/pw_shield_01.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/pw_shield_02.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 
 	@Override
 	public void addPowerUp(Player player) {
-		Shield s = new ShieldPowerUp2(player);
-		player.setShield(s);
+		ThreadShieldInvunerable invunerable = new ThreadShieldInvunerable(player);
+		Thread thread = new Thread(invunerable);
+		thread.start();
 		game.addDeadEntity(this);
 	}
 

@@ -6,7 +6,7 @@ import Entity.Player;
 import Main.Game;
 import Visitor.Visitor;
 
-public class PowerUpFreeze extends TemporalMagic {
+public class PowerUpFreeze extends PowerUp {
 	public static PowerUpFreeze INSTANCE = null;
 	
 	private PowerUpFreeze(int x, int y, Game g) {

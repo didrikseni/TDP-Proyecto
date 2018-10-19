@@ -4,7 +4,7 @@ import Entity.Player;
 import Main.Game;
 import Visitor.Visitor;
 
-public class PowerUpMissile extends TemporalMagic {
+public class PowerUpMissile extends PowerUp {
 
 	protected PowerUpMissile(int x, int y, Game g) {
 		super(x, y, g);

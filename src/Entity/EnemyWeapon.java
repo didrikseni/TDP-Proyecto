@@ -7,6 +7,7 @@ import PowerUp.PowerUpFreeze;
 import PowerUp.PowerUpPotion;
 import PowerUp.PowerUpShield;
 import PowerUp.PowerUpShield2;
+import PowerUp.PowerUpShieldInvunerable;
 import PowerUp.PowerUp;
 import PowerUp.PowerUpWeapon_1;
 import PowerUp.PowerUpWeapon_2;
@@ -55,7 +56,9 @@ public class EnemyWeapon extends Enemy {
 			powerUp = new PowerUpWeapon_2(rectangle.x, rectangle.y, game);
 		} else if (i < 60) {
 			powerUp = new PowerUpShield2(rectangle.x, rectangle.y, game);
-		}		
+		} else if (i < 70) {
+			powerUp = new PowerUpShieldInvunerable(rectangle.x, rectangle.y, game);
+		}
 		if (powerUp != null) {
 			game.addEntity(powerUp); 
 		}

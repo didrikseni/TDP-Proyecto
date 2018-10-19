@@ -48,13 +48,15 @@ public class Player extends Entity {
 		return shield;
 	}
 
-	public void setSield(Shield s) {
+	public void setShield(Shield s) {
 		GUI_Game gui = GUI_Game.getInstance();
 		if (shield.getGraphics() != null)
 			gui.remove(shield.getGraphics());
 		shield = s;
-		gui.add(s.getGraphics());
-		gui.setComponentLayer(s.getGraphics(), 50);
+		if (shield.getGraphics() != null) {
+			gui.add(shield.getGraphics());
+			gui.setComponentLayer(shield.getGraphics(), 15); 
+		}
 	}
 
 	public void setPotion() {
@@ -85,8 +87,6 @@ public class Player extends Entity {
 		shield.update();
 		playerMovement.move();	
 		updateGraphics();	
-		if(rectangle.y <= gui.getHeight() / 5 * 3) 
-			rectangle.y = gui.getHeight() / 5 * 3;
 		gui.updateScore(score);
 	}
 
