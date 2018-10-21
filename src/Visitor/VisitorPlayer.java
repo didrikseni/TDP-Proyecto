@@ -5,6 +5,7 @@ import Animation.AnimationSpark;
 import Entity.Enemy;
 import Entity.Player;
 import GUI.GUI_Game;
+import Main.SoundMananger;
 import Obstacles.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
@@ -27,6 +28,7 @@ public class VisitorPlayer extends Visitor{
 
 	public void visitPowerUp(PowerUp p) {
 		p.addPowerUp(player);
+		SoundMananger.playSound("powerUp.wav");
 	}
 	
 	public void visitPlayerShot(PlayerShot p) {}

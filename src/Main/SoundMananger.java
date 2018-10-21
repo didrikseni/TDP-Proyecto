@@ -23,5 +23,23 @@ public class SoundMananger {
 				}
 			}
 		}).start();
-	}	
+	}
+	
+	public static synchronized void playBackgroundSound(final String url) {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					Clip clip = AudioSystem.getClip();
+					InputStream audioSrc = getClass().getResourceAsStream("/Resources/Audio/" + url);
+					InputStream bufferedIn = new BufferedInputStream(audioSrc);
+					AudioInputStream inputStream = AudioSystem.getAudioInputStream(bufferedIn);
+					clip.open(inputStream);
+					clip.start(); 
+					clip.loop(Clip.LOOP_CONTINUOUSLY);
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+			}
+		}).start();
+	}
 }

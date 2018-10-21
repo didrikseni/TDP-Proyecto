@@ -14,7 +14,7 @@ public class WeaponPlayer extends Weapon {
 
 	@Override
 	public void shoot(Point pos) {
-		SoundMananger.playSound("XWing-Laser.wav");
+		SoundMananger.playSound("laser4.wav");
 		Shot s = new PlayerShot(pos.x + 15, pos.y, game);
 		game.addEntity(s);
 	}

@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Image;
+import java.util.Set;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -27,7 +28,7 @@ public class GUI_GameOver extends JFrame {
 		initialize();
 		loadScores();
 	}
-	
+
 	public synchronized static GUI_GameOver getInstance(int score) {
 		if (INSTANCE == null) {
 			INSTANCE = new GUI_GameOver(score);

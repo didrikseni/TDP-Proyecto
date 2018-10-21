@@ -7,17 +7,7 @@ import Animation.AnimationExplotion_2;
 import Behaviour.Behaviour;
 import Behaviour.DefaultBehaviour;
 import Main.Game;
-import Main.SoundMananger;
-import PowerUp.PowerUp;
-import PowerUp.PowerUpFreeze;
-import PowerUp.PowerUpMissile;
-import PowerUp.PowerUpPotion;
-import PowerUp.PowerUpShield;
-import PowerUp.PowerUpShield2;
-import PowerUp.PowerUpShieldInvunerable;
-import PowerUp.PowerUpWeapon_1;
-import PowerUp.PowerUpWeapon_2;
-import PowerUp.ThreadFreeze;
+import PowerUp.*;
 
 public abstract class Enemy extends Entity {
 	protected Behaviour comportamiento;
@@ -50,10 +40,10 @@ public abstract class Enemy extends Entity {
 			Animation anim;
 			if (rnd.nextBoolean()) {
 				anim = new AnimationExplotion_1(rectangle.x, rectangle.y);
-				SoundMananger.playSound("mind_blow_1.wav");
+				//SoundMananger.playSound("mind_blow_1.wav");
 			} else {
 				anim = new AnimationExplotion_2(rectangle.x, rectangle.y);
-				SoundMananger.playSound("mind_blow_2.wav");
+				//SoundMananger.playSound("mind_blow_2.wav");
 			}
 			anim.getStarted();
 			game.substractEnemyCount();
