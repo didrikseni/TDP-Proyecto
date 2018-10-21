@@ -18,19 +18,19 @@ public class Destroyable extends Obstacle {
 		ImageIcon img = null;
 		switch(i) {
 			case 0: 
-				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_00.png")); break;
+				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_0.png")); break;
 			case 1: 
-				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_01.png")); break;
+				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_1.png")); break;
 			case 2: 
-				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_02.png")); break;
+				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_2.png")); break;
 			case 3:
-				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_03.png")); break;
+				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_3.png")); break;
 			case 4:
-				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_04.png")); break;
+				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_4.png")); break;
 			case 5:
-				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_05.png")); break;
+				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_5.png")); break;
 			case 6: 
-				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_06.png")); break;
+				img = new ImageIcon(this.getClass().getResource("/Resources/Asteroids/asteroid_6.png")); break;
 		}
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
