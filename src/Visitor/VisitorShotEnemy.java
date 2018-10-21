@@ -6,13 +6,11 @@ import Obstacles.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
-import Shot.Shot;
 
 public class VisitorShotEnemy extends Visitor {
-	private Shot shot;
 	
 	public VisitorShotEnemy(EnemyShot enemyShot) {
-		shot = enemyShot;
+
 	}
 
 	public void visitPlayer(Player p) {
@@ -35,10 +33,8 @@ public class VisitorShotEnemy extends Visitor {
 		
 	}
 
-	@Override
 	public void visitObstacle(Obstacle d) {
-		d.takeDamage(shot.getDamage());
-		shot.takeDamage(shot.getLife());
+		
 	}	
 	
 }

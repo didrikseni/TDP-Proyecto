@@ -8,9 +8,10 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorObstacle extends Visitor {
+	protected Obstacle obstacle;
 	
 	public VisitorObstacle(Obstacle obstacle) {
-		
+		this.obstacle = obstacle;
 	}
 
 	public void visitPlayer(Player p) {
@@ -18,7 +19,8 @@ public class VisitorObstacle extends Visitor {
 	}
 
 	public void visitEnemy(Enemy e) {
-		
+		obstacle.takeDamage(e.getLife());
+		e.takeDamage(e.getLife() / 2);
 	}
 
 	public void visitObstacle(Obstacle b) {
@@ -34,7 +36,8 @@ public class VisitorObstacle extends Visitor {
 	}
 
 	public void visitEnemyShot(EnemyShot e) {
-		
+		obstacle.takeDamage(e.getDamage());
+		e.takeDamage(e.getLife());
 	}
 	
 }
