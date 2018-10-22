@@ -5,11 +5,12 @@ import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class SoundMananger {
 
 	public static synchronized void playSound(final String url) {
-		new Thread(new Runnable() {
+		Thread thread = new Thread(new Runnable() {
 			public void run() {
 				try {
 					Clip clip = AudioSystem.getClip();
@@ -17,16 +18,17 @@ public class SoundMananger {
 					InputStream bufferedIn = new BufferedInputStream(audioSrc);
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(bufferedIn);
 					clip.open(inputStream);
-					clip.start(); 
-				} catch (Exception e) {
-					System.err.println(e.getMessage());
-				}
+					FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					volume.setValue(-20.0f);
+					clip.start(); 					
+				} catch (Exception e) {}
 			}
-		}).start();
+		});
+		thread.start();
 	}
 	
-	public static synchronized void playBackgroundSound(final String url) {
-		new Thread(new Runnable() {
+	public static synchronized Thread playLoopSound(final String url) {
+		Thread thread = new Thread(new Runnable() {
 			public void run() {
 				try {
 					Clip clip = AudioSystem.getClip();
@@ -34,12 +36,15 @@ public class SoundMananger {
 					InputStream bufferedIn = new BufferedInputStream(audioSrc);
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(bufferedIn);
 					clip.open(inputStream);
+					FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					volume.setValue(-25.0f);
 					clip.start(); 
 					clip.loop(Clip.LOOP_CONTINUOUSLY);
-				} catch (Exception e) {
-					System.err.println(e.getMessage());
-				}
+				} catch (Exception e) {}
 			}
-		}).start();
+		});
+		thread.start();
+		return thread;
 	}
+
 }

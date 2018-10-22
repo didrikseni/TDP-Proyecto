@@ -6,15 +6,22 @@ import Main.Game;
 import Main.SoundMananger;
 
 public class Level extends Game {
+	protected Thread soundClip;
 	
 	public Level(GUI_Game gui, String path) {
 		super(gui, path);
-		SoundMananger.playBackgroundSound("backgroundLevel1.wav");
+		soundClip = SoundMananger.playLoopSound("background.wav");
 	}
 
 	protected void loadObjects() {
 		FileOpener fileOpener = new FileOpener(this, currentLevel, gui);
 		fileOpener.loadObjects();
+	}
+	
+	@Override
+	public void gameOver() {
+		soundClip.interrupt();
+		super.gameOver();
 	}
 	
 }

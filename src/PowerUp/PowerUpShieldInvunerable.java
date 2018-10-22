@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import Entity.Player;
 import Main.Game;
+import Main.SoundMananger;
 import Visitor.Visitor;
 
 public class PowerUpShieldInvunerable extends PowerUp {
@@ -21,6 +22,7 @@ public class PowerUpShieldInvunerable extends PowerUp {
 		ThreadInvunerable invunerable = new ThreadInvunerable(player);
 		Thread thread = new Thread(invunerable);
 		thread.start();
+		SoundMananger.playSound("invulnerable.wav");
 		game.addDeadEntity(this);
 	}
 

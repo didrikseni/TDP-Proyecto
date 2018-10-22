@@ -1,40 +1,41 @@
 package GUI;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
-import javax.swing.JTextPane;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class GUI_GameOver extends JFrame {
-	private static GUI_GameOver INSTANCE = null;
-	
+public class GUI_Win extends JFrame {
+	private static GUI_Win INSTANCE;
+
 	//private int score;
 	private JPanel contentPane;
 	private JLabel background;
-	
-	private GUI_GameOver(int score) {
+
+	public GUI_Win(int score) {
 		//this.score = score;
 		initialize();
 		loadScores();
 	}
 
-	public synchronized static GUI_GameOver getInstance(int score) {
+	public static GUI_Win getInstance(int score) {
 		if (INSTANCE == null) {
-			INSTANCE = new GUI_GameOver(score);
+			INSTANCE = new GUI_Win(score);
 		}
 		return INSTANCE;
 	}
-
-	private void loadScores() {
+	
+private void loadScores() {
 		
 	}
 
@@ -80,4 +81,5 @@ public class GUI_GameOver extends JFrame {
 		contentPane.add(background);
 		background.setVisible(true);		
 	}
+
 }

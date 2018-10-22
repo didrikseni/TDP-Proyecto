@@ -11,7 +11,7 @@ import Main.*;
 @SuppressWarnings("serial")
 public class GUI_Game extends JFrame {
 	private static GUI_Game INSTANCE = null;
-	
+
 	private JLayeredPane contentPane;
 	private MainThread mainThread;
 	private JLabel background, score, lifeBar, auxBar;
@@ -29,7 +29,7 @@ public class GUI_Game extends JFrame {
 				}
 			}
 		});
-		
+
 		addKeyListener(new KeyListener(this));
 		inicializar();		
 		game = new Level(this, "/Resources/Levels/Level1.txt");
@@ -37,7 +37,7 @@ public class GUI_Game extends JFrame {
 		mainThread = new MainThread(game);
 		mainThread.start();
 	}
-	
+
 	private void inicializar() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1024, 700);
@@ -49,18 +49,18 @@ public class GUI_Game extends JFrame {
 		initLifeBar();
 		initScore();			
 	}
-	
+
 	public synchronized static GUI_Game getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new GUI_Game();
 		}
 		return INSTANCE;
 	}
-	
+
 	protected void playerStartMove(KeyEvent key){
 		playerInteraction.playerStartMove(key.getKeyCode());
 	}
-	
+
 	protected void playerStopMove(KeyEvent key) {
 		playerInteraction.playerStopMove(key.getKeyCode());
 	}
@@ -69,7 +69,7 @@ public class GUI_Game extends JFrame {
 		this.contentPane.setLayer(e, layer);
 		e.setVisible(true);
 	}
-	
+
 	protected void shoot(boolean b) {
 		playerInteraction.playerShoot(b);
 	}
@@ -77,11 +77,11 @@ public class GUI_Game extends JFrame {
 	public void updateScore(int s) {
 		score.setText("Score: " + s);
 	}
-	
+
 	public void updateLifeBar(int l) {
 		auxBar.setSize(((lifeBar.getWidth() - 18) * l) / 100, auxBar.getHeight());
 	}
-	
+
 	private void initScore() {
 		score = new JLabel();
 		score.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
@@ -120,11 +120,15 @@ public class GUI_Game extends JFrame {
 	}
 
 	public void changeLevel() {
-		contentPane.removeAll();
-		this.inicializar();
-		game = new Level(this, game.getNextLevel());
-		mainThread.changeGame(game);
-		Player.getInstance(0, 0, game).setGame(game);
+		if (game.getNextLevel() != "") {
+			contentPane.removeAll();		
+			this.inicializar();		
+			game = new Level(this, game.getNextLevel());
+			mainThread.changeGame(game);
+			Player.getInstance(0, 0, game).setGame(game);
+		} else {
+			game.winGame();
+		}
 	}
 
 	public void setNewBackground(JLabel background) {

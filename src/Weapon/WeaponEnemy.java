@@ -2,6 +2,7 @@ package Weapon;
 
 import java.awt.Point;
 import Main.Game;
+import Main.SoundMananger;
 import Shot.EnemyShot;
 import Shot.Shot;
 
@@ -15,7 +16,8 @@ public class WeaponEnemy extends Weapon {
 	public void shoot(Point pos) {
 		Shot s = new EnemyShot(pos.x + 15, pos.y, game);
 		//Shot s = new TrackerShot(pos.x + 15, pos.y, game, Player.getInstance(0, 0, game));
-		game.addEntity(s);	
+		game.addEntity(s);
+		SoundMananger.playSound("laser.wav");
 	}
 
 }

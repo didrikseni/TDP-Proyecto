@@ -18,7 +18,7 @@ public class WeaponFirstPowerUp extends Weapon {
 		Shot s2 = new PowerUp1Shot(pos.x + 25, pos.y, game);
 		game.addEntity(s1);
 		game.addEntity(s2);
-		SoundMananger.playSound("laser4.wav");
+		SoundMananger.playSound("laser.wav");
 	}
 
 }
