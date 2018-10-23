@@ -8,10 +8,10 @@ import GUI.GUI_Game;
 public abstract class Behaviour {
 
 	public void update(Enemy e) {
-		Point p = e.getPos();
-		GUI_Game g = GUI_Game.getInstance();		
-		if (p.y > g.getHeight()) {
-			p.setLocation(p.x, 0);
+		Point pos = e.getPos();
+		GUI_Game gui = GUI_Game.getInstance();		
+		if(pos.y > (gui.getHeight() + e.getHeight() / 2)) {
+			e.setPos(pos.x, - e.getHeight()); 
 		}
 		
 	}

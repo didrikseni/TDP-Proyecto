@@ -106,7 +106,7 @@ public class Player extends Entity {
 			life -= x; 
 		}
 		if(life <= 0) {
-			game.gameOver();
+			game.endGame(true);
 		}
 	}
 
@@ -126,6 +126,11 @@ public class Player extends Entity {
 	public void setGame(Game game) {
 		this.game = game;
 		weapon.setGame(game);
+		GUI_Game gui = GUI_Game.getInstance();
+		if (shield.getGraphics() != null) {
+			gui.add(shield.getGraphics());
+			gui.setComponentLayer(shield.getGraphics(), 15); 
+		}
 	}
 
 	public PlayerMovement getPlayerMovement() {

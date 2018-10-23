@@ -25,6 +25,7 @@ public class VisitorShotPlayer extends Visitor {
 		anm.getStarted();
 		e.takeDamage(playerShot.getDamage());
 		playerShot.takeDamage(playerShot.getLife());
+		
 	}
 
 	public void visitPowerUp(PowerUp p) {

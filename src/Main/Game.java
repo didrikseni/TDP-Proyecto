@@ -8,7 +8,7 @@ import Entity.Entity;
 import Entity.Player;
 import GUI.GUI_Game;
 import GUI.GUI_GameOver;
-import GUI.GUI_Win;
+import GUI.GUI_Victory;
 
 public abstract class Game {	
 	protected GUI_Game gui;
@@ -109,19 +109,19 @@ public abstract class Game {
 		gui.repaint();
 	}
 
-	public void gameOver() {
-        GUI_GameOver gameOverGui = GUI_GameOver.getInstance(player.getScore());
-        gameOverGui.setVisible(true);
-        gui.dispose();
+	public void endGame(boolean b) {
+		if (b) {
+			GUI_GameOver gameOverGui = GUI_GameOver.getInstance(player.getScore());
+	        gameOverGui.setVisible(true);
+		} else {
+			GUI_Victory winGame = GUI_Victory.getInstance(player.getScore());
+			winGame.setVisible(true);
+		}
+		gui.dispose();        
 	}
 
 	public String getNextLevel() {
 		return nextLevel;
 	}
 
-	public void winGame() {
-		GUI_Win winGame = GUI_Win.getInstance(player.getScore());
-		winGame.setVisible(true);
-		gui.dispose();
-	}
 }

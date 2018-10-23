@@ -8,10 +8,8 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorEnemy extends Visitor {
-	private Enemy enemy;
 	
 	public VisitorEnemy (Enemy e) { 
-		enemy = e;
 	}
 
 	@Override
@@ -29,8 +27,6 @@ public class VisitorEnemy extends Visitor {
 
 	@Override
 	public void visitPlayerShot(PlayerShot p) {
-		enemy.takeDamage(p.getDamage());
-		p.takeDamage(p.getLife());
 	}
 
 	@Override

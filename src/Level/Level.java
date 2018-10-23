@@ -19,9 +19,9 @@ public class Level extends Game {
 	}
 	
 	@Override
-	public void gameOver() {
+	public void endGame(boolean b) {
 		soundClip.interrupt();
-		super.gameOver();
+		super.endGame(b);
 	}
 	
 }

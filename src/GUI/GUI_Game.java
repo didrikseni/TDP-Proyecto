@@ -120,14 +120,15 @@ public class GUI_Game extends JFrame {
 	}
 
 	public void changeLevel() {
-		if (game.getNextLevel() != "") {
+		if (!game.getNextLevel().equals("")) {
+			System.out.println(game.getNextLevel());
 			contentPane.removeAll();		
 			this.inicializar();		
 			game = new Level(this, game.getNextLevel());
 			mainThread.changeGame(game);
 			Player.getInstance(0, 0, game).setGame(game);
 		} else {
-			game.winGame();
+			game.endGame(false);
 		}
 	}
 

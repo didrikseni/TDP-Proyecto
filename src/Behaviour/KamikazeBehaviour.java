@@ -3,7 +3,6 @@ package Behaviour;
 import java.awt.Point;
 import Entity.Enemy;
 import Entity.Player;
-import GUI.GUI_Game;
 
 public class KamikazeBehaviour extends Behaviour {
 	private Player player;
@@ -15,7 +14,7 @@ public class KamikazeBehaviour extends Behaviour {
 	public void update(Enemy e) {
 		super.update(e);
 		Point p = e.getPos();
-		GUI_Game gui = GUI_Game.getInstance();
+		
 		e.getRectangle().y += e.getSpeed();
 		
 	    int playerPosX = player.getPos().x;
@@ -27,8 +26,5 @@ public class KamikazeBehaviour extends Behaviour {
         double angle = Math.atan2(vectorY, vectorX);
         
         e.getRectangle().x = (int) (2 * Math.cos(angle) + e.getRectangle().x);
-		if(p.y > (gui.getHeight() - e.getHeight() - 40)) {
-			e.setPos(p.x, 0); 
-		}
 	}
 }

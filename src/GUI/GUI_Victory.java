@@ -15,28 +15,28 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 @SuppressWarnings("serial")
-public class GUI_Win extends JFrame {
-	private static GUI_Win INSTANCE;
+public class GUI_Victory extends JFrame {
+	private static GUI_Victory INSTANCE;
 
 	//private int score;
 	private JPanel contentPane;
 	private JLabel background;
 
-	public GUI_Win(int score) {
+	public GUI_Victory(int score) {
 		//this.score = score;
 		initialize();
 		loadScores();
 	}
 
-	public static GUI_Win getInstance(int score) {
+	public static GUI_Victory getInstance(int score) {
 		if (INSTANCE == null) {
-			INSTANCE = new GUI_Win(score);
+			INSTANCE = new GUI_Victory(score);
 		}
 		return INSTANCE;
 	}
-	
-private void loadScores() {
-		
+
+	private void loadScores() {
+
 	}
 
 	private void initialize() {		
@@ -47,24 +47,24 @@ private void loadScores() {
 		this.setContentPane(contentPane);
 		this.contentPane.setLayout(null);		
 		this.setResizable(false);
-		
+
 		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/Levels/game_over_screen.png"));
 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
-		
+
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setForeground(Color.WHITE);
 		btnSalir.setBackground(Color.BLACK);
 		btnSalir.setFont(new Font("Unispace", Font.PLAIN, 17));
 		btnSalir.setBounds(425, 75, 150, 50);
 		contentPane.add(btnSalir);
-		
+
 		JButton btnReintentar = new JButton("Reintentar");
 		btnReintentar.setForeground(Color.WHITE);
 		btnReintentar.setBackground(Color.BLACK);
 		btnReintentar.setFont(new Font("Unispace", Font.PLAIN, 16));
 		btnReintentar.setBounds(425, 11, 150, 50);
 		contentPane.add(btnReintentar);
-		
+
 		JTextPane scorePane = new JTextPane();
 		scorePane.setText("--------------------------- Best Scores --------------------------");
 		scorePane.setForeground(new Color(34, 139, 34));
@@ -74,7 +74,7 @@ private void loadScores() {
 		contentPane.add(scorePane);
 		scorePane.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
 		scorePane.setEditable(false);
-		
+
 		background = new JLabel();
 		background.setIcon(icon);
 		background.setBounds(0, 0, 1024, 700);

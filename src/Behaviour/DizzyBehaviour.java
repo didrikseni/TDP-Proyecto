@@ -5,38 +5,36 @@ import Entity.Enemy;
 import GUI.GUI_Game;
 
 public class DizzyBehaviour extends Behaviour {
-	private long delay, elapsedTime;
-	private int vectorX, vectorY;
+	private int vectorX, vectorY, delay;
 	private Random rnd;
-	
+	private long elapsedTime, waitTime;
+
 	public DizzyBehaviour() {
-		delay = 1000;
 		rnd = new Random();
-		elapsedTime = System.nanoTime();
+		delay = 2000;
+		vectorX = rnd.nextInt(rnd.nextInt(1000));
+		vectorY = rnd.nextInt(rnd.nextInt(680));
+		waitTime = 0;
+		elapsedTime = 0;
 	}
-	
+
 	@Override
 	public void update(Enemy e) {		
-		super.update(e);
-		GUI_Game gui = GUI_Game.getInstance();
-		if(System.currentTimeMillis() - elapsedTime > delay) {
-			vectorX = rnd.nextInt(1024) - e.getRectangle().x;
-			vectorY = rnd.nextInt(700) - e.getRectangle().y;
-			
-			double angle = Math.atan2(vectorY, vectorX);
-			
-			e.getRectangle().x = (int) (10 * Math.cos(angle)) + e.getRectangle().x;
-			e.getRectangle().y = (int) (10 * Math.sin(angle)) + e.getRectangle().y;
-			
-			elapsedTime = System.currentTimeMillis();
+		super.update(e);		
+		if (elapsedTime >= waitTime) {
+			vectorX = rnd.nextInt(GUI_Game.getInstance().getWidth() - e.getWidth()) + e.getWidth();
+			vectorY = rnd.nextInt(GUI_Game.getInstance().getHeight() - e.getHeight() + e.getHeight());
+			waitTime = System.currentTimeMillis() + delay;
 		}
 		
+		int toMoveX = vectorX - e.getRectangle().x;
+		int toMoveY = vectorY - e.getRectangle().y;
 		
-		
-		
-		
-		if(e.getRectangle().y > (gui.getHeight() - e.getHeight() - 40)) {
-			e.setPos(e.getRectangle().x, 0); 
-		}
+		double angle = Math.atan2(toMoveY, toMoveX);
+
+		e.getRectangle().x = (int) (2 * Math.cos(angle) + e.getRectangle().x);
+		e.getRectangle().y = (int) (2 * Math.cos(angle) + e.getRectangle().y);
+		elapsedTime = System.currentTimeMillis();
 	}
+	
 }
