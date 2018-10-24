@@ -1,33 +1,27 @@
 package PowerUp;
 
 import Entity.Entity;
+import Main.Excecute;
 import Main.Game;
+import Main.MainThread;
 import Visitor.Visitor;
 import Visitor.VisitorThreadFreeze;
 
-public class ThreadFreeze implements Runnable {
-	private static ThreadFreeze INSTANCE = null;
+public class ThreadFreeze implements Runnable, Excecute {
 	protected static boolean isRunning = false;
 	protected Visitor visitor;
 	protected Game game;
-	
-	
-	private ThreadFreeze(Game game) {
+
+
+	public ThreadFreeze(Game game) {
 		visitor = VisitorThreadFreeze.getInstance();
 		this.game = game;
 	}
-	
-	public synchronized static ThreadFreeze getInstance(Game game) {
-		if (INSTANCE == null) {
-			INSTANCE = new ThreadFreeze(game);
-		} 
-		return INSTANCE;
-	}
-	
+
 	@Override
 	public void run() {
 		isRunning = true;
-		changeBehaviour();
+		MainThread.addToExcecute(this);
 		long elapsedTime = System.currentTimeMillis();
 		long targetTime = System.currentTimeMillis() + 3000;
 		while (isRunning) {
@@ -37,9 +31,10 @@ public class ThreadFreeze implements Runnable {
 				Thread.sleep(10);
 			} catch (Exception e) {}
 		}
-		changeBehaviour();
+		MainThread.addToExcecute(this);
+		PowerUpFreeze.setInstanceNull();
 	}
-	
+
 	public static boolean isRunning() {
 		return isRunning;
 	}
@@ -48,5 +43,10 @@ public class ThreadFreeze implements Runnable {
 		for(Entity ent: game.getEntities()) {
 			ent.accept(visitor);
 		}
+	}
+
+	@Override
+	public void excecute() {
+		this.changeBehaviour();
 	}
 }

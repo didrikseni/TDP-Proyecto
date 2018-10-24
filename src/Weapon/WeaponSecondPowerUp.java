@@ -2,9 +2,9 @@ package Weapon;
 
 import java.awt.Point;
 import Main.Game;
-import Main.SoundMananger;
 import Shot.PowerUp2Shot;
 import Shot.Shot;
+import Sound.SoundMananger;
 
 public class WeaponSecondPowerUp extends Weapon {
 	
@@ -18,7 +18,7 @@ public class WeaponSecondPowerUp extends Weapon {
 		Shot s2 = new PowerUp2Shot(pos.x + 15, pos.y, false, game);
 		game.addEntity(s1);
 		game.addEntity(s2);
-		SoundMananger.playSound("laser.wav");
+		new SoundMananger("laser.wav").playSound();
 	}
 
 }

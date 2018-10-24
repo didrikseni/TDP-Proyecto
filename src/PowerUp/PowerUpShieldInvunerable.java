@@ -6,15 +6,23 @@ import javax.swing.ImageIcon;
 
 import Entity.Player;
 import Main.Game;
-import Main.SoundMananger;
+import Sound.SoundMananger;
 import Visitor.Visitor;
 
 public class PowerUpShieldInvunerable extends PowerUp {
-
-	public PowerUpShieldInvunerable(int x, int y, Game g) {
+	private static PowerUpShieldInvunerable INSTANCE = null;
+	
+	private PowerUpShieldInvunerable(int x, int y, Game g) {
 		super(x, y, g);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/pw_shield_02.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+	}
+	
+	public static synchronized PowerUpShieldInvunerable getInstance(int x, int y, Game game) {
+		if (INSTANCE == null) {
+			INSTANCE = new PowerUpShieldInvunerable(x,y,game);
+		}
+		return INSTANCE;
 	}
 
 	@Override
@@ -22,7 +30,7 @@ public class PowerUpShieldInvunerable extends PowerUp {
 		ThreadInvunerable invunerable = new ThreadInvunerable(player);
 		Thread thread = new Thread(invunerable);
 		thread.start();
-		SoundMananger.playSound("invulnerable.wav");
+		new SoundMananger("invulnerable.wav").playSound();
 		game.addDeadEntity(this);
 	}
 

@@ -2,7 +2,7 @@ package Visitor;
 
 import Entity.Enemy;
 import Entity.Player;
-import Obstacles.Obstacle;
+import Obstacle.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;

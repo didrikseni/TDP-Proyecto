@@ -2,7 +2,7 @@ package Level;
 
 import Entity.Enemy;
 import Main.Game;
-import Obstacles.Obstacle;
+import Obstacle.Obstacle;
 
 public abstract class Factory {
 	protected Game game;

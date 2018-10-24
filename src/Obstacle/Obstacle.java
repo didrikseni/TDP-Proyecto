@@ -1,4 +1,4 @@
-package Obstacles;
+package Obstacle;
 
 import Entity.Entity;
 import Main.Game;

@@ -1,7 +1,7 @@
 package Visitor;
 
 import Entity.Enemy;
-import Obstacles.Obstacle;
+import Obstacle.Obstacle;
 import Shot.EnemyShot;
 
 public class VisitorBarricade extends VisitorObstacle {

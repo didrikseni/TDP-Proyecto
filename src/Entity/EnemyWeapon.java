@@ -24,7 +24,15 @@ public class EnemyWeapon extends Enemy {
 	public void accept(Visitor v) {
 		v.visitEnemy(this);
 	}
-
+/*
+	@Override
+	public void takeDamage(int damage) {
+		super.takeDamage(damage);
+		if (life <= 20) {
+			this.comportamiento = new KamikazeBehaviour();
+		}
+	}
+	*/
 	@Override
 	public void shoot() {
 		weapon.shoot(this.getPos());

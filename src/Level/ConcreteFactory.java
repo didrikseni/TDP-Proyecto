@@ -5,9 +5,9 @@ import Entity.EnemyDizzy;
 import Entity.EnemyKamikaze;
 import Entity.EnemyWeapon;
 import Main.Game;
-import Obstacles.Barricade;
-import Obstacles.Destroyable;
-import Obstacles.Obstacle;
+import Obstacle.Barricade;
+import Obstacle.Destroyable;
+import Obstacle.Obstacle;
 
 public class ConcreteFactory extends Factory {
 

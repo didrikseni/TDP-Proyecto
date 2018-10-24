@@ -6,7 +6,7 @@ import Behaviour.FreezeBehaviour;
 import Entity.Enemy;
 import Entity.Entity;
 import Entity.Player;
-import Obstacles.Obstacle;
+import Obstacle.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;

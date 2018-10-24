@@ -17,7 +17,7 @@ public class ThreadInvunerable implements Runnable {
 		ShieldInvunerable shield = new ShieldInvunerable(player);
 		player.setShield(shield);
 		long elapsedTime;
-		long targetTime = System.currentTimeMillis() + 7000;
+		long targetTime = System.currentTimeMillis() + 6000;
 		while (isRunning) {
 			elapsedTime = System.currentTimeMillis();
 			isRunning = elapsedTime < targetTime;

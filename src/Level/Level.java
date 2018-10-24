@@ -3,14 +3,15 @@ package Level;
 import GUI.GUI_Game;
 import Main.FileOpener;
 import Main.Game;
-import Main.SoundMananger;
+import Sound.SoundMananger;
 
 public class Level extends Game {
-	protected Thread soundClip;
+	protected SoundMananger soundClip;
 	
 	public Level(GUI_Game gui, String path) {
 		super(gui, path);
-		soundClip = SoundMananger.playLoopSound("background.wav");
+		soundClip = new SoundMananger("background.wav");
+		soundClip.playLoopSound();
 	}
 
 	protected void loadObjects() {
@@ -20,7 +21,8 @@ public class Level extends Game {
 	
 	@Override
 	public void endGame(boolean b) {
-		soundClip.interrupt();
+		soundClip.getClip().stop();
+		soundClip.getClip().close();
 		super.endGame(b);
 	}
 	

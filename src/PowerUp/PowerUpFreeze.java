@@ -25,6 +25,10 @@ public class PowerUpFreeze extends PowerUp {
 	public static boolean hasInstance() {
 		return INSTANCE != null;
 	}
+	
+	public static void setInstanceNull() {
+		INSTANCE = null;
+	}
 
 	@Override
 	public void accept(Visitor v) {
@@ -33,7 +37,7 @@ public class PowerUpFreeze extends PowerUp {
 
 	@Override
 	public void addPowerUp(Player player) {
-		ThreadFreeze threadFreeze = ThreadFreeze.getInstance(game);
+		ThreadFreeze threadFreeze = new ThreadFreeze(game);
 		game.addDeadEntity(this);
 		Thread thread = new Thread(threadFreeze);
 		thread.start();

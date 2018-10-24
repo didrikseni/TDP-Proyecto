@@ -2,7 +2,6 @@ package Behaviour;
 
 import java.awt.Point;
 import java.util.Random;
-
 import Entity.Enemy;
 import Entity.Player;
 import GUI.GUI_Game;
