@@ -13,17 +13,17 @@ public class EnemyDizzy extends Enemy {
 
 	@Override
 	public void accept(Visitor v) {
-		
+
 	}
 
 	@Override
 	public void shoot() {
-		
+
 	}
 
 	@Override
 	protected void dropPowerUp() {
-		
+
 	}
 
 }

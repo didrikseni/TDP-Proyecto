@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -54,15 +56,13 @@ public class GUI_GameOver extends JFrame {
 		btnSalir.setForeground(Color.WHITE);
 		btnSalir.setBackground(Color.BLACK);
 		btnSalir.setFont(new Font("Unispace", Font.PLAIN, 17));
-		btnSalir.setBounds(425, 75, 150, 50);
+		btnSalir.setBounds(440, 11, 150, 50);
 		contentPane.add(btnSalir);
-		
-		JButton btnReintentar = new JButton("Reintentar");
-		btnReintentar.setForeground(Color.WHITE);
-		btnReintentar.setBackground(Color.BLACK);
-		btnReintentar.setFont(new Font("Unispace", Font.PLAIN, 16));
-		btnReintentar.setBounds(425, 11, 150, 50);
-		contentPane.add(btnReintentar);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exitFromGame();
+			}
+		});
 		
 		JTextPane scorePane = new JTextPane();
 		scorePane.setText("--------------------------- Best Scores --------------------------");
@@ -79,5 +79,9 @@ public class GUI_GameOver extends JFrame {
 		background.setBounds(0, 0, 1024, 700);
 		contentPane.add(background);
 		background.setVisible(true);		
+	}
+	
+	private void exitFromGame() {
+		this.dispose();
 	}
 }

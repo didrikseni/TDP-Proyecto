@@ -1,12 +1,16 @@
 package Entity;
 
 import java.awt.Image;
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import GUI.GUI_Game;
 import Main.Game;
-import Shield.*;
-import Visitor.*;
-import Weapon.*;
+import Shield.Shield;
+import Shield.ShieldDefault;
+import Visitor.Visitor;
+import Visitor.VisitorPlayer;
+import Weapon.Weapon;
+import Weapon.WeaponPlayer;
 
 public class Player extends Entity {
 	private static Player INSTANCE = null;

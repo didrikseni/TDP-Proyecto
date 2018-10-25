@@ -109,15 +109,16 @@ public abstract class Game {
 		gui.repaint();
 	}
 
-	public void endGame(boolean b) {
-		if (b) {
+	public void endGame(boolean gameOver) {
+		if (gameOver) {
+			gui.stopGame();
 			GUI_GameOver gameOverGui = GUI_GameOver.getInstance(player.getScore());
 	        gameOverGui.setVisible(true);
 		} else {
 			GUI_Victory winGame = GUI_Victory.getInstance(player.getScore());
 			winGame.setVisible(true);
 		}
-		gui.dispose();        
+		gui.dispose();
 	}
 
 	public String getNextLevel() {

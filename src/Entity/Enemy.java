@@ -17,7 +17,6 @@ public abstract class Enemy extends Entity {
 	protected Enemy(int x, int y, int speed, Game g) {
 		super(x, y, speed, g);
 		originalY = y;
-		//comportamiento = new DizzyBehaviour();
 		comportamiento = DefaultBehaviour.getInstance();
 		rnd = new Random();
 	}
@@ -41,10 +40,8 @@ public abstract class Enemy extends Entity {
 			Animation anim;
 			if (rnd.nextBoolean()) {
 				anim = new AnimationExplotion_1(rectangle.x, rectangle.y);
-				//new SoundMananger("mind_blow_1.wav").playSound();
 			} else {
 				anim = new AnimationExplotion_2(rectangle.x, rectangle.y);
-				//new SoundMananger("mind_blow_2.wav").playSound();
 			}
 			anim.getStarted();
 			game.substractEnemyCount();
@@ -55,11 +52,10 @@ public abstract class Enemy extends Entity {
 	protected void dropPowerUp() {
 		int i = rnd.nextInt(100);
 		PowerUp powerUp = null;
-		
 		if (i < 6) {
 			powerUp = new PowerUpWeapon_1(rectangle.x, rectangle.y , game);
 		} else if (i < 10 && !PowerUpFreeze.hasInstance()) {
-				powerUp = PowerUpFreeze.getInstance(rectangle.x, rectangle.y , game);
+			powerUp = PowerUpFreeze.getInstance(rectangle.x, rectangle.y , game);
 		} else if (i < 20) {
 			powerUp = new PowerUpPotion(rectangle.x, rectangle.y , game);
 		} else if (i < 27) {

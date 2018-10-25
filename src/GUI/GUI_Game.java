@@ -114,11 +114,7 @@ public class GUI_Game extends JFrame {
 		lifeBar.setVisible(true);
 		auxBar.setVisible(true);
 	}
-
-	public synchronized void pause() {
-		mainThread.pauseGame();
-	}
-
+	
 	public void changeLevel() {
 		if (!game.getNextLevel().equals("")) {
 			contentPane.removeAll();		
@@ -137,5 +133,9 @@ public class GUI_Game extends JFrame {
 		contentPane.add(this.background);
 		setComponentLayer(this.background, 1);
 		this.repaint();
+	}
+
+	public void stopGame() {
+		this.mainThread.stopGame();
 	}
 }

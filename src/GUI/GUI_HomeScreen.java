@@ -54,19 +54,33 @@ public class GUI_HomeScreen extends JFrame {
 		btnStart.setBorder(new LineBorder(Color.lightGray.darker(), 2));
 		btnStart.setForeground(Color.white);
 		
-		JButton btnSettings = new JButton("Settings");
-		btnSettings.addActionListener(new ActionListener() {
+		JButton btnHelp = new JButton("Help");
+		btnHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				startSettings();
+				startHelp();
 			}
 		});
-		contentPane.setLayer(btnSettings, 2);
-		btnSettings.setBounds(42, 104, 150, 40);
-		contentPane.add(btnSettings);
-		btnSettings.setFont(new Font("Unispace", Font.PLAIN, 16));
-		btnSettings.setBackground(Color.BLACK);
-		btnSettings.setBorder(new LineBorder(Color.lightGray.darker(), 2));
-		btnSettings.setForeground(Color.white);		
+		contentPane.setLayer(btnHelp, 2);
+		btnHelp.setBounds(42, 104, 150, 40);
+		contentPane.add(btnHelp);
+		btnHelp.setFont(new Font("Unispace", Font.PLAIN, 16));
+		btnHelp.setBackground(Color.BLACK);
+		btnHelp.setBorder(new LineBorder(Color.lightGray.darker(), 2));
+		btnHelp.setForeground(Color.white);	
+		
+		JButton btnCredits = new JButton("About");
+		btnCredits.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				startAbout();
+			}
+		});
+		contentPane.setLayer(btnCredits, 2);
+		btnCredits.setBounds(42, 154, 150, 40);
+		contentPane.add(btnCredits);
+		btnCredits.setFont(new Font("Unispace", Font.PLAIN, 16));
+		btnCredits.setBackground(Color.BLACK);
+		btnCredits.setBorder(new LineBorder(Color.lightGray.darker(), 2));
+		btnCredits.setForeground(Color.white);	
 	}	
 	
 	private void startGame() {
@@ -75,7 +89,12 @@ public class GUI_HomeScreen extends JFrame {
 		this.dispose();
 	}
 	
-	private void startSettings() {
+	private void startHelp() {
+		//TODO generar pantalla help
+	}
+	
+	private void startAbout() {
+		// TODO generar pantalla about y creditos
 		
 	}
 

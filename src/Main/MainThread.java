@@ -22,29 +22,18 @@ public class MainThread extends Thread {
 		isRunning = true;
 		
 		while(isRunning) {
-			startTime = System.nanoTime();			
+			startTime = System.nanoTime();
 			game.update();
-			//ArrayList<>
-			
-			for(Excecute excecute: toExcecute) {
+			Collection<Excecute> auxiliar = toExcecute;
+			toExcecute = new ArrayList<Excecute>();			
+			for(Excecute excecute: auxiliar) {
 				excecute.excecute();
-			}
-			toExcecute = new ArrayList<Excecute>();
-			
+			}			
 			elapsedTime = (System.nanoTime() - startTime) / 1000000;
 			waitTime = targetTime - elapsedTime;			
 			try { 
 				Thread.sleep(waitTime);
 			} catch (Exception e) {}	
-		}
-	}
-	
-	public synchronized void pauseGame() {
-		if (isRunning) {
-			isRunning = false;
-		} else {
-			isRunning = true;
-			this.notify();
 		}
 	}
 	
@@ -54,6 +43,10 @@ public class MainThread extends Thread {
 	
 	public void changeGame(Game game) {
 		this.game = game;
+	}
+
+	public void stopGame() {
+		isRunning = false;
 	}
 	
 }

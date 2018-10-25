@@ -14,8 +14,6 @@ public class KeyListener extends KeyAdapter {
 	public void keyPressed(KeyEvent arg0) {
 		if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
 			gui.shoot(true);
-		} else if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			gui.pause();
 		}
 		gui.playerStartMove(arg0);
 	}
