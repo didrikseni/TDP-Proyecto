@@ -9,9 +9,9 @@ import Obstacle.Barricade;
 import Obstacle.Destroyable;
 import Obstacle.Obstacle;
 
-public class ConcreteFactory extends Factory {
+public class ConcreteEnemyFactory extends EnemyFactory {
 
-	public ConcreteFactory(Game game) {
+	public ConcreteEnemyFactory(Game game) {
 		super(game);
 	}
 

@@ -6,8 +6,10 @@ import Animation.AnimationExplotion_1;
 import Animation.AnimationExplotion_2;
 import Behaviour.Behaviour;
 import Behaviour.DefaultBehaviour;
+import Level.ConcretePowerUpFactory;
+import Level.PowerUpFactory;
 import Main.Game;
-import PowerUp.*;
+import PowerUp.PowerUp;
 
 public abstract class Enemy extends Entity {
 	protected Behaviour comportamiento;
@@ -50,30 +52,14 @@ public abstract class Enemy extends Entity {
 	}
 
 	protected void dropPowerUp() {
-		int i = rnd.nextInt(100);
+		PowerUpFactory factory = new ConcretePowerUpFactory();
 		PowerUp powerUp = null;
-		if (i < 6) {
-			powerUp = new PowerUpWeapon_1(rectangle.x, rectangle.y , game);
-		} else if (i < 10 && !PowerUpFreeze.hasInstance()) {
-			powerUp = PowerUpFreeze.getInstance(rectangle.x, rectangle.y , game);
-		} else if (i < 20) {
-			powerUp = new PowerUpPotion(rectangle.x, rectangle.y , game);
-		} else if (i < 27) {
-			powerUp = new PowerUpShield(rectangle.x, rectangle.y , game);
-		} else if (i < 32) {
-			powerUp = new PowerUpWeapon_2(rectangle.x, rectangle.y, game);
-		} else if (i < 38) {
-			powerUp = new PowerUpShield2(rectangle.x, rectangle.y, game);
-		} else if (i < 39) {
-			powerUp = PowerUpShieldInvunerable.getInstance(rectangle.x, rectangle.y, game);
-		} else if (i < 40) {
-			powerUp = new PowerUpMissile(rectangle.x, rectangle.y, game); 
-		}
+		if (rnd.nextInt(100) < 40)
+			powerUp = factory.getPowerUp(rectangle.x, rectangle.y, game);
 		if (powerUp != null) {
 			game.addEntity(powerUp); 
 		}
 	}
-
 
 	public abstract void shoot();
 

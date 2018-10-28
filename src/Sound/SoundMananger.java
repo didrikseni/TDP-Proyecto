@@ -5,7 +5,7 @@ import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
+//import javax.sound.sampled.FloatControl;
 
 public class SoundMananger implements Runnable {
 	private Clip clip;
@@ -35,8 +35,8 @@ public class SoundMananger implements Runnable {
 			InputStream bufferedIn = new BufferedInputStream(audioSrc);
 			AudioInputStream inputStream = AudioSystem.getAudioInputStream(bufferedIn);
 			clip.open(inputStream);
-			FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			volume.setValue(-25.0f);
+			//FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			//volume.setValue(-25.0f);
 			clip.start(); 			
 			clip.loop(loopCount);
 		} catch (Exception e) {}

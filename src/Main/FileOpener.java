@@ -8,18 +8,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Entity.Entity;
 import GUI.GUI_Game;
-import Level.ConcreteFactory;
-import Level.Factory;
+import Level.ConcreteEnemyFactory;
+import Level.EnemyFactory;
 
 public class FileOpener {
 	private Game game;
-	private Factory factory;
+	private EnemyFactory factory;
 	private String fileName;
 	private GUI_Game gui;
 		
 	public FileOpener(Game game, String fileName, GUI_Game gui) {
 		this.game = game;
-		factory = new ConcreteFactory(game);
+		factory = new ConcreteEnemyFactory(game);
 		this.fileName = fileName;
 		this.gui = gui;
 	}

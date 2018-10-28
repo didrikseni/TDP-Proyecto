@@ -113,7 +113,7 @@ public abstract class Game {
 		if (gameOver) {
 			gui.stopGame();
 			GUI_GameOver gameOverGui = GUI_GameOver.getInstance(player.getScore());
-	        gameOverGui.setVisible(true);
+			gameOverGui.setVisible(true);
 		} else {
 			GUI_Victory winGame = GUI_Victory.getInstance(player.getScore());
 			winGame.setVisible(true);
@@ -124,5 +124,4 @@ public abstract class Game {
 	public String getNextLevel() {
 		return nextLevel;
 	}
-
 }

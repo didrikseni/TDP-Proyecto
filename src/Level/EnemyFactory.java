@@ -4,10 +4,10 @@ import Entity.Enemy;
 import Main.Game;
 import Obstacle.Obstacle;
 
-public abstract class Factory {
+public abstract class EnemyFactory {
 	protected Game game;
 	
-	public Factory(Game game) {
+	public EnemyFactory(Game game) {
 		this.game = game;
 	}
 	
