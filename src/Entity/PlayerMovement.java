@@ -57,16 +57,24 @@ public class PlayerMovement {
 			player.getRectangle().y -= player.getSpeed();
 		if(down) 
 			player.getRectangle().y += player.getSpeed();
-		if(player.getRectangle().x < 0)
-			player.getRectangle().x = 0;
+		checkCoordX(gx);
+		checkCoordY(gy);
+	}
+
+	private void checkCoordY(int gy) {
 		if(player.getRectangle().y < 0)
 			player.getRectangle().y = 0;
-		if(player.getRectangle().x >  gx - player.getWidth() - 10)
-			player.getRectangle().x = gx - player.getWidth() - 10; 
 		if(player.getRectangle().y > (gy - player.getHeight() - 30))
 			player.getRectangle().y = (gy - player.getHeight() - 30);
 		if(player.getRectangle().y <= gy / 5 * 3) 
-			player.getRectangle().y = gy / 5 * 3;
+			player.getRectangle().y = gy / 5 * 3;		
+	}
+
+	private void checkCoordX(int gx) {
+		if(player.getRectangle().x < 0)
+			player.getRectangle().x = 0;
+		if(player.getRectangle().x >  gx - player.getWidth())
+			player.getRectangle().x = gx - player.getWidth(); 
 	}
 
 	public boolean getRight() {

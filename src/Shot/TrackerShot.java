@@ -16,7 +16,7 @@ public class TrackerShot extends EnemyShot {
 		damage = 5;
 		visitor = new VisitorShotEnemy(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/enemy_shot_02.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)); 
+		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 
 	@Override

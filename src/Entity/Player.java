@@ -32,12 +32,12 @@ public class Player extends Entity {
 		firingTimer = System.nanoTime();
 		firingDelay = 300;
 		iconos = new Icon[3];
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/nave_izq.png"));
-		iconos[0] = new ImageIcon(img.getImage().getScaledInstance(width + 20 , height, Image.SCALE_DEFAULT));
-		img = new ImageIcon(this.getClass().getResource("/Resources/nave.png"));
-		iconos[1] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
-		img = new ImageIcon(this.getClass().getResource("/Resources/nave_der.png"));		
-		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(width + 20, height, Image.SCALE_DEFAULT));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Ships/nave_izq.png"));
+		iconos[0] = new ImageIcon(img.getImage().getScaledInstance(rectangle.width + 20 , rectangle.height, Image.SCALE_DEFAULT));
+		img = new ImageIcon(this.getClass().getResource("/Resources/Ships/nave.png"));
+		iconos[1] = new ImageIcon(img.getImage().getScaledInstance(rectangle.width + 20, rectangle.height, Image.SCALE_DEFAULT));
+		img = new ImageIcon(this.getClass().getResource("/Resources/Ships/nave_der.png"));		
+		iconos[2] = new ImageIcon(img.getImage().getScaledInstance(rectangle.width + 20, rectangle.height, Image.SCALE_DEFAULT));
 		icon = iconos[1];
 	}
 
@@ -123,7 +123,7 @@ public class Player extends Entity {
 			} else {
 				graphic.setIcon(iconos[1]);
 			}
-			graphic.setBounds(rectangle.x, rectangle.y, width, height);
+			graphic.setBounds(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 		}
 	}
 

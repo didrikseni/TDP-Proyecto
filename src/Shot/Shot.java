@@ -8,8 +8,8 @@ public abstract class Shot extends Entity {
 	
 	public Shot(int x, int y, Game g) {
 		super(x, y, 4, g);
-		rectangle.height = height = 30; 
-		rectangle.width = width = 10;
+		rectangle.height = 30; 
+		rectangle.width = 10;
 	}
 
 	public int getDamage() {

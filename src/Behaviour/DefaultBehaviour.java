@@ -25,6 +25,23 @@ public class DefaultBehaviour extends Behaviour {
 		if(rnd.nextInt(10) < 1 && inRange(player, pos)) {
 			e.shoot();
 		}
+		updateCoordX(gui,e);
+		updateCoordY(gui,e);		
+		if (rnd.nextInt(100000) < 7) {
+			e.setComportamiento(new KamikazeBehaviour());
+		}
+	}
+	
+	private void updateCoordY(GUI_Game gui, Enemy e) {
+		Point pos = e.getPos();
+		e.getRectangle().y = (int) (15 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY());
+		if(pos.y > (gui.getHeight() - e.getHeight() - 40)) {
+			e.setPos(pos.x, 0); 
+		}
+	}
+
+	private void updateCoordX(GUI_Game gui, Enemy e) {
+		Point pos = e.getPos();
 		if (right) {
 			e.getRectangle().x += e.getSpeed(); 
 			if (pos.x >= gui.getWidth() - e.getGraphics().getWidth() - 15) {
@@ -36,15 +53,8 @@ public class DefaultBehaviour extends Behaviour {
 				right = true;				
 			}
 		}
-		e.getRectangle().y = (int) (15 * Math.sin(e.getPos().x * 0.5 * Math.PI / 120) + e.getPosOriginalY());
-		if(pos.y > (gui.getHeight() - e.getHeight() - 40)) {
-			e.setPos(pos.x, 0); 
-		}
-		if (rnd.nextInt(100000) < 7) {
-			e.setComportamiento(new KamikazeBehaviour());
-		}
 	}
-	
+
 	private boolean inRange(Player player, Point p) {
 		double distancia = Math.sqrt(player.getPos().x * player.getPos().x - p.x * p.x);
 		if (distancia <= player.getWidth() && distancia >= 0) {

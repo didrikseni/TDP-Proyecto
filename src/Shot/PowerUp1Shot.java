@@ -13,7 +13,7 @@ public class PowerUp1Shot extends PlayerShot {
 		damage = 20;
 		visitor = new VisitorShotPlayer(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/player_shot_02.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)); 
+		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 
 	@Override

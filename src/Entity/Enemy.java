@@ -10,6 +10,7 @@ import Level.ConcretePowerUpFactory;
 import Level.PowerUpFactory;
 import Main.Game;
 import PowerUp.PowerUp;
+import Visitor.VisitorEnemy;
 
 public abstract class Enemy extends Entity {
 	protected Behaviour comportamiento;
@@ -21,6 +22,7 @@ public abstract class Enemy extends Entity {
 		originalY = y;
 		comportamiento = DefaultBehaviour.getInstance();
 		rnd = new Random();
+		visitor = new VisitorEnemy(this);
 	}
 
 	public void update() {

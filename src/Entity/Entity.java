@@ -10,7 +10,7 @@ import Visitor.Visitor;
 public abstract class Entity {
 	protected JLabel graphic;
 	protected Icon icon;
-	protected int life, speed, width, height;
+	protected int life, speed;
 	protected Rectangle rectangle;
 	protected Visitor visitor;
 	protected Game game;
@@ -18,11 +18,10 @@ public abstract class Entity {
 	protected Entity(int x, int y, int speed, Game g) {
 		this.speed = speed;
 		this.life = 100;
-		this.width  = this.height = 40;	
 		this.game = g;
 		rectangle = new Rectangle();
 		rectangle.setLocation(x, y);
-		rectangle.setSize(width, height);
+		rectangle.setSize(40, 40);
 	}
 
 	public Rectangle getRectangle() {
@@ -55,17 +54,17 @@ public abstract class Entity {
 	public JLabel getGraphics() {
 		if(this.graphic == null) {
 			this.graphic = new JLabel(icon);
-			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);
+			this.graphic.setBounds(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 		}
 		return this.graphic;
 	}
 
 	public int getWidth() {
-		return width;
+		return rectangle.width;
 	}
 
 	public int getHeight() {
-		return height;
+		return rectangle.height;
 	}
 
 	public void collide(Entity e) {
@@ -76,7 +75,7 @@ public abstract class Entity {
 
 	protected void updateGraphics() {
 		if (this.graphic != null) {
-			this.graphic.setBounds(rectangle.x, rectangle.y, width, height);	
+			this.graphic.setBounds(rectangle.x, rectangle.y, rectangle.width, rectangle.height);	
 		}
 	}
 }

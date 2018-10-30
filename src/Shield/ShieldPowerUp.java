@@ -12,7 +12,7 @@ public class ShieldPowerUp extends Shield {
 		super(player);
 		reduction = 3;
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shields/shield_0.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(width + 5, height, Image.SCALE_DEFAULT));
+		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 		this.shieldGraphics = new JLabel(icon);
 	}
 

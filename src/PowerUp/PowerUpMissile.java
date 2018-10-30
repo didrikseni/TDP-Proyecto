@@ -14,7 +14,7 @@ public class PowerUpMissile extends PowerUp {
 	public PowerUpMissile(int x, int y, Game g) {
 		super(x, y, g);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/missile.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 
 	@Override

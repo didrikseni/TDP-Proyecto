@@ -15,7 +15,7 @@ public class PowerUpShieldInvunerable extends PowerUp {
 	private PowerUpShieldInvunerable(int x, int y, Game g) {
 		super(x, y, g);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/pw_shield_02.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 	
 	public static synchronized PowerUpShieldInvunerable getInstance(int x, int y, Game game) {
