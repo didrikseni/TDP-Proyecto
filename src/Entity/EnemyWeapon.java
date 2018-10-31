@@ -14,7 +14,7 @@ public class EnemyWeapon extends Enemy {
 		super(x, y, speed, g);
 		weapon = new WeaponEnemy(g);
 		score = 100;
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Ships/enemy_ship_00.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Ships/enemy_ship_02.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 
