@@ -3,20 +3,23 @@ package Shot;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import Entity.Player;
+import GUI.RotatedIcon;
 import Main.Game;
 import Visitor.Visitor;
 import Visitor.VisitorShotEnemy;
 
 public class TrackerShot extends EnemyShot {
 	private Player player;
+	private RotatedIcon rotatedIcon;
 	
 	public TrackerShot(int x, int y, Game game, Player player) {
 		super(x, y, game);
 		this.player = player;
 		damage = 5;
 		visitor = new VisitorShotEnemy(this);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/enemy_shot_02.png"));
-		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_02.png"));
+		rotatedIcon = new RotatedIcon(new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT)), 90.0);
+		this.icon = rotatedIcon;
 	}
 
 	@Override
@@ -33,7 +36,13 @@ public class TrackerShot extends EnemyShot {
 		
 		rectangle.x += (int) (5 * Math.cos(angle));
 		rectangle.y += (int) (5 * Math.sin(angle));
+		
+		rotatedIcon.setDegrees(angle * (180 / Math.PI) + 90);
+		this.graphic.setIcon(rotatedIcon);
+		graphic.repaint();
+		
 		this.updateGraphics();
+		
 		if(rectangle.y < -20) {
 			game.addDeadEntity(this);
 		}

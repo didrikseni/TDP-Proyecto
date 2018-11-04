@@ -1,9 +1,7 @@
 package Shot;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
 import GUI.GUI_Game;
 import Main.Game;
 import Visitor.Visitor;
@@ -32,7 +30,7 @@ public class PowerUp2Shot extends PlayerShot {
 			rectangle.x += 2 * Math.cos(y) + 1;
 		} else {
 			rectangle.x -= 2 * Math.cos(y);
-		}
+		}		
 		super.update();
 	}
 
