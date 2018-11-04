@@ -8,9 +8,9 @@ import Shield.Shield;
 import Shield.ShieldPowerUp2;
 import Visitor.Visitor;
 
-public class PowerUpShield2  extends PowerUp {
+public class PowerUpShield_2  extends PowerUp {
 
-	public PowerUpShield2(int x, int y, Game g) {
+	public PowerUpShield_2(int x, int y, Game g) {
 		super(x, y, g);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/PowerUp/pw_shield_01.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));

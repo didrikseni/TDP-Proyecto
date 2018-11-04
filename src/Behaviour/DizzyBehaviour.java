@@ -29,4 +29,5 @@ public class DizzyBehaviour extends Behaviour {
 		e.getRectangle().y = (int) (2 * Math.sin(angle) + e.getRectangle().y);
 		elapsedTime = System.currentTimeMillis();
 	}
+
 }

@@ -41,4 +41,6 @@ public class FinalBoss extends Enemy {
 		v.visitEnemy(this);
 	}
 
+	@Override
+	protected void dropPowerUp() {}
 }

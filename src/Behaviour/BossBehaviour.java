@@ -1,13 +1,13 @@
 package Behaviour;
 
 import Entity.Enemy;
-import Level.ConcreteEnemyFactory;
+import Level.FactoryEnemy;
 import Main.Game;
 
 public class BossBehaviour extends Behaviour {
 	private long elapsedTime, kamikazeTime, shootTime;
 	private int delayGeneral, delayDisparos, rafagaDisparos;
-	private ConcreteEnemyFactory enemyFactory;
+	private FactoryEnemy enemyFactory;
 	private Game game;
 	
 	public BossBehaviour(Game game) {
@@ -16,7 +16,7 @@ public class BossBehaviour extends Behaviour {
 		rafagaDisparos = 10;
 		delayDisparos = 200;
 		delayGeneral = 5000;
-		enemyFactory = new ConcreteEnemyFactory(game);
+		enemyFactory = new FactoryEnemy(game);
 	}
 	
 	@Override
@@ -54,5 +54,4 @@ public class BossBehaviour extends Behaviour {
 		game.addEntity(e);
 		game.addEnemyCount();
 	}
-	
 }

@@ -27,4 +27,5 @@ public class EnemyWeapon extends Enemy {
 	public void shoot() {
 		weapon.shoot(this.getPos());
 	}
+	
 }

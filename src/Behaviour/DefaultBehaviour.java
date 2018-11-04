@@ -69,5 +69,6 @@ public class DefaultBehaviour extends Behaviour {
 		}
 		return INSTANCE;
 	}
+	
 }
 

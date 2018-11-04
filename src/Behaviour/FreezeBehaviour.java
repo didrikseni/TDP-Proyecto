@@ -15,5 +15,6 @@ public class FreezeBehaviour extends Behaviour {
 	public void update(Enemy e) {
 		
 	}
+
 	
 }

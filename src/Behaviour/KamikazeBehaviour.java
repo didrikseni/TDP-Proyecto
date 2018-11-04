@@ -27,4 +27,5 @@ public class KamikazeBehaviour extends Behaviour {
         
         e.getRectangle().x = (int) (2 * Math.cos(angle) + e.getRectangle().x);
 	}
+
 }

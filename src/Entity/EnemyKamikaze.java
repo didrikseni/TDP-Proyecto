@@ -29,10 +29,5 @@ public class EnemyKamikaze extends Enemy {
 	public int getDamage() {
 		return damage;
 	}
-
-	@Override
-	protected void dropPowerUp() {
-		
-	}
-
+	
 }

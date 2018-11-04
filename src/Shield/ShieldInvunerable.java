@@ -4,9 +4,11 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Entity.Player;
+import Sound.SoundMananger;
 
 public class ShieldInvunerable extends Shield {
 	private Shield previouShield;
+	private SoundMananger soundClip;
 	
 	public ShieldInvunerable(Player player) {
 		super(player);
@@ -19,5 +21,15 @@ public class ShieldInvunerable extends Shield {
 	
 	public Shield getPrev() {
 		return previouShield;
+	}
+
+	public void stopSound() {
+		soundClip.getClip().stop();
+		soundClip.getClip().close();
+	}
+
+	public void startSound() {
+		soundClip = new SoundMananger("invulnerable.wav");
+		soundClip.playSound();
 	}
 }

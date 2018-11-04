@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Entity.Entity;
 import GUI.GUI_Game;
-import Level.ConcreteEnemyFactory;
+import Level.FactoryEnemy;
 import Level.EnemyFactory;
 
 public class FileOpener {
@@ -19,7 +19,7 @@ public class FileOpener {
 
 	public FileOpener(Game game, String fileName, GUI_Game gui) {
 		this.game = game;
-		factory = new ConcreteEnemyFactory(game);
+		factory = new FactoryEnemy(game);
 		this.fileName = fileName;
 		this.gui = gui;
 	}

@@ -16,15 +16,17 @@ public class ThreadInvunerable implements Runnable {
 		isRunning = true;
 		ShieldInvunerable shield = new ShieldInvunerable(player);
 		player.setShield(shield);
+		shield.startSound();
 		long elapsedTime;
 		long targetTime = System.currentTimeMillis() + 6000;
 		while (isRunning) {
 			elapsedTime = System.currentTimeMillis();
-			isRunning = elapsedTime < targetTime;
+			isRunning = elapsedTime < targetTime && player.getShield().equals(shield);
 			try { 
 				Thread.sleep(25);
 			} catch (Exception e) {}
 		}
+		shield.stopSound();
 		player.setShield(shield.getPrev());
 	}
 }
