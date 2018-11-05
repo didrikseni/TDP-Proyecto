@@ -54,4 +54,7 @@ public class BossBehaviour extends Behaviour {
 		game.addEntity(e);
 		game.addEnemyCount();
 	}
+
+	@Override
+	public void changeBehaviour(Enemy enemy) {}
 }

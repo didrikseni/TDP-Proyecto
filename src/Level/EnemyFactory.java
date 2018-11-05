@@ -14,7 +14,7 @@ public abstract class EnemyFactory {
 	public abstract Enemy getFinalBoss(int x, int y);
 	public abstract Enemy getEnemyWeapon(int x, int y);
 	public abstract Enemy getEnemyKamikaze(int x, int y);
-	public abstract Enemy getEnemyDizzy(int x, int y);
+	public abstract Enemy getEnemyTracker(int x, int y);
 	public abstract Obstacle getDestroyable(int x, int y);
 	public abstract Obstacle getBarricade(int x, int y);
 	

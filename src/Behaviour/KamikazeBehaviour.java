@@ -28,4 +28,9 @@ public class KamikazeBehaviour extends Behaviour {
         e.getRectangle().x = (int) (2 * Math.cos(angle) + e.getRectangle().x);
 	}
 
+	@Override
+	public void changeBehaviour(Enemy enemy) {
+		enemy.setComportamiento(new DizzyBehaviour());
+	}
+
 }

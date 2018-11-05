@@ -12,7 +12,7 @@ public class SuperMissile extends PlayerShot {
 		super(x, y, g);
 		damage = 55;
 		visitor = new VisitorSuperMissile(this, g);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_03.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/bossShot2.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 

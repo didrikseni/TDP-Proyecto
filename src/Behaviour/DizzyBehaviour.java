@@ -30,4 +30,7 @@ public class DizzyBehaviour extends Behaviour {
 		elapsedTime = System.currentTimeMillis();
 	}
 
+	@Override
+	public void changeBehaviour(Enemy enemy) {}
+
 }

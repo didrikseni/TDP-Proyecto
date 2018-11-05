@@ -30,4 +30,13 @@ public class EnemyKamikaze extends Enemy {
 		return damage;
 	}
 	
+	@Override
+	public void takeDamage(int damage) {
+		super.takeDamage(damage);
+		if (life < 50) {
+			if (rnd.nextInt(100) < 30)
+				comportamiento.changeBehaviour(this);
+		}
+	}
+	
 }

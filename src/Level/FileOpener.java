@@ -1,4 +1,4 @@
-package Main;
+package Level;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,8 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Entity.Entity;
 import GUI.GUI_Game;
-import Level.FactoryEnemy;
-import Level.EnemyFactory;
+import Main.Game;
 
 public class FileOpener {
 	private Game game;
@@ -31,7 +30,7 @@ public class FileOpener {
 			String [] arr;
 			String sCurrentLine;
 			br = new BufferedReader(new FileReader(fileName));
-			game.nextLevel = br.readLine();
+			game.setNextLevel(br.readLine());
 			sCurrentLine = br.readLine();
 			cargarBackground(sCurrentLine);
 			while ((sCurrentLine = br.readLine()) != null) {
@@ -63,7 +62,12 @@ public class FileOpener {
 			game.addEntity(entity);
 			game.addEnemyCount();
 			break;
-		case "b" :
+		case "t":
+			entity = factory.getEnemyTracker(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
+			game.addEntity(entity);
+			game.addEnemyCount();
+			break;
+		case "b":
 			entity = factory.getBarricade(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
 			game.addEntity(entity);
 			break;

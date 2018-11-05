@@ -16,5 +16,8 @@ public class FreezeBehaviour extends Behaviour {
 		
 	}
 
+	@Override
+	public void changeBehaviour(Enemy enemy) {}
+
 	
 }

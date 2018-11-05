@@ -69,6 +69,11 @@ public class DefaultBehaviour extends Behaviour {
 		}
 		return INSTANCE;
 	}
+
+	@Override
+	public void changeBehaviour(Enemy enemy) {
+		enemy.setComportamiento(new KamikazeBehaviour());
+	}
 	
 }
 

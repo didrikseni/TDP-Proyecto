@@ -1,9 +1,9 @@
 package Level;
 
 import Entity.Enemy;
-import Entity.EnemyDizzy;
 import Entity.EnemyKamikaze;
 import Entity.EnemyWeapon;
+import Entity.EnemyTracker;
 import Entity.FinalBoss;
 import Main.Game;
 import Obstacle.Barricade;
@@ -25,11 +25,6 @@ public class FactoryEnemy extends EnemyFactory {
 	public Enemy getEnemyKamikaze(int x, int y) {
 		return new EnemyKamikaze(x,y,1, game);
 	}
-
-	@Override
-	public Enemy getEnemyDizzy(int x, int y) {
-		return new EnemyDizzy(x,y,1, game);
-	}
 	
 	@Override
 	public Obstacle getDestroyable(int x, int y) {
@@ -44,6 +39,11 @@ public class FactoryEnemy extends EnemyFactory {
 	@Override
 	public Enemy getFinalBoss(int x, int y) {
 		return new FinalBoss(x,y,game);
+	}
+
+	@Override
+	public Enemy getEnemyTracker(int x, int y) {
+		return new EnemyTracker(x, y, 1,game);
 	}
 
 }

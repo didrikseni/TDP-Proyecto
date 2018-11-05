@@ -9,8 +9,9 @@ public abstract class Behaviour {
 		GUI_Game gui = GUI_Game.getInstance();
 		if(enemy.getPos().y > gui.getHeight()) {
 			enemy.setPos(enemy.getPos().x, - enemy.getHeight()); 
-		}
-		
+		}	
 	}
+	
+	public abstract void changeBehaviour(Enemy enemy);
 	
 }

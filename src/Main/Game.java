@@ -124,4 +124,8 @@ public abstract class Game {
 	public String getNextLevel() {
 		return nextLevel;
 	}
+	
+	public void setNextLevel(String level) {
+		this.nextLevel = level;
+	}
 }

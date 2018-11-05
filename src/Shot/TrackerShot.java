@@ -15,7 +15,7 @@ public class TrackerShot extends EnemyShot {
 	public TrackerShot(int x, int y, Game game, Player player) {
 		super(x, y, game);
 		this.player = player;
-		damage = 5;
+		damage = 8;
 		visitor = new VisitorShotEnemy(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_02.png"));
 		rotatedIcon = new RotatedIcon(new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT)), 90.0);

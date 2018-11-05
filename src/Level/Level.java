@@ -1,7 +1,6 @@
 package Level;
 
 import GUI.GUI_Game;
-import Main.FileOpener;
 import Main.Game;
 import Sound.SoundMananger;
 

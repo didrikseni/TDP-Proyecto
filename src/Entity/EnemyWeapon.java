@@ -8,7 +8,7 @@ import Weapon.Weapon;
 import Weapon.WeaponEnemy;
 
 public class EnemyWeapon extends Enemy {	
-	private Weapon weapon;
+	protected Weapon weapon;
 	
 	public EnemyWeapon(int x, int y, int speed, Game g) {
 		super(x, y, speed, g);
@@ -26,6 +26,15 @@ public class EnemyWeapon extends Enemy {
 	@Override
 	public void shoot() {
 		weapon.shoot(this.getPos());
+	}
+	
+	@Override
+	public void takeDamage(int damage) {
+		super.takeDamage(damage);
+		if (life < 20) {
+			if (rnd.nextInt(100) < 35) 
+				comportamiento.changeBehaviour(this);
+		}
 	}
 	
 }
