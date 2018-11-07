@@ -24,8 +24,7 @@ public class VisitorShotPlayer extends Visitor {
 		Animation anm = new AnimationSparkEnemy(e.getPos().x, e.getPos().y - (e.getHeight() / 2));
 		anm.getStarted();
 		e.takeDamage(playerShot.getDamage());
-		playerShot.takeDamage(playerShot.getLife());
-		
+		playerShot.takeDamage(playerShot.getLife());		
 	}
 
 	public void visitPowerUp(PowerUp p) {
