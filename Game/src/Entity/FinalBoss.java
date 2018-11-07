@@ -17,7 +17,7 @@ public class FinalBoss extends Enemy {
 		super(x, y, 0, game);
 		this.rectangle.width = this.rectangle.height = 200;
 		comportamiento = new BossBehaviour(game);
-		life = 500;
+		life = 1500;
 		weapon = new WeaponBoss(game);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Ships/bossShip.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));	

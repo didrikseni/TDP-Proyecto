@@ -5,12 +5,14 @@ import Main.Game;
 import Sound.SoundMananger;
 
 public class Level extends Game {
-	protected SoundMananger soundClip;
+	protected static SoundMananger soundClip = null;
 	
 	public Level(GUI_Game gui, String path) {
 		super(gui, path);
-		soundClip = new SoundMananger("background.wav");
-		soundClip.playLoopSound();
+		if (soundClip == null) {
+			soundClip = new SoundMananger("background.wav");
+			soundClip.playLoopSound();
+		}
 	}
 
 	protected void loadObjects() {
