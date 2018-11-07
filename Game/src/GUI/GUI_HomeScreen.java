@@ -17,10 +17,10 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class GUI_HomeScreen extends JFrame {
 	private static GUI_HomeScreen INSTANCE;
-	
-	private static GUI_Game gui;
+	private GUI_Game gui;
 	private JLayeredPane contentPane;
 	private JLabel background;
+	private JButton btnStart, btnHelp;
 
 	public GUI_HomeScreen() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +30,7 @@ public class GUI_HomeScreen extends JFrame {
 		this.setContentPane(contentPane);
 		this.contentPane.setLayout(null);		
 		this.setResizable(false);
-		
+
 		ImageIcon img = new ImageIcon(getClass().getResource("/Resources/PantallaInicio.jpg"));
 		background = new JLabel();
 		Icon icon = new ImageIcon(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
@@ -39,8 +39,8 @@ public class GUI_HomeScreen extends JFrame {
 		contentPane.add(background);
 		contentPane.setLayer(background, 1);
 		background.setVisible(true);
-		
-		JButton btnStart = new JButton("Start game");
+
+		btnStart = new JButton("Start game");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				startGame();
@@ -53,8 +53,8 @@ public class GUI_HomeScreen extends JFrame {
 		btnStart.setFont(new Font("Unispace", Font.PLAIN, 16));
 		btnStart.setBorder(new LineBorder(Color.lightGray.darker(), 2));
 		btnStart.setForeground(Color.white);
-		
-		JButton btnHelp = new JButton("Help");
+
+		btnHelp = new JButton("Help");
 		btnHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				startHelp();
@@ -67,7 +67,7 @@ public class GUI_HomeScreen extends JFrame {
 		btnHelp.setBackground(Color.BLACK);
 		btnHelp.setBorder(new LineBorder(Color.lightGray.darker(), 2));
 		btnHelp.setForeground(Color.white);	
-		
+
 		JButton btnCredits = new JButton("About");
 		btnCredits.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -82,20 +82,29 @@ public class GUI_HomeScreen extends JFrame {
 		btnCredits.setBorder(new LineBorder(Color.lightGray.darker(), 2));
 		btnCredits.setForeground(Color.white);	
 	}	
-	
+
 	private void startGame() {
 		gui = GUI_Game.getInstance();
 		gui.setVisible(true);
 		this.dispose();
 	}
-	
+
 	private void startHelp() {
-		//TODO generar pantalla help
+		GUI_Help help = new GUI_Help(this);
+		disableAllComponents();
+		this.setContentPane(help.getPanel());
 	}
-	
+
+	private void disableAllComponents() {
+		this.btnHelp.setEnabled(false);
+		this.btnStart.setEnabled(false);
+		//this.contentPane.setVisible(false);
+	}
+
 	private void startAbout() {
-		// TODO generar pantalla about y creditos
-		
+		GUI_About about = new GUI_About(this);
+		disableAllComponents();
+		this.setContentPane(about.getPanel());
 	}
 
 	public static GUI_HomeScreen getInstance() {
@@ -103,5 +112,12 @@ public class GUI_HomeScreen extends JFrame {
 			INSTANCE = new GUI_HomeScreen();
 		}
 		return INSTANCE;
+	}
+
+	public void regresar() {
+		this.setContentPane(contentPane);
+		this.contentPane.setVisible(true);
+		this.btnHelp.setEnabled(true);
+		this.btnStart.setEnabled(true);		
 	}
 }

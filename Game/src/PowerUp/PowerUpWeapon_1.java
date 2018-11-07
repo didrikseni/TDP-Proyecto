@@ -22,6 +22,7 @@ public class PowerUpWeapon_1 extends PowerUp {
 
 	@Override
 	public void addPowerUp(Player player) {
+		super.addPowerUp(player);
 		player.setWeapon(new WeaponFirstPowerUp(game));
 		game.addDeadEntity(this);
 		

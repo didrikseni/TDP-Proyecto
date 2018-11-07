@@ -9,7 +9,6 @@ import Obstacle.Obstacle;
 import PowerUp.PowerUp;
 import Shot.EnemyShot;
 import Shot.PlayerShot;
-import Sound.SoundMananger;
 
 public class VisitorPlayer extends Visitor{
 	private Player player;
@@ -28,7 +27,6 @@ public class VisitorPlayer extends Visitor{
 
 	public void visitPowerUp(PowerUp p) {
 		p.addPowerUp(player);
-		new SoundMananger("powerUp.wav").playSound();
 	}
 	
 	public void visitPlayerShot(PlayerShot p) {}

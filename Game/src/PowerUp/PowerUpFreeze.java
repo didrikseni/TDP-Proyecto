@@ -37,6 +37,7 @@ public class PowerUpFreeze extends PowerUp {
 
 	@Override
 	public void addPowerUp(Player player) {
+		super.addPowerUp(player);
 		ThreadFreeze threadFreeze = new ThreadFreeze(game);
 		game.addDeadEntity(this);
 		Thread thread = new Thread(threadFreeze);

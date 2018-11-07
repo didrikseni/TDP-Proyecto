@@ -21,6 +21,7 @@ public class PowerUpPotion extends PowerUp {
 
 	@Override
 	public void addPowerUp(Player player) {
+		super.addPowerUp(player);
 		player.setPotion();
 		game.addDeadEntity(this);
 	}

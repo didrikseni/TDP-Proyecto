@@ -4,7 +4,6 @@ import java.awt.Point;
 import Main.Game;
 import Shot.PowerUp1Shot;
 import Shot.Shot;
-import Sound.SoundMananger;
 
 public class WeaponFirstPowerUp extends Weapon {
 
@@ -18,7 +17,6 @@ public class WeaponFirstPowerUp extends Weapon {
 		Shot s2 = new PowerUp1Shot(pos.x + 25, pos.y, game);
 		game.addEntity(s1);
 		game.addEntity(s2);
-		new SoundMananger("laser.wav").playSound();
 	}
 
 }

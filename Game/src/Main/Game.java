@@ -104,6 +104,7 @@ public abstract class Game {
 	private void removeDeadEntities() {
 		for(Entity entity: deadEntities) {
 			gui.getContentPane().remove(entity.getGraphics());
+			entity.endSound();
 			entities.remove(entity);
 		}
 		gui.repaint();
@@ -111,6 +112,9 @@ public abstract class Game {
 
 	public void endGame(boolean gameOver) {
 		gui.stopGame();
+		for(Entity entity: entities) {
+			entity.endSound();
+		}
 		if (gameOver) {			
 			GUI_GameOver gameOverGui = GUI_GameOver.getInstance(player.getScore());
 			gameOverGui.setVisible(true);
@@ -124,7 +128,7 @@ public abstract class Game {
 	public String getNextLevel() {
 		return nextLevel;
 	}
-	
+
 	public void setNextLevel(String level) {
 		this.nextLevel = level;
 	}

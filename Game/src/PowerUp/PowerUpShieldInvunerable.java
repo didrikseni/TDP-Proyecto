@@ -24,6 +24,7 @@ public class PowerUpShieldInvunerable extends PowerUp {
 
 	@Override
 	public void addPowerUp(Player player) {
+		super.addPowerUp(player);
 		ThreadInvunerable invunerable = new ThreadInvunerable(player);
 		Thread thread = new Thread(invunerable);
 		thread.start();

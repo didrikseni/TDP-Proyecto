@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import Main.Game;
+import Sound.SoundMananger;
 import Visitor.Visitor;
 
 public abstract class Entity {
@@ -14,6 +15,7 @@ public abstract class Entity {
 	protected Rectangle rectangle;
 	protected Visitor visitor;
 	protected Game game;
+	protected SoundMananger soundClip;
 
 	protected Entity(int x, int y, int speed, Game g) {
 		this.speed = speed;
@@ -76,6 +78,13 @@ public abstract class Entity {
 	protected void updateGraphics() {
 		if (this.graphic != null) {
 			this.graphic.setBounds(rectangle.x, rectangle.y, rectangle.width, rectangle.height);	
+		}
+	}
+
+	public void endSound() {
+		if (soundClip != null && soundClip.getClip().isActive()) {
+			soundClip.getClip().stop();
+			soundClip.getClip().close();
 		}
 	}
 }

@@ -24,6 +24,7 @@ public class PowerUpMissile extends PowerUp {
 
 	@Override
 	public void addPowerUp(Player player) {
+		super.addPowerUp(player);
 		this.game.addEntity(new SuperMissile(player.getRectangle().x, player.getRectangle().y, game));
 		game.addDeadEntity(this);
 	}
