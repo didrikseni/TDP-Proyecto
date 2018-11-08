@@ -24,6 +24,7 @@ public class MainThread extends Thread {
 		while(isRunning) {
 			startTime = System.nanoTime();
 			game.update();
+			
 			Collection<Excecute> auxiliar = toExcecute;
 			toExcecute = new ArrayList<Excecute>();			
 			for(Excecute excecute: auxiliar) {

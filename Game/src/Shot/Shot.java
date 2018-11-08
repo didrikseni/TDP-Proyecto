@@ -11,8 +11,8 @@ public abstract class Shot extends Entity {
 		super(x, y, 4, g);
 		rectangle.height = 30; 
 		rectangle.width = 10;
-		//this.soundClip = new SoundMananger("laser.wav");
-		//this.soundClip.playSound();
+		this.soundClip = new SoundMananger("laser.wav");
+		this.soundClip.playSound();
 	}
 
 	public int getDamage() {

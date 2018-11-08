@@ -1,6 +1,5 @@
 package Main;
 
-import java.awt.Container;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.swing.JLayeredPane;
@@ -79,7 +78,6 @@ public abstract class Game {
 		for(Entity ent: aux) {
 			entities.add(ent);
 			gui.add(ent.getGraphics());
-			//gui.getContentPane().add(ent.getGraphics());
 			gui.setComponentLayer(ent.getGraphics(), 5);
 		}
 	}
@@ -106,7 +104,6 @@ public abstract class Game {
 	private void removeDeadEntities() {
 		for(Entity entity: deadEntities) {
 			gui.getContentPane().remove(entity.getGraphics());
-			entity.endSound();
 			entities.remove(entity);
 		}
 		gui.repaint();

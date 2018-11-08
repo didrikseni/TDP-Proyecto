@@ -20,7 +20,7 @@ public class AnimationMananger {
 	}
 
 	public void addAnimation(Animation animation, JLabel label) {
-		gui.getContentPane().add(label);
+		gui.add(label);
 		gui.setComponentLayer(label, 10);
 		Thread asd = new Thread(animation);
 		asd.start();
