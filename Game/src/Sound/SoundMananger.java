@@ -44,5 +44,5 @@ public class SoundMananger implements Runnable {
 	
 	public Clip getClip() {
 		return clip;
-	}	
+	}
 }
