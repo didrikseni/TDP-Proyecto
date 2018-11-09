@@ -2,7 +2,6 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.swing.JLayeredPane;
 import Entity.Enemy;
 import Entity.Entity;
 import Entity.Player;
@@ -15,7 +14,6 @@ public abstract class Game {
 	protected int nivel, enemyCount;
 	protected Player player;
 	protected ArrayList<Entity> entities, deadEntities, toAddEntities;
-	protected JLayeredPane contentPane;
 	protected String nextLevel, currentLevel;
 
 	protected Game(GUI_Game gui, String path) {

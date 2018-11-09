@@ -1,9 +1,7 @@
 package Shot;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
 import Main.Game;
 import Visitor.Visitor;
 import Visitor.VisitorShotEnemy;

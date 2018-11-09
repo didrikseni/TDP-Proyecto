@@ -9,7 +9,7 @@ import Visitor.Visitor;
 import Visitor.VisitorPowerUp;
 
 public abstract class PowerUp extends Entity {
-	
+
 	protected PowerUp(int x, int y, Game g) {
 		super(x, y, 2, g);
 		visitor = new VisitorPowerUp();

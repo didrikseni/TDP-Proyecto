@@ -4,7 +4,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import GUI.GUI_Game;
 import Main.Game;
-import Visitor.Visitor;
 
 public class BossShot extends EnemyShot {
 	private boolean positivo;
@@ -28,11 +27,6 @@ public class BossShot extends EnemyShot {
 			rectangle.x -= 2.2 * Math.cos(y);
 		}
 		super.update();
-	}
-
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemyShot(this);
 	}
 
 }

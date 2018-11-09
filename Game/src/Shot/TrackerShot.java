@@ -5,7 +5,6 @@ import javax.swing.ImageIcon;
 import Entity.Player;
 import GUI.RotatedIcon;
 import Main.Game;
-import Visitor.Visitor;
 
 public class TrackerShot extends EnemyShot {
 	private Player player;
@@ -20,11 +19,6 @@ public class TrackerShot extends EnemyShot {
 		this.icon = rotatedIcon;
 	}
 
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemyShot(this);
-	}
-	
 	@Override
 	public void update() {
 		int vectorX = player.getPos().x - this.rectangle.x;
