@@ -12,7 +12,7 @@ public class DefaultBehaviour extends Behaviour {
 	private static boolean right;
 	private static Random rnd;
 	
-	public DefaultBehaviour() {
+	private DefaultBehaviour() {
 		right = true;
 		rnd = new Random();
 	}

@@ -4,7 +4,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import Entity.Player;
 import Main.Game;
-import Visitor.Visitor;
 import Weapon.WeaponFirstPowerUp;
 
 public class PowerUpWeapon_1 extends PowerUp {
@@ -15,10 +14,6 @@ public class PowerUpWeapon_1 extends PowerUp {
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 
-	@Override
-	public void accept(Visitor v) {
-		v.visitPowerUp(this);
-	}
 
 	@Override
 	public void addPowerUp(Player player) {

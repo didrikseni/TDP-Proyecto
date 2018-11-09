@@ -4,7 +4,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import Entity.Player;
 import Main.Game;
-import Visitor.Visitor;
 
 public class PowerUpFreeze extends PowerUp {
 	public static PowerUpFreeze INSTANCE = null;
@@ -28,11 +27,6 @@ public class PowerUpFreeze extends PowerUp {
 	
 	public static void setInstanceNull() {
 		INSTANCE = null;
-	}
-
-	@Override
-	public void accept(Visitor v) {
-		v.visitPowerUp(this);
 	}
 
 	@Override

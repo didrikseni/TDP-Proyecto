@@ -6,7 +6,6 @@ import Entity.Player;
 import GUI.RotatedIcon;
 import Main.Game;
 import Visitor.Visitor;
-import Visitor.VisitorShotEnemy;
 
 public class TrackerShot extends EnemyShot {
 	private Player player;
@@ -15,8 +14,7 @@ public class TrackerShot extends EnemyShot {
 	public TrackerShot(int x, int y, Game game, Player player) {
 		super(x, y, game);
 		this.player = player;
-		damage = 8;
-		visitor = new VisitorShotEnemy(this);
+		damage = 15;
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_02.png"));
 		rotatedIcon = new RotatedIcon(new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT)), 90.0);
 		this.icon = rotatedIcon;
@@ -44,6 +42,7 @@ public class TrackerShot extends EnemyShot {
 		this.updateGraphics();
 		
 		if(rectangle.y < -20) {
+			this.soundClip.getClip().stop();
 			game.addDeadEntity(this);
 		}
 	}

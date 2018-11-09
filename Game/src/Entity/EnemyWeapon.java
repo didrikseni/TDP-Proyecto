@@ -3,7 +3,6 @@ package Entity;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import Main.Game;
-import Visitor.Visitor;
 import Weapon.Weapon;
 import Weapon.WeaponEnemy;
 
@@ -16,12 +15,7 @@ public class EnemyWeapon extends Enemy {
 		score = 100;
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Ships/enemy_ship_02.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
-	}
-
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemy(this);
-	}
+	}	
 	
 	@Override
 	public void shoot() {

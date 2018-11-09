@@ -1,11 +1,8 @@
 package Entity;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
 import Main.Game;
-import Visitor.Visitor;
 import Weapon.Weapon;
 import Weapon.WeaponEnemyTracker;
 
@@ -22,11 +19,6 @@ public class EnemyTracker extends Enemy {
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
 
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemy(this);
-	}
-	
 	@Override
 	public void shoot() {
 		weapon.shoot(this.getPos());

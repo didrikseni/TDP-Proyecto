@@ -5,8 +5,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import Main.Game;
-import Visitor.Visitor;
-import Visitor.VisitorShotEnemy;
 
 public class BossShot2 extends EnemyShot {
 	private int dy;
@@ -17,7 +15,6 @@ public class BossShot2 extends EnemyShot {
 		this.speed = 3;
 		this.damage = 30;
 		this.dy = dy;
-		visitor = new VisitorShotEnemy(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/bossShot2.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
@@ -26,11 +23,6 @@ public class BossShot2 extends EnemyShot {
 	public void update() {
 		super.update();
 		this.rectangle.x += dy;
-	}
-
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemyShot(this);
 	}
 
 }

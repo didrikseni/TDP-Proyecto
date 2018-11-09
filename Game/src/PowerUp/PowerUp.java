@@ -5,14 +5,15 @@ import Entity.Player;
 import GUI.GUI_Game;
 import Main.Game;
 import Sound.SoundMananger;
+import Visitor.Visitor;
 import Visitor.VisitorPowerUp;
 
 public abstract class PowerUp extends Entity {
-	protected static SoundMananger soundClip = new SoundMananger("powerUp.wav");
 	
 	protected PowerUp(int x, int y, Game g) {
 		super(x, y, 2, g);
-		visitor = new VisitorPowerUp(this);
+		visitor = new VisitorPowerUp();
+		this.soundClip = new SoundMananger("powerUp.wav");
 	}
 	
 	public void update() {
@@ -25,4 +26,9 @@ public abstract class PowerUp extends Entity {
 	public void addPowerUp(Player player) {
 		soundClip.playSound();
 	}	
+	
+	@Override
+	public void accept(Visitor v) {
+		v.visitPowerUp(this);
+	}
 }

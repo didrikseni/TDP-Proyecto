@@ -14,6 +14,14 @@ public abstract class Shot extends Entity {
 		this.soundClip = new SoundMananger("laser.wav");
 		this.soundClip.playSound();
 	}
+	
+	@Override
+	public void update() {
+		this.updateGraphics();
+		if(rectangle.y < -15) {
+			game.addDeadEntity(this);
+		}
+	}
 
 	public int getDamage() {
 		return damage;

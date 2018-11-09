@@ -9,9 +9,6 @@ import Shot.PlayerShot;
 
 public class VisitorEnemy extends Visitor {
 	
-	public VisitorEnemy (Enemy e) { 
-	}
-
 	@Override
 	public void visitPlayer(Player p) {
 		

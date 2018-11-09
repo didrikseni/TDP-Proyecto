@@ -23,11 +23,9 @@ public abstract class Animation implements Runnable {
 	public void run() {
 		int i = 0;
 		while(i < array.length) {	
-
 			label.setIcon(array[i]);
 			label.repaint();
 			i++;
-
 			try { 
 				Thread.sleep(25);
 			} catch (Exception e) {}	

@@ -9,9 +9,6 @@ import Shot.PlayerShot;
 
 public class VisitorShotEnemy extends Visitor {
 	
-	public VisitorShotEnemy(EnemyShot enemyShot) {
-
-	}
 
 	public void visitPlayer(Player p) {
 		

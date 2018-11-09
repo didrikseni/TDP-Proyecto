@@ -2,6 +2,7 @@ package Obstacle;
 
 import Entity.Entity;
 import Main.Game;
+import Visitor.Visitor;
 
 public abstract class Obstacle extends Entity {
 
@@ -9,7 +10,10 @@ public abstract class Obstacle extends Entity {
 		super(x, y, 0, g);
 	}
 	
-	
-	
+	@Override
+	public void accept(Visitor v) {
+		v.visitObstacle(this);
+	}
+
 	
 }

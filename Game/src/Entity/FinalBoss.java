@@ -5,7 +5,6 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import Behaviour.BossBehaviour;
 import Main.Game;
-import Visitor.Visitor;
 import Weapon.Weapon;
 import Weapon.WeaponBoss;
 import Weapon.WeaponBoss2;
@@ -36,11 +35,4 @@ public class FinalBoss extends Enemy {
 		weapon.shoot(new Point(rectangle.x, rectangle.y + rectangle.height / 2));
 	}
 
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemy(this);
-	}
-
-	@Override
-	protected void dropPowerUp() {}
 }
