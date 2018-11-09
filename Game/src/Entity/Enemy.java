@@ -22,7 +22,7 @@ public abstract class Enemy extends Entity {
 		originalY = y;
 		comportamiento = DefaultBehaviour.getInstance();
 		rnd = new Random();
-		visitor = new VisitorEnemy(this);
+		visitor = new VisitorEnemy();
 	}
 
 	public void update() {

@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 import Entity.Player;
 import GUI.RotatedIcon;
 import Main.Game;
-import Visitor.Visitor;
-import Visitor.VisitorShotEnemy;
 
 public class TrackerShot extends EnemyShot {
 	private Player player;
@@ -16,17 +14,11 @@ public class TrackerShot extends EnemyShot {
 		super(x, y, game);
 		this.player = player;
 		damage = 8;
-		visitor = new VisitorShotEnemy(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/basic_shot_02.png"));
 		rotatedIcon = new RotatedIcon(new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT)), 90.0);
 		this.icon = rotatedIcon;
 	}
 
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemyShot(this);
-	}
-	
 	@Override
 	public void update() {
 		int vectorX = player.getPos().x - this.rectangle.x;

@@ -4,8 +4,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import GUI.GUI_Game;
 import Main.Game;
-import Visitor.Visitor;
-import Visitor.VisitorShotEnemy;
 
 public class BossShot extends EnemyShot {
 	private boolean positivo;
@@ -16,7 +14,6 @@ public class BossShot extends EnemyShot {
 		this.speed = 3;
 		this.damage = 30;
 		positivo = b;
-		visitor = new VisitorShotEnemy(this);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/Resources/Shots/bossShot.png"));
 		this.icon = new ImageIcon(img.getImage().getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_DEFAULT));
 	}
@@ -30,11 +27,6 @@ public class BossShot extends EnemyShot {
 			rectangle.x -= 2.2 * Math.cos(y);
 		}
 		super.update();
-	}
-
-	@Override
-	public void accept(Visitor v) {
-		v.visitEnemyShot(this);
 	}
 
 }

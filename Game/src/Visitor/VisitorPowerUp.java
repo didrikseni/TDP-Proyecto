@@ -8,11 +8,7 @@ import Shot.EnemyShot;
 import Shot.PlayerShot;
 
 public class VisitorPowerUp extends Visitor {
-	
-	public VisitorPowerUp(PowerUp pw) {
 
-	}
-	
 	@Override
 	public void visitPlayer(Player p) {
 		

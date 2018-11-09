@@ -9,10 +9,10 @@ public class Level extends Game {
 	
 	public Level(GUI_Game gui, String path) {
 		super(gui, path);
-		if (soundClip == null) {
-			soundClip = new SoundMananger("background.wav");
+		/*if (soundClip == null) {
+			//soundClip = new SoundMananger("background.wav");
 			soundClip.playLoopSound();
-		}
+		}*/
 	}
 
 	protected void loadObjects() {
@@ -22,8 +22,8 @@ public class Level extends Game {
 	
 	@Override
 	public void endGame(boolean b) {
-		soundClip.getClip().stop();
-		soundClip.getClip().close();
+		//soundClip.getClip().stop();
+		//soundClip.getClip().close();
 		super.endGame(b);
 	}
 	
